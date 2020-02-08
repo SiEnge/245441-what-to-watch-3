@@ -2,10 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
 
-// с помощью реакта рендерим элемент app туда куда нужно
-//  т.е. параметры передаются через запятую (=что, куда)
+const promoMovie = {
+  title: `The Grand Budapest Hotel`,
+  genre: `Drama`,
+  date: `2014`
+};
+
 ReactDOM.render(
-    <App />,
+    <App
+      promoMovie={promoMovie}
+    />,
     document.querySelector(`#root`)
 );
 
