@@ -100,7 +100,7 @@ const Main = (props) => {
         <div className="catalog__movies-list">
 
           {movies.map((movie, index) =>
-            <article key={`${index}_${movie.slice(3)}`} className="small-movie-card catalog__movies-card">
+            <article key={`${index}_${movie}`} className="small-movie-card catalog__movies-card">
               <div className="small-movie-card__image">
                 <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
               </div>
