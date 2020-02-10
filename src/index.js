@@ -8,9 +8,20 @@ const promoMovie = {
   date: `2014`
 };
 
+const movies = [
+  `Fantastic Beasts`,
+  `Bohemian Rhapsody`,
+  `Macbeth`,
+  `Aviator`,
+  `Revenant`,
+  `Johnny English`,
+  `Snatch`
+];
+
 ReactDOM.render(
     <App
       promoMovie={promoMovie}
+      movies={movies}
     />,
     document.querySelector(`#root`)
 );
