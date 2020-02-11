@@ -1,21 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Main from "../main/main.jsx";
-
-const promoMovie = {
-  title: `The Grand Budapest Hotel`,
-  genre: `Drama`,
-  date: `2014`
-};
-
-const movies = [
-  `Fantastic Beasts`,
-  `Bohemian Rhapsody`,
-  `Macbeth`,
-  `Aviator`,
-  `Revenant`,
-  `Snatch`
-];
+import {promoMovie, movies} from "../../utils/test.utils.js";
 
 it(`Render Main`, () => {
   const tree = renderer

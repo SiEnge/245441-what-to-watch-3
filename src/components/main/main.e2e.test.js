@@ -2,21 +2,7 @@ import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Main from "./main.jsx";
-
-const promoMovie = {
-  title: `The Grand Budapest Hotel`,
-  genre: `Drama`,
-  date: `2014`
-};
-
-const movies = [
-  `Fantastic Beasts`,
-  `Bohemian Rhapsody`,
-  `Macbeth`,
-  `Aviator`,
-  `Revenant`,
-  `Snatch`
-];
+import {promoMovie, movies} from "../../utils/test.utils.js";
 
 Enzyme.configure({
   adapter: new Adapter(),
