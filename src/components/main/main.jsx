@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import MoviesList from "../movies-list/movies-list.jsx";
 
 const Main = (props) => {
-  const {promoMovie, movies} = props;
+  const {promoMovie, movies, onTitleClick} = props;
 
   return (<React.Fragment>
     <section className="movie-card">
@@ -100,6 +100,7 @@ const Main = (props) => {
 
         <MoviesList
           movies={movies}
+          onTitleClick={onTitleClick}
         />
 
         <div className="catalog__more">
@@ -124,6 +125,7 @@ const Main = (props) => {
   </React.Fragment>);
 
 };
+
 
 Main.propTypes = {
   promoMovie: PropTypes.shape({

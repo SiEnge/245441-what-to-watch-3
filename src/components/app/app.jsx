@@ -28,6 +28,8 @@ App.propTypes = {
         poster: PropTypes.string.isRequired,
       })
   ).isRequired,
+
+  onTitleClick: PropTypes.func.isRequired,
 };
 
 export default App;

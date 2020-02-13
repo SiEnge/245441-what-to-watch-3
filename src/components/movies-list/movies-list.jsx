@@ -9,10 +9,12 @@ class MoviesList extends React.Component {
     this.state = {
       activeSmallCard: -1
     };
+
+    this.onCardHover = this.onCardHover.bind(this);
   }
 
   render() {
-    const {movies} = this.props;
+    const {movies, onTitleClick} = this.props;
 
     return (
       <div className="catalog__movies-list">
@@ -20,10 +22,20 @@ class MoviesList extends React.Component {
           <SmallMovieCard
             key={movie.id}
             movie={movie}
+            onTitleClick={onTitleClick}
+            onCardHover={this.onCardHover}
           />
         )}
       </div>
     );
+  }
+
+  onCardHover(id) {
+    if (id !== this.state.activeSmallCard) {
+      this.setState({
+        activeSmallCard: id,
+      });
+    }
   }
 }
 
@@ -35,6 +47,8 @@ MoviesList.propTypes = {
         poster: PropTypes.string.isRequired,
       })
   ).isRequired,
+
+  onTitleClick: PropTypes.func.isRequired,
 };
 
 export default MoviesList;
