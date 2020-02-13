@@ -46,3 +46,5 @@ export const generateMovies = () => {
     .fill(``)
     .map(generateMovie);
 };
+
+export const movies = generateMovies();

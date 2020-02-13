@@ -4,7 +4,9 @@ import Main from "../main/main.jsx";
 
 const titleHandler = () => {};
 
-const App = ({promoMovie, movies}) => {
+const App = (props) => {
+  const {promoMovie, movies} = props;
+
   return (
     <Main
       promoMovie={promoMovie}

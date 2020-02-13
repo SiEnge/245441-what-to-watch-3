@@ -266,7 +266,9 @@ Array [
             className="small-movie-card__image"
           >
             <img
+              alt="film1"
               height="175"
+              src="img/film1.jpg"
               width="280"
             />
           </div>
@@ -277,7 +279,9 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
               onClick={[Function]}
-            />
+            >
+              film1
+            </a>
           </h3>
         </article>
         <article
@@ -289,7 +293,9 @@ Array [
             className="small-movie-card__image"
           >
             <img
+              alt="film2"
               height="175"
+              src="img/film2.jpg"
               width="280"
             />
           </div>
@@ -300,7 +306,9 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
               onClick={[Function]}
-            />
+            >
+              film2
+            </a>
           </h3>
         </article>
         <article
@@ -312,7 +320,9 @@ Array [
             className="small-movie-card__image"
           >
             <img
+              alt="film3"
               height="175"
+              src="img/film3.jpg"
               width="280"
             />
           </div>
@@ -323,7 +333,9 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
               onClick={[Function]}
-            />
+            >
+              film3
+            </a>
           </h3>
         </article>
         <article
@@ -335,7 +347,9 @@ Array [
             className="small-movie-card__image"
           >
             <img
+              alt="film4"
               height="175"
+              src="img/film4.jpg"
               width="280"
             />
           </div>
@@ -346,7 +360,9 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
               onClick={[Function]}
-            />
+            >
+              film4
+            </a>
           </h3>
         </article>
         <article
@@ -358,7 +374,9 @@ Array [
             className="small-movie-card__image"
           >
             <img
+              alt="film5"
               height="175"
+              src="img/film5.jpg"
               width="280"
             />
           </div>
@@ -369,7 +387,9 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
               onClick={[Function]}
-            />
+            >
+              film5
+            </a>
           </h3>
         </article>
         <article
@@ -381,7 +401,9 @@ Array [
             className="small-movie-card__image"
           >
             <img
+              alt="film6"
               height="175"
+              src="img/film6.jpg"
               width="280"
             />
           </div>
@@ -392,7 +414,9 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
               onClick={[Function]}
-            />
+            >
+              film6
+            </a>
           </h3>
         </article>
       </div>

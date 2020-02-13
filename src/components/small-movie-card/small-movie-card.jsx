@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const SmallMovieCard = (props) => {
   const {movie, onTitleClick, onCardHover} = props;
-  debugger;
+
   return (
     <article
       onMouseOver={() => onCardHover(movie.id)}
@@ -25,11 +25,11 @@ const SmallMovieCard = (props) => {
 };
 
 SmallMovieCard.propTypes = {
-  movie: PropTypes.exact({
+  movie: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
 
   onTitleClick: PropTypes.func.isRequired,
   onCardHover: PropTypes.func.isRequired,
