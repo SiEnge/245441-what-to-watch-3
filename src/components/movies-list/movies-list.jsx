@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import SmallMovieCard from "../smart-movie-card/smart-movie-card.jsx";
+import SmallMovieCard from "../small-movie-card/small-movie-card.jsx";
 
 class MoviesList extends React.Component {
   constructor(props) {
