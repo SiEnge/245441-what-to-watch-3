@@ -30,12 +30,12 @@ const getRandomArrayItem = (array) => {
   return array[randomIndex];
 };
 
-const generateMovie = () => {
+const generateMovie = (index) => {
   const title = getRandomArrayItem(movieTitles);
   const poster = title.toLowerCase().replace(/\s/g, `-`);
 
   return {
-    id: String(new Date() + Math.random()),
+    id: `${index}_${title}`,
     title,
     poster: `img/${poster}.jpg`,
   };
@@ -44,7 +44,7 @@ const generateMovie = () => {
 export const generateMovies = () => {
   return new Array(SMALL_MOVIE_CARD_COUNT)
     .fill(``)
-    .map(generateMovie);
+    .map((it, index) => generateMovie(index));
 };
 
 export const movies = generateMovies();
