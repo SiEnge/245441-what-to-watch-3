@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+import MoviesList from "../movies-list/movies-list.jsx";
 
 const Main = (props) => {
-  const {promoMovie: {title, genre, date}, movies, onTitleClick} = props;
+  const {promoMovie, movies, onTitleClick} = props;
 
   return (<React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src="img/bg-the-grand-budapest-hotel.jpg" alt="{title}" />
+        <img src="img/bg-the-grand-budapest-hotel.jpg" alt="{promoMovie.title}" />
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -31,14 +32,14 @@ const Main = (props) => {
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt="{title} poster" width="218" height="327" />
+            <img src="img/the-grand-budapest-hotel-poster.jpg" alt="{promoMovie.title} poster" width="218" height="327" />
           </div>
 
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">{title}</h2>
+            <h2 className="movie-card__title">{promoMovie.title}</h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">{genre}</span>
-              <span className="movie-card__year">{date}</span>
+              <span className="movie-card__genre">{promoMovie.genre}</span>
+              <span className="movie-card__year">{promoMovie.date}</span>
             </p>
 
             <div className="movie-card__buttons">
@@ -97,25 +98,10 @@ const Main = (props) => {
           </li>
         </ul>
 
-        <div className="catalog__movies-list">
-
-          {movies.map((movie, index) =>
-            <article key={`${index}_${movie}`} className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a
-                  onClick={onTitleClick}
-                  className="small-movie-card__link"
-                  href="movie-page.html"
-                >{movie}</a>
-              </h3>
-            </article>
-          )}
-
-
-        </div>
+        <MoviesList
+          movies={movies}
+          onTitleClick={onTitleClick}
+        />
 
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
@@ -140,6 +126,7 @@ const Main = (props) => {
 
 };
 
+
 Main.propTypes = {
   promoMovie: PropTypes.shape({
     title: PropTypes.string.isRequired,
@@ -147,7 +134,13 @@ Main.propTypes = {
     date: PropTypes.string.isRequired
   }),
 
-  movies: PropTypes.arrayOf(PropTypes.string.isRequired),
+  movies: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        poster: PropTypes.string.isRequired,
+      })
+  ).isRequired,
 
   onTitleClick: PropTypes.func.isRequired,
 };

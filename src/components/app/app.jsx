@@ -4,7 +4,9 @@ import Main from "../main/main.jsx";
 
 const titleHandler = () => {};
 
-const App = ({promoMovie, movies}) => {
+const App = (props) => {
+  const {promoMovie, movies} = props;
+
   return (
     <Main
       promoMovie={promoMovie}
@@ -21,7 +23,15 @@ App.propTypes = {
     date: PropTypes.string.isRequired
   }),
 
-  movies: PropTypes.arrayOf(PropTypes.string.isRequired)
+  movies: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        poster: PropTypes.string.isRequired,
+      })
+  ).isRequired,
+
+  onTitleClick: PropTypes.func.isRequired,
 };
 
 export default App;

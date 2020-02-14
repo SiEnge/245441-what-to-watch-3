@@ -9,7 +9,7 @@ Enzyme.configure({
 });
 
 it(`Should title be pressed`, () => {
-  const onTitleClick = jest.fn(); // замокивание клика
+  const onTitleClick = jest.fn();
 
   const main = shallow(
       <Main
