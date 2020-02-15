@@ -1,6 +1,8 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {Switch, Route, BrowserRouter} from "react-router-dom";
 import Main from "../main/main.jsx";
+import MovieCard from "../movie-card/movie-card.jsx";
 
 const titleHandler = () => {};
 
@@ -13,13 +15,23 @@ class App extends PureComponent {
     const {promoMovie, movies} = this.props;
 
     return (
-      <Main
-        promoMovie={promoMovie}
-        movies={movies}
-        onTitleClick={titleHandler}
-      />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            <Main
+              promoMovie={promoMovie}
+              movies={movies}
+              onTitleClick={titleHandler}
+            />
+          </Route>
+          <Route exact path="/dev-film">
+            <MovieCard />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     );
   }
+
 }
 
 App.propTypes = {

@@ -1,6 +1,7 @@
 import React from "react";
 
 const MovieCard = () => {
+
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__hero">
