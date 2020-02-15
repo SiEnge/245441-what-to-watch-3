@@ -1,20 +1,26 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 
 const titleHandler = () => {};
 
-const App = (props) => {
-  const {promoMovie, movies} = props;
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <Main
-      promoMovie={promoMovie}
-      movies={movies}
-      onTitleClick={titleHandler}
-    />
-  );
-};
+  render() {
+    const {promoMovie, movies} = this.props;
+
+    return (
+      <Main
+        promoMovie={promoMovie}
+        movies={movies}
+        onTitleClick={titleHandler}
+      />
+    );
+  }
+}
 
 App.propTypes = {
   promoMovie: PropTypes.shape({
