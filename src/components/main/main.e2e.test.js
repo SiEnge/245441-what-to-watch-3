@@ -9,13 +9,13 @@ Enzyme.configure({
 });
 
 it(`Should title be pressed`, () => {
-  const onTitleClick = jest.fn();
+  const onMovieCardClick = jest.fn();
 
   const main = shallow(
       <Main
         promoMovie={promoMovie}
         movies={movies}
-        onTitleClick={onTitleClick}
+        onMovieCardClick={onMovieCardClick}
       />
   );
 
@@ -25,5 +25,5 @@ it(`Should title be pressed`, () => {
     title.props().onClick();
   });
 
-  expect(onTitleClick.mock.calls.length).toBe(titles.length);
+  expect(onMovieCardClick.mock.calls.length).toBe(titles.length);
 });

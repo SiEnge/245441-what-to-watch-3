@@ -8,6 +8,7 @@ it(`Render Main`, () => {
     .create(<Main
       promoMovie={promoMovie}
       movies={movies}
+      onMovieCardClick={() => {}}
     />)
     .toJSON();
 

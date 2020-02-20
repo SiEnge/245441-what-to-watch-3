@@ -8,6 +8,8 @@ it(`Render SmallMovieCard`, () => {
     .create(<SmallMovieCard
       key={movie.id}
       movie={movie}
+      onMovieCardClick={() => {}}
+      onCardHover={() => {}}
     />)
     .toJSON();
 

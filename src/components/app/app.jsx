@@ -4,34 +4,68 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import Main from "../main/main.jsx";
 import MovieCard from "../movie-card/movie-card.jsx";
 
-const titleHandler = () => {};
-
 class App extends PureComponent {
   constructor(props) {
     super(props);
+
+    this.state = {
+      movieCard: null
+    };
+
+    this._handleMovieCardClick = this._handleMovieCardClick.bind(this);
+  }
+
+  _handleMovieCardClick(movieId, evt) {
+    evt.preventDefault();
+    const index = this.props.movies.findIndex((movie) => movie.id === movieId);
+
+    if (index === -1) {
+      return;
+    }
+    this.setState({
+      movieCard: this.props.movies[index],
+    });
   }
 
   render() {
-    const {promoMovie, movies} = this.props;
+    const {movies} = this.props;
 
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            <Main
-              promoMovie={promoMovie}
-              movies={movies}
-              onTitleClick={titleHandler}
-            />
+            {this._renderApp()}
           </Route>
           <Route exact path="/dev-film">
-            <MovieCard />
+            <MovieCard
+              promoMovie={movies[0]}
+            />
           </Route>
         </Switch>
       </BrowserRouter>
     );
   }
 
+  _renderApp() {
+    const {promoMovie, movies} = this.props;
+
+    if (this.state.movieCard === null) {
+      return (
+        <Main
+          promoMovie={promoMovie}
+          movies={movies}
+          onMovieCardClick={this._handleMovieCardClick}
+        />
+      );
+    }
+
+
+    return (
+      <MovieCard
+        promoMovie={this.state.movieCard}
+      />
+    );
+  }
 }
 
 App.propTypes = {
@@ -48,8 +82,6 @@ App.propTypes = {
         poster: PropTypes.string.isRequired,
       })
   ).isRequired,
-
-  onTitleClick: PropTypes.func.isRequired,
 };
 
 export default App;

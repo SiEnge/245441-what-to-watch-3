@@ -9,13 +9,13 @@ Enzyme.configure({
 });
 
 it(`Should card be hover`, () => {
-  const onTitleClick = jest.fn();
+  const onMovieCardClick = jest.fn();
   const onCardHover = jest.fn();
 
   const smallMovieCard = shallow(
       <SmallMovieCard
         movie={movie}
-        onTitleClick={onTitleClick}
+        onMovieCardClick={onMovieCardClick}
         onCardHover={onCardHover}
       />
   );
@@ -27,13 +27,13 @@ it(`Should card be hover`, () => {
 });
 
 it(`Should card be unhover`, () => {
-  const onTitleClick = jest.fn();
+  const onMovieCardClick = jest.fn();
   const onCardHover = jest.fn();
 
   const smallMovieCard = shallow(
       <SmallMovieCard
         movie={movie}
-        onTitleClick={onTitleClick}
+        onMovieCardClick={onMovieCardClick}
         onCardHover={onCardHover}
       />
   );
@@ -45,13 +45,13 @@ it(`Should card be unhover`, () => {
 });
 
 it(`Should title card be pressed`, () => {
-  const onTitleClick = jest.fn();
+  const onMovieCardClick = jest.fn();
   const onCardHover = jest.fn();
 
   const smallMovieCard = shallow(
       <SmallMovieCard
         movie={movie}
-        onTitleClick={onTitleClick}
+        onMovieCardClick={onMovieCardClick}
         onCardHover={onCardHover}
       />
   );
@@ -59,6 +59,24 @@ it(`Should title card be pressed`, () => {
   const title = smallMovieCard.find(`a.small-movie-card__link`);
 
   title.props().onClick();
-  expect(onTitleClick.mock.calls.length).toBe(1);
+  expect(onMovieCardClick.mock.calls.length).toBe(1);
+});
+
+it(`Should poster card be pressed`, () => {
+  const onMovieCardClick = jest.fn();
+  const onCardHover = jest.fn();
+
+  const smallMovieCard = shallow(
+      <SmallMovieCard
+        movie={movie}
+        onMovieCardClick={onMovieCardClick}
+        onCardHover={onCardHover}
+      />
+  );
+
+  const poster = smallMovieCard.find(`div.small-movie-card__image`);
+
+  poster.props().onClick();
+  expect(onMovieCardClick.mock.calls.length).toBe(1);
 });
 

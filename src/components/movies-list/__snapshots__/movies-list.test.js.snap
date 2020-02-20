@@ -11,6 +11,7 @@ exports[`Render MoviesList 1`] = `
   >
     <div
       className="small-movie-card__image"
+      onClick={[Function]}
     >
       <img
         alt="film1"
@@ -25,6 +26,7 @@ exports[`Render MoviesList 1`] = `
       <a
         className="small-movie-card__link"
         href="movie-page.html"
+        onClick={[Function]}
       >
         film1
       </a>
@@ -37,6 +39,7 @@ exports[`Render MoviesList 1`] = `
   >
     <div
       className="small-movie-card__image"
+      onClick={[Function]}
     >
       <img
         alt="film2"
@@ -51,6 +54,7 @@ exports[`Render MoviesList 1`] = `
       <a
         className="small-movie-card__link"
         href="movie-page.html"
+        onClick={[Function]}
       >
         film2
       </a>
@@ -63,6 +67,7 @@ exports[`Render MoviesList 1`] = `
   >
     <div
       className="small-movie-card__image"
+      onClick={[Function]}
     >
       <img
         alt="film3"
@@ -77,6 +82,7 @@ exports[`Render MoviesList 1`] = `
       <a
         className="small-movie-card__link"
         href="movie-page.html"
+        onClick={[Function]}
       >
         film3
       </a>
@@ -89,6 +95,7 @@ exports[`Render MoviesList 1`] = `
   >
     <div
       className="small-movie-card__image"
+      onClick={[Function]}
     >
       <img
         alt="film4"
@@ -103,6 +110,7 @@ exports[`Render MoviesList 1`] = `
       <a
         className="small-movie-card__link"
         href="movie-page.html"
+        onClick={[Function]}
       >
         film4
       </a>
@@ -115,6 +123,7 @@ exports[`Render MoviesList 1`] = `
   >
     <div
       className="small-movie-card__image"
+      onClick={[Function]}
     >
       <img
         alt="film5"
@@ -129,6 +138,7 @@ exports[`Render MoviesList 1`] = `
       <a
         className="small-movie-card__link"
         href="movie-page.html"
+        onClick={[Function]}
       >
         film5
       </a>
@@ -141,6 +151,7 @@ exports[`Render MoviesList 1`] = `
   >
     <div
       className="small-movie-card__image"
+      onClick={[Function]}
     >
       <img
         alt="film6"
@@ -155,6 +166,7 @@ exports[`Render MoviesList 1`] = `
       <a
         className="small-movie-card__link"
         href="movie-page.html"
+        onClick={[Function]}
       >
         film6
       </a>

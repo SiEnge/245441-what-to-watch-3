@@ -14,7 +14,7 @@ class MoviesList extends React.Component {
   }
 
   render() {
-    const {movies, onTitleClick} = this.props;
+    const {movies, onMovieCardClick} = this.props;
 
     return (
       <div className="catalog__movies-list">
@@ -22,7 +22,7 @@ class MoviesList extends React.Component {
           <SmallMovieCard
             key={movie.id}
             movie={movie}
-            onTitleClick={onTitleClick}
+            onMovieCardClick={onMovieCardClick}
             onCardHover={this.onCardHover}
           />
         )}
@@ -48,7 +48,7 @@ MoviesList.propTypes = {
       })
   ).isRequired,
 
-  onTitleClick: PropTypes.func.isRequired,
+  onMovieCardClick: PropTypes.func.isRequired,
 };
 
 export default MoviesList;
