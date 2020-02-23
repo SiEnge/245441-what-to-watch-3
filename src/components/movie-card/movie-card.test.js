@@ -6,7 +6,7 @@ import {movie} from "../../utils/test.utils.js";
 it(`Render MovieCard`, () => {
   const tree = renderer
     .create(<MovieCard
-      promoMovie={movie}
+      movie={movie}
     />)
     .toJSON();
 

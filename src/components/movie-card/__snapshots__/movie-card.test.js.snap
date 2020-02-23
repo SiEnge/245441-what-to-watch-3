@@ -71,7 +71,7 @@ exports[`Render MovieCard 1`] = `
         <h2
           className="movie-card__title"
         >
-          film
+          film1
         </h2>
         <p
           className="movie-card__meta"
@@ -146,7 +146,7 @@ exports[`Render MovieCard 1`] = `
         <img
           alt="{title} poster"
           height="327"
-          src="img/film.jpg"
+          src="img/film1.jpg"
           width="218"
         />
       </div>

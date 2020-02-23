@@ -9,26 +9,22 @@ class App extends PureComponent {
     super(props);
 
     this.state = {
-      movieCard: null
+      movieCardId: -1
     };
 
     this._handleMovieCardClick = this._handleMovieCardClick.bind(this);
   }
 
-  _handleMovieCardClick(movieId, evt) {
-    evt.preventDefault();
-    const index = this.props.movies.findIndex((movie) => movie.id === movieId);
-
-    if (index === -1) {
-      return;
-    }
+  _handleMovieCardClick(movieId) {
     this.setState({
-      movieCard: this.props.movies[index],
+      /* теперь сохраняем в state не все данные по фильму, а только его id */
+      movieCardId: movieId,
     });
   }
 
   render() {
     const {movies} = this.props;
+    const {movieCardId} = this.state;
 
     return (
       <BrowserRouter>
@@ -36,9 +32,10 @@ class App extends PureComponent {
           <Route exact path="/">
             {this._renderApp()}
           </Route>
-          <Route exact path="/dev-film">
+          <Route exact path="/dev-route">
             <MovieCard
-              promoMovie={movies[0]}
+              /* отрисовка активного фильма, но пока по умолчанию отрисовка первого фильма */
+              movie={movies[movies.findIndex((movie) => movie.id === movieCardId)] || movies[0]}
             />
           </Route>
         </Switch>
@@ -46,10 +43,13 @@ class App extends PureComponent {
     );
   }
 
+  /* этот метод оставила,
+  т.к. работу Route и смену адреса в адресной строке при выборе фильма мы еще не проходили :) */
   _renderApp() {
     const {promoMovie, movies} = this.props;
+    const {movieCardId} = this.state;
 
-    if (this.state.movieCard === null) {
+    if (movieCardId === -1) {
       return (
         <Main
           promoMovie={promoMovie}
@@ -59,10 +59,9 @@ class App extends PureComponent {
       );
     }
 
-
     return (
       <MovieCard
-        promoMovie={this.state.movieCard}
+        movie={movies[movies.findIndex((movie) => movie.id === movieCardId)]}
       />
     );
   }

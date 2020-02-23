@@ -1,13 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const createDescriptionMarkup = (descriptions) => {
-  return descriptions.map((description, i) => {
-    return <p key={i}>{description}</p>;
-  });
-};
-
-const ScoreName = {
+const ScoreType = {
   BAD: `Bad`,
   NORMAL: `Normal`,
   GOOD: `Good`,
@@ -15,29 +9,34 @@ const ScoreName = {
   AWESOME: `Awesome`,
 };
 
-const getScoreName = (score) => {
+const getScoreType = (score) => {
   let scoreName;
 
   if (score >= 0 && score < 3) {
-    scoreName = ScoreName.BAD;
+    scoreName = ScoreType.BAD;
   } else if (score >= 3 && score < 5) {
-    scoreName = ScoreName.NORMAL;
+    scoreName = ScoreType.NORMAL;
   } else if (score >= 5 && score < 8) {
-    scoreName = ScoreName.GOOD;
+    scoreName = ScoreType.GOOD;
   } else if (score >= 8 && score < 10) {
-    scoreName = ScoreName.VERY_GOOD;
+    scoreName = ScoreType.VERY_GOOD;
   } else if (score >= 10) {
-    scoreName = ScoreName.AWESOME;
+    scoreName = ScoreType.AWESOME;
   }
 
   return scoreName;
 };
 
 const MovieCard = (props) => {
-  const {promoMovie: {title, genre, date, poster, background, descriptions, score, rating, director, starring}} = props;
+  const {movie: {title, genre, date, poster, background, descriptions, score, rating, director, starring}} = props;
 
-  const descriptionMarkup = createDescriptionMarkup(descriptions);
-  const scoreName = getScoreName(score);
+  const descriptionMarkup = descriptions.map((description, i) =>
+    <p key={i}>
+      {description}
+    </p>
+  );
+
+  const scoreName = getScoreType(score);
 
   return (
     <section className="movie-card movie-card--full">
@@ -135,7 +134,7 @@ const MovieCard = (props) => {
 };
 
 MovieCard.propTypes = {
-  promoMovie: PropTypes.shape({
+  movie: PropTypes.shape({
     title: PropTypes.string.isRequired,
     genre: PropTypes.string,
     date: PropTypes.string.isRequired,

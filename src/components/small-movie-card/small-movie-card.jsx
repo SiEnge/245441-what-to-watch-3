@@ -17,7 +17,10 @@ const SmallMovieCard = (props) => {
       </div>
       <h3 className="small-movie-card__title">
         <a
-          onClick={(evt) => onMovieCardClick(id, evt)}
+          onClick={(evt) => {
+            evt.preventDefault();
+            onMovieCardClick(id);
+          }}
           className="small-movie-card__link"
           href="movie-page.html"
         >{title}</a>
