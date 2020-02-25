@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+
 class VideoPlayer extends React.Component {
   constructor(props) {
     super(props);
@@ -11,26 +12,19 @@ class VideoPlayer extends React.Component {
   }
 
   render() {
-    const {preview, poster} = this.props.movie;
+    const {preview, poster} = this.props;
 
     return (
-      <video
-        controls
-        muted
-        scr={preview}
-        poster={poster}
-        autoPlay
-      >
+      <video poster={poster} controls muted autoPlay>
+        <source src={preview}/>
       </video>
     );
   }
 }
 
 VideoPlayer.propTypes = {
-  movie: PropTypes.shape({
-    preview: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-  }).isRequired,
+  preview: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired,
 };
 
 export default VideoPlayer;

@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import VideoPlayer from "../video-player/video-player.jsx";
 
 const SmallMovieCard = (props) => {
-  const {movie: {id, title, poster}, onMovieCardClick, onCardHover} = props;
+  const {movie: {id, title, poster, preview}, isPlaying, onMovieCardClick, onCardHover} = props;
 
   return (
     <article
@@ -12,9 +13,13 @@ const SmallMovieCard = (props) => {
     >
       <div onClick={() => onMovieCardClick(id)}
         className="small-movie-card__image">
-
-        <img src={poster} alt={title} width="280" height="175" />
+        {isPlaying ? (
+          <VideoPlayer poster={poster} preview={preview} />
+        ) : (
+          <img src={poster} alt={title} width="280" height="175" />
+        )}
       </div>
+
       <h3 className="small-movie-card__title">
         <a onClick={(evt) => {
           evt.preventDefault();
@@ -33,7 +38,10 @@ SmallMovieCard.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired,
   }),
+
+  isPlaying: PropTypes.bool.isRequired,
 
   onMovieCardClick: PropTypes.func.isRequired,
   onCardHover: PropTypes.func.isRequired,
