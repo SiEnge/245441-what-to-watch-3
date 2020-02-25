@@ -58,8 +58,11 @@ it(`Should title card be pressed`, () => {
 
   const title = smallMovieCard.find(`a.small-movie-card__link`);
 
-  title.props().onClick();
-  expect(onMovieCardClick.mock.calls.length).toBe(1);
+  title.simulate(`click`, {
+    preventDefault: () => {
+      expect(onMovieCardClick.mock.calls.length).toBe(1);
+    }
+  });
 });
 
 it(`Should poster card be pressed`, () => {
@@ -76,7 +79,7 @@ it(`Should poster card be pressed`, () => {
 
   const poster = smallMovieCard.find(`div.small-movie-card__image`);
 
-  poster.props().onClick();
+  poster.simulate(`click`);
   expect(onMovieCardClick.mock.calls.length).toBe(1);
 });
 

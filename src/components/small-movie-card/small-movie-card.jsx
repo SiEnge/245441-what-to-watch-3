@@ -10,19 +10,18 @@ const SmallMovieCard = (props) => {
       onMouseOut={() => onCardHover(-1)}
       className="small-movie-card catalog__movies-card"
     >
-      <div onClick={() => onMovieCardClick(id)}
+      <div onClick={onMovieCardClick(id)}
         className="small-movie-card__image">
 
         <img src={poster} alt={title} width="280" height="175" />
       </div>
       <h3 className="small-movie-card__title">
-        <a
-          onClick={(evt) => {
-            evt.preventDefault();
-            onMovieCardClick(id);
-          }}
-          className="small-movie-card__link"
-          href="movie-page.html"
+        <a onClick={(evt) => {
+          evt.preventDefault();
+          onMovieCardClick(id);
+        }}
+        className="small-movie-card__link"
+        href="movie-page.html"
         >{title}</a>
       </h3>
     </article>
