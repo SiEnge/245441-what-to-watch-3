@@ -10,9 +10,9 @@ exports[`Render SmallMovieCard 1`] = `
     className="small-movie-card__image"
   >
     <img
-      alt="film"
+      alt="film1"
       height="175"
-      src="img/film.jpg"
+      src="img/film1.jpg"
       width="280"
     />
   </div>
@@ -22,8 +22,9 @@ exports[`Render SmallMovieCard 1`] = `
     <a
       className="small-movie-card__link"
       href="movie-page.html"
+      onClick={[Function]}
     >
-      film
+      film1
     </a>
   </h3>
 </article>

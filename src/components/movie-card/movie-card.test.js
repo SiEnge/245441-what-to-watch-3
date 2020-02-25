@@ -1,15 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import SmallMovieCard from "../small-movie-card/small-movie-card.jsx";
+import MovieCard from "../movie-card/movie-card.jsx";
 import {movie} from "../../utils/test.utils.js";
 
-it(`Render SmallMovieCard`, () => {
+it(`Render MovieCard`, () => {
   const tree = renderer
-    .create(<SmallMovieCard
-      key={movie.id}
+    .create(<MovieCard
       movie={movie}
-      onMovieCardClick={() => {}}
-      onCardHover={() => {}}
     />)
     .toJSON();
 

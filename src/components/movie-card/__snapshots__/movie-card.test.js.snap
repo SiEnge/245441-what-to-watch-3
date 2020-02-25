@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render App 1`] = `
+exports[`Render MovieCard 1`] = `
 <section
   className="movie-card movie-card--full"
 >
@@ -71,7 +71,7 @@ exports[`Render App 1`] = `
         <h2
           className="movie-card__title"
         >
-          film6
+          film1
         </h2>
         <p
           className="movie-card__meta"
@@ -146,7 +146,7 @@ exports[`Render App 1`] = `
         <img
           alt="{title} poster"
           height="327"
-          src="img/film6.jpg"
+          src="img/film1.jpg"
           width="218"
         />
       </div>
@@ -197,7 +197,7 @@ exports[`Render App 1`] = `
           <div
             className="movie-rating__score"
           >
-            5.3
+            6.6
           </div>
           <p
             className="movie-rating__meta"

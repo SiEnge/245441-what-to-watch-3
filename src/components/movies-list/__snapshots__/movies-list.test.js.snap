@@ -25,6 +25,7 @@ exports[`Render MoviesList 1`] = `
       <a
         className="small-movie-card__link"
         href="movie-page.html"
+        onClick={[Function]}
       >
         film1
       </a>
@@ -51,6 +52,7 @@ exports[`Render MoviesList 1`] = `
       <a
         className="small-movie-card__link"
         href="movie-page.html"
+        onClick={[Function]}
       >
         film2
       </a>
@@ -77,6 +79,7 @@ exports[`Render MoviesList 1`] = `
       <a
         className="small-movie-card__link"
         href="movie-page.html"
+        onClick={[Function]}
       >
         film3
       </a>
@@ -103,6 +106,7 @@ exports[`Render MoviesList 1`] = `
       <a
         className="small-movie-card__link"
         href="movie-page.html"
+        onClick={[Function]}
       >
         film4
       </a>
@@ -129,6 +133,7 @@ exports[`Render MoviesList 1`] = `
       <a
         className="small-movie-card__link"
         href="movie-page.html"
+        onClick={[Function]}
       >
         film5
       </a>
@@ -155,6 +160,7 @@ exports[`Render MoviesList 1`] = `
       <a
         className="small-movie-card__link"
         href="movie-page.html"
+        onClick={[Function]}
       >
         film6
       </a>
