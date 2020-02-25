@@ -34,7 +34,6 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-route">
             <MovieCard
-              /* отрисовка активного фильма, но пока по умолчанию отрисовка первого фильма */
               movie={movies[movies.findIndex((movie) => movie.id === movieCardId)] || movies[0]}
             />
           </Route>
@@ -43,8 +42,6 @@ class App extends PureComponent {
     );
   }
 
-  /* этот метод оставила,
-  т.к. работу Route и смену адреса в адресной строке при выборе фильма мы еще не проходили :) */
   _renderApp() {
     const {promoMovie, movies} = this.props;
     const {movieCardId} = this.state;

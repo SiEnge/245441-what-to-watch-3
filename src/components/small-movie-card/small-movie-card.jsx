@@ -10,7 +10,7 @@ const SmallMovieCard = (props) => {
       onMouseOut={() => onCardHover(-1)}
       className="small-movie-card catalog__movies-card"
     >
-      <div onClick={onMovieCardClick(id)}
+      <div onClick={() => onMovieCardClick(id)}
         className="small-movie-card__image">
 
         <img src={poster} alt={title} width="280" height="175" />

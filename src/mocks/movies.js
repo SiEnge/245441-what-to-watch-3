@@ -21,6 +21,11 @@ const movieTitles = [
   `Mindhunter`,
 ];
 
+const moviePreviews = [
+  `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+];
+
 const getRandomIntegerNumber = (min, max) => {
   return min + Math.floor((max - min) * Math.random());
 };
@@ -38,6 +43,7 @@ const generateMovie = (index) => {
     id: `${index}_${title}`,
     title,
     poster: `img/${poster}.jpg`,
+    preview: moviePreviews[index % 2],
     genre: `Drama`,
     date: `2014`,
     background: `img/bg-the-grand-budapest-hotel.jpg`,
