@@ -10,9 +10,11 @@ it(`Render VideoPlayer`, () => {
     .create(<VideoPlayer
       poster={poster}
       preview={preview}
-    />)
-    .toJSON();
+    />, {
+      createNodeMock: () => {
+        return {};
+      }
+    }).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
-

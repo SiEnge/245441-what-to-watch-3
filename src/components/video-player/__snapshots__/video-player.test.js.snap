@@ -2,10 +2,9 @@
 
 exports[`Render VideoPlayer 1`] = `
 <video
-  autoPlay={true}
-  controls={true}
   muted={true}
   poster="img/film1.jpg"
+  width="100%"
 >
   <source
     src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
