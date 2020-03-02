@@ -13,16 +13,6 @@ class VideoPlayer extends PureComponent {
     };
   }
 
-  componentDidMount() {
-    const video = this._videoRef.current;
-
-    video.oncanplaythrough = () => {
-      this.setState({
-        isPlaying: true,
-      });
-    };
-  }
-
   componentWillUnmount() {
     let video = this._videoRef.current;
 
@@ -47,7 +37,11 @@ class VideoPlayer extends PureComponent {
     return (
       <video ref={this._videoRef}
         width="100%"
-        poster={poster} muted>
+        onCanPlayThrough={() => this.setState({
+          isPlaying: true
+        })}
+        poster={poster}
+        muted>
         <source src={preview}/>
       </video>
     );

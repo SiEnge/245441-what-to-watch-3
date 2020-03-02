@@ -3,6 +3,7 @@
 exports[`Render VideoPlayer 1`] = `
 <video
   muted={true}
+  onCanPlayThrough={[Function]}
   poster="img/film1.jpg"
   width="100%"
 >
