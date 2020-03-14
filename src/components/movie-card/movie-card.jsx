@@ -67,6 +67,8 @@ const MovieCard = (props) => {
         </div>
       </div>
     </section>
+
+
   );
 };
 

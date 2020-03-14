@@ -164,7 +164,9 @@ exports[`Render MovieCard 1`] = `
             >
               <a
                 className="movie-nav__link"
+                data-name="Overview"
                 href="#"
+                onClick={[Function]}
               >
                 Overview
               </a>
@@ -174,7 +176,9 @@ exports[`Render MovieCard 1`] = `
             >
               <a
                 className="movie-nav__link"
+                data-name="Details"
                 href="#"
+                onClick={[Function]}
               >
                 Details
               </a>
@@ -184,7 +188,9 @@ exports[`Render MovieCard 1`] = `
             >
               <a
                 className="movie-nav__link"
+                data-name="Reviews"
                 href="#"
+                onClick={[Function]}
               >
                 Reviews
               </a>
@@ -236,8 +242,8 @@ exports[`Render MovieCard 1`] = `
             className="movie-card__starring"
           >
             <strong>
-              Starring: 
-              Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other
+              Starring:
+              Bill Murray, Edward Norton, Jude Law, Willem Dafoe
             </strong>
           </p>
         </div>

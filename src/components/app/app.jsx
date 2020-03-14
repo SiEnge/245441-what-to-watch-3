@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import Main from "../main/main.jsx";
+import MoviesList from "../movies-list/movies-list.jsx";
 import MovieCard from "../movie-card/movie-card.jsx";
 
 class App extends PureComponent {
@@ -22,8 +23,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {movies} = this.props;
-    const {movieCardId} = this.state;
+
 
     return (
       <BrowserRouter>
@@ -32,12 +32,48 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-route">
-            <MovieCard
-              movie={movies[movies.findIndex((movie) => movie.id === movieCardId)] || movies[0]}
-            />
+            {this._renderMovieCard()}
           </Route>
         </Switch>
       </BrowserRouter>
+    );
+  }
+
+  _renderMovieCard() {
+    const {movies} = this.props;
+    const {movieCardId} = this.state;
+
+    return (
+      <React.Fragment>
+        <MovieCard
+          movie={movies[movies.findIndex((movie) => movie.id === movieCardId)] || movies[0]}
+        />
+        <div className="page-content">
+          <section className="catalog catalog--like-this">
+            <h2 className="catalog__title">More like this</h2>
+            <MoviesList
+              movies={movies.slice(0, 4)}
+              onMovieCardClick={this._handleMovieCardClick}
+
+            />
+          </section>
+
+          <footer className="page-footer">
+            <div className="logo">
+              <a href="main.html" className="logo__link logo__link--light">
+                <span className="logo__letter logo__letter--1">W</span>
+                <span className="logo__letter logo__letter--2">T</span>
+                <span className="logo__letter logo__letter--3">W</span>
+              </a>
+            </div>
+
+            <div className="copyright">
+              <p>© 2019 What to watch Ltd.</p>
+            </div>
+          </footer>
+        </div>
+      </React.Fragment>
+
     );
   }
 
@@ -55,11 +91,7 @@ class App extends PureComponent {
       );
     }
 
-    return (
-      <MovieCard
-        movie={movies[movies.findIndex((movie) => movie.id === movieCardId)]}
-      />
-    );
+    return this._renderMovieCard();
   }
 }
 
