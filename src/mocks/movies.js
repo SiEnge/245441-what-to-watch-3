@@ -53,8 +53,22 @@ const generateMovie = (index) => {
     ],
     score: 6.6,
     rating: `240`,
+    runtime: getRandomIntegerNumber(66, 240),
     director: `Wes Andreson`,
-    starring: `Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other`,
+    starring: [
+      `Bill Murray`,
+      `Edward Norton`,
+      `Jude Law`,
+      `Willem Dafoe`,
+      `Saoirse Ronan`,
+      `Tony Revoloru`,
+      `Tilda Swinton`,
+      `Tom Wilkinson`,
+      `Owen Wilkinson`,
+      `Adrien Brody`,
+      `Ralph Fiennes`,
+      `Jeff Goldblum`
+    ],
   };
 };
 
