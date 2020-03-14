@@ -1,42 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Tabs from "../tabs/tabs.jsx";
 
-const ScoreType = {
-  BAD: `Bad`,
-  NORMAL: `Normal`,
-  GOOD: `Good`,
-  VERY_GOOD: `Very good`,
-  AWESOME: `Awesome`,
-};
 
-const getScoreType = (score) => {
-  let scoreName;
-
-  if (score >= 0 && score < 3) {
-    scoreName = ScoreType.BAD;
-  } else if (score >= 3 && score < 5) {
-    scoreName = ScoreType.NORMAL;
-  } else if (score >= 5 && score < 8) {
-    scoreName = ScoreType.GOOD;
-  } else if (score >= 8 && score < 10) {
-    scoreName = ScoreType.VERY_GOOD;
-  } else if (score >= 10) {
-    scoreName = ScoreType.AWESOME;
-  }
-
-  return scoreName;
-};
 
 const MovieCard = (props) => {
-  const {movie: {title, genre, date, poster, background, descriptions, score, rating, director, starring}} = props;
+  const {movie, movie: {title, genre, date, poster, background, descriptions, score, rating, director, starring}} = props;
 
-  const descriptionMarkup = descriptions.map((description, i) =>
-    <p key={i}>
-      {description}
-    </p>
-  );
-
-  const scoreName = getScoreType(score);
 
   return (
     <section className="movie-card movie-card--full">
@@ -96,37 +66,7 @@ const MovieCard = (props) => {
             <img src={poster} alt="{title} poster" width="218" height="327" />
           </div>
 
-          <div className="movie-card__desc">
-            <nav className="movie-nav movie-card__nav">
-              <ul className="movie-nav__list">
-                <li className="movie-nav__item movie-nav__item--active">
-                  <a href="#" className="movie-nav__link">Overview</a>
-                </li>
-                <li className="movie-nav__item">
-                  <a href="#" className="movie-nav__link">Details</a>
-                </li>
-                <li className="movie-nav__item">
-                  <a href="#" className="movie-nav__link">Reviews</a>
-                </li>
-              </ul>
-            </nav>
-
-            <div className="movie-rating">
-              <div className="movie-rating__score">{score}</div>
-              <p className="movie-rating__meta">
-                <span className="movie-rating__level">{scoreName}</span>
-                <span className="movie-rating__count">{rating} ratings</span>
-              </p>
-            </div>
-
-            <div className="movie-card__text">
-              {descriptionMarkup}
-
-              <p className="movie-card__director"><strong>Director: {director}</strong></p>
-
-              <p className="movie-card__starring"><strong>Starring: {starring}</strong></p>
-            </div>
-          </div>
+          <Tabs movie={movie}/>
         </div>
       </div>
     </section>
@@ -144,7 +84,6 @@ MovieCard.propTypes = {
     score: PropTypes.number.isRequired,
     rating: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,
-    starring: PropTypes.string.isRequired,
   }),
 };
 

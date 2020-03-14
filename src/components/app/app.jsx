@@ -17,7 +17,6 @@ class App extends PureComponent {
 
   _handleMovieCardClick(movieId) {
     this.setState({
-      /* теперь сохраняем в state не все данные по фильму, а только его id */
       movieCardId: movieId,
     });
   }
