@@ -1,25 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import SmallMovieCard from "../small-movie-card/small-movie-card.jsx";
-
-// В директории src/components создайте новый компонент «Табы».
-// Компонент должен отрисовывать три таба: Overview, Details и Reviews.
-// При клике на таб отображается релевантный набор информации.
-// Разметка для компонента доступна в файле movie-page-details.html (смотрите .movie-nav__list).
-
-// Посмотреть примеры оформления табов вы можете на страницах:
-// Overview — movie-page.html
-// Details — movie-page-details.html
-// Reviews — movie-page-reviews.html
-// Все необходимые данные для заполнения компонент получает через props.
 
 const MINUTE_IN_ONE_HOUR = 60;
 const TEN_MINUTES = 10;
 
 const TabsType = {
-  OVERVIEW: 'Overview',
-  DETAIL: 'Details',
-  REVIEWS: 'Reviews'
+  OVERVIEW: `Overview`,
+  DETAIL: `Details`,
+  REVIEWS: `Reviews`
 };
 
 const ScoreType = {
@@ -79,7 +67,7 @@ class Tabs extends React.Component {
   }
 
   render() {
-    const {movie: {title, genre, date, poster, background, descriptions, score, rating, runtime, director, starring}} = this.props;
+    const {movie: {genre, date, descriptions, score, rating, runtime, director, starring}} = this.props;
     const {activeTab} = this.state;
 
     return (
@@ -111,7 +99,7 @@ class Tabs extends React.Component {
             )}
             <p className="movie-card__director"><strong>Director: {director}</strong></p>
             <p className="movie-card__starring"><strong>Starring:
-              {starring.slice(0, 4).join(', ')}
+              {starring.slice(0, 4).join(`, `)}
             </strong></p>
           </div>
         }
@@ -126,7 +114,7 @@ class Tabs extends React.Component {
               <p className="movie-card__details-item">
                 <strong className="movie-card__details-name">Starring</strong>
                 <span className="movie-card__details-value">
-                  {starring.join(',')}
+                  {starring.join(`,`)}
                 </span>
               </p>
             </div>
@@ -153,7 +141,7 @@ class Tabs extends React.Component {
             <div className="movie-card__reviews-col">
               <div className="review">
                 <blockquote className="review__quote">
-                  <p className="review__text">Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.</p>
+                  <p className="review__text">Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director`&#39;`s funniest and most exquisitely designed movies in years.</p>
 
                   <footer className="review__details">
                     <cite className="review__author">Kate Muir</cite>
@@ -166,7 +154,7 @@ class Tabs extends React.Component {
 
               <div className="review">
                 <blockquote className="review__quote">
-                  <p className="review__text">Anderson's films are too precious for some, but for those of us willing to lose ourselves in them, they're a delight. "The Grand Budapest Hotel" is no different, except that he has added a hint of gravitas to the mix, improving the recipe.</p>
+                  <p className="review__text">Anderson`&#39;`s films are too precious for some, but for those of us willing to lose ourselves in them, they`&#39;`re a delight. `&#34;`The Grand Budapest Hotel`&#34;` is no different, except that he has added a hint of gravitas to the mix, improving the recipe.</p>
 
                   <footer className="review__details">
                     <cite className="review__author">Bill Goodykoontz</cite>
@@ -179,7 +167,7 @@ class Tabs extends React.Component {
 
               <div className="review">
                 <blockquote className="review__quote">
-                  <p className="review__text">I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.</p>
+                  <p className="review__text">I didn`&#39;`t find it amusing, and while I can appreciate the creativity, it`&#39;`s an hour and 40 minutes I wish I could take back.</p>
 
                   <footer className="review__details">
                     <cite className="review__author">Amanda Greever</cite>
@@ -237,16 +225,18 @@ class Tabs extends React.Component {
   }
 }
 
-Tabs.propTypes = {
-  // movies: PropTypes.arrayOf(
-  //     PropTypes.shape({
-  //       id: PropTypes.string.isRequired,
-  //       title: PropTypes.string.isRequired,
-  //       poster: PropTypes.string.isRequired,
-  //     })
-  // ).isRequired,
 
-  // onMovieCardClick: PropTypes.func.isRequired,
+Tabs.propTypes = {
+  movie: PropTypes.shape({
+    genre: PropTypes.string,
+    date: PropTypes.string.isRequired,
+    descriptions: PropTypes.array.isRequired,
+    score: PropTypes.number.isRequired,
+    runtime: PropTypes.number.isRequired,
+    rating: PropTypes.string.isRequired,
+    director: PropTypes.string.isRequired,
+    starring: PropTypes.array.isRequired,
+  }),
 };
 
 export default Tabs;

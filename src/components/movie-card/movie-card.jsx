@@ -2,11 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import Tabs from "../tabs/tabs.jsx";
 
-
-
 const MovieCard = (props) => {
-  const {movie, movie: {title, genre, date, poster, background, descriptions, score, rating, director, starring}} = props;
-
+  const {movie, movie: {title, genre, date, poster, background}} = props;
 
   return (
     <section className="movie-card movie-card--full">
@@ -80,10 +77,6 @@ MovieCard.propTypes = {
     date: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
     background: PropTypes.string.isRequired,
-    descriptions: PropTypes.array.isRequired,
-    score: PropTypes.number.isRequired,
-    rating: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
   }),
 };
 
