@@ -73,7 +73,6 @@ class App extends PureComponent {
           </footer>
         </div>
       </React.Fragment>
-
     );
   }
 
