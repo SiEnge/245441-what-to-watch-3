@@ -25,7 +25,7 @@ class MoviesList extends React.Component {
           <SmallMovieCard
             key={movie.id}
             movie={movie}
-            isPlaying={(movie.id === activeSmallCard) ? true : false}
+            isPlaying={movie.id === activeSmallCard}
             onMovieCardClick={onMovieCardClick}
             onCardHover={this.onCardHover}
           />
