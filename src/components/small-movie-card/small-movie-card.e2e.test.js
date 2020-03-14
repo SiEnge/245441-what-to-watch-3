@@ -4,6 +4,8 @@ import Adapter from "enzyme-adapter-react-16";
 import SmallMovieCard from "./small-movie-card.jsx";
 import {movie} from "../../utils/test.utils.js";
 
+const isPlaying = false;
+
 Enzyme.configure({
   adapter: new Adapter(),
 });
@@ -15,6 +17,7 @@ it(`Should card be hover`, () => {
   const smallMovieCard = shallow(
       <SmallMovieCard
         movie={movie}
+        isPlaying={isPlaying}
         onMovieCardClick={onMovieCardClick}
         onCardHover={onCardHover}
       />
@@ -33,6 +36,7 @@ it(`Should card be unhover`, () => {
   const smallMovieCard = shallow(
       <SmallMovieCard
         movie={movie}
+        isPlaying={isPlaying}
         onMovieCardClick={onMovieCardClick}
         onCardHover={onCardHover}
       />
@@ -51,18 +55,16 @@ it(`Should title card be pressed`, () => {
   const smallMovieCard = shallow(
       <SmallMovieCard
         movie={movie}
+        isPlaying={isPlaying}
         onMovieCardClick={onMovieCardClick}
         onCardHover={onCardHover}
       />
   );
 
   const title = smallMovieCard.find(`a.small-movie-card__link`);
+  title.simulate(`click`, {preventDefault() {}});
 
-  title.simulate(`click`, {
-    preventDefault: () => {
-      expect(onMovieCardClick.mock.calls.length).toBe(1);
-    }
-  });
+  expect(onMovieCardClick).toHaveBeenCalledTimes(1);
 });
 
 it(`Should poster card be pressed`, () => {
@@ -72,6 +74,7 @@ it(`Should poster card be pressed`, () => {
   const smallMovieCard = shallow(
       <SmallMovieCard
         movie={movie}
+        isPlaying={isPlaying}
         onMovieCardClick={onMovieCardClick}
         onCardHover={onCardHover}
       />
@@ -82,4 +85,3 @@ it(`Should poster card be pressed`, () => {
   poster.simulate(`click`);
   expect(onMovieCardClick.mock.calls.length).toBe(1);
 });
-

@@ -264,6 +264,7 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="film1"
@@ -291,6 +292,7 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="film2"
@@ -318,6 +320,7 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="film3"
@@ -345,6 +348,7 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="film4"
@@ -372,6 +376,7 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="film5"
@@ -399,6 +404,7 @@ Array [
         >
           <div
             className="small-movie-card__image"
+            onClick={[Function]}
           >
             <img
               alt="film6"

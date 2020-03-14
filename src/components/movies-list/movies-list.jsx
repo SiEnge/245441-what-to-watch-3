@@ -2,12 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import SmallMovieCard from "../small-movie-card/small-movie-card.jsx";
 
+const VIDEO_DELAY = 1000;
+
 class MoviesList extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      activeSmallCard: -1
+      activeSmallCard: -1,
     };
 
     this.onCardHover = this.onCardHover.bind(this);
@@ -15,6 +17,7 @@ class MoviesList extends React.Component {
 
   render() {
     const {movies, onMovieCardClick} = this.props;
+    const {activeSmallCard} = this.state;
 
     return (
       <div className="catalog__movies-list">
@@ -22,6 +25,7 @@ class MoviesList extends React.Component {
           <SmallMovieCard
             key={movie.id}
             movie={movie}
+            isPlaying={movie.id === activeSmallCard}
             onMovieCardClick={onMovieCardClick}
             onCardHover={this.onCardHover}
           />
@@ -32,9 +36,17 @@ class MoviesList extends React.Component {
 
   onCardHover(id) {
     if (id !== this.state.activeSmallCard) {
-      this.setState({
-        activeSmallCard: id,
-      });
+      if (id === -1) {
+        this.setState({
+          activeSmallCard: id,
+        });
+      } else {
+        setTimeout(() => {
+          this.setState({
+            activeSmallCard: id,
+          });
+        }, VIDEO_DELAY);
+      }
     }
   }
 }

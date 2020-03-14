@@ -8,6 +8,7 @@ it(`Render SmallMovieCard`, () => {
     .create(<SmallMovieCard
       key={movie.id}
       movie={movie}
+      isPlaying={false}
       onMovieCardClick={() => {}}
       onCardHover={() => {}}
     />)
@@ -15,3 +16,4 @@ it(`Render SmallMovieCard`, () => {
 
   expect(tree).toMatchSnapshot();
 });
+
