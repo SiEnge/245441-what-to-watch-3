@@ -6,6 +6,18 @@ class Genres extends React.Component {
   constructor(props) {
     super(props);
 
+    this._handleGenreClick = this._handleGenreClick.bind(this);
+  }
+
+  _handleGenreClick(evt) {
+    const {onGenresClick} = this.props;
+
+    evt.preventDefault();
+    const genre = evt.currentTarget;
+
+    onGenresClick(genre.dataset.genre);
+
+
   }
 
   render() {
@@ -14,11 +26,13 @@ class Genres extends React.Component {
     return (
       <ul className="catalog__genres-list">
         <li className="catalog__genres-item catalog__genres-item--active">
-          <a href="#" className="catalog__genres-link">All genres</a>
+          <a onClick={this._handleGenreClick} data-genre="all"
+            href="#" className="catalog__genres-link">All genres</a>
         </li>
         {genres.map((genre, i) =>
           <li key={i} className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">{genre}</a>
+            <a onClick={this._handleGenreClick} data-genre={genre}
+              href="#" className="catalog__genres-link">{genre}</a>
           </li>
         )}
       </ul>
@@ -28,6 +42,8 @@ class Genres extends React.Component {
 
 Genres.propTypes = {
   genres: PropTypes.array.isRequired,
+  onGenresClick: PropTypes.func.isRequired,
+
 };
 
 export default Genres;

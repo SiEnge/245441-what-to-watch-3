@@ -23,7 +23,10 @@ const promoMovie = {
   starring: `Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other`,
 };
 
-const store = createStore(reducer);
+const store = createStore(
+    reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+);
 
 const genres = getGenres(movies);
 // debugger;
