@@ -1,6 +1,10 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer.js";
+import {getGenreMovies} from "../../utils/genre.js";
+
 import Main from "../main/main.jsx";
 import MoviesList from "../movies-list/movies-list.jsx";
 import MovieCard from "../movie-card/movie-card.jsx";
@@ -23,8 +27,6 @@ class App extends PureComponent {
   }
 
   render() {
-
-
     return (
       <BrowserRouter>
         <Switch>
@@ -54,7 +56,6 @@ class App extends PureComponent {
             <MoviesList
               movies={movies.slice(0, 4)}
               onMovieCardClick={this._handleMovieCardClick}
-
             />
           </section>
 
@@ -77,15 +78,19 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {promoMovie, movies} = this.props;
+    const {promoMovie, movies, genres, activeGenre, onGenresClick} = this.props;
     const {movieCardId} = this.state;
+
+    const moviesToShow = (activeGenre === `all`) ? movies : getGenreMovies(movies, activeGenre);
 
     if (movieCardId === -1) {
       return (
         <Main
           promoMovie={promoMovie}
-          movies={movies}
+          movies={moviesToShow}
+          genres={genres}
           onMovieCardClick={this._handleMovieCardClick}
+          onGenresClick={onGenresClick}
         />
       );
     }
@@ -108,6 +113,26 @@ App.propTypes = {
         poster: PropTypes.string.isRequired,
       })
   ).isRequired,
+
+  genres: PropTypes.array.isRequired,
+  activeGenre: PropTypes.string.isRequired,
+  onGenresClick: PropTypes.func.isRequired,
+
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  activeGenre: state.activeGenre,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onGenresClick(genre) {
+    dispatch(ActionCreator.changeGenre(genre));
+  },
+});
+
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+
+// а может тут нужно доабвить обработчик клика на жанр и потом отправлять данные в стор?

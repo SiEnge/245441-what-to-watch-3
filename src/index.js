@@ -1,7 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import {createStore} from "redux";
+import {Provider} from "react-redux";
 import App from "./components/app/app.jsx";
 import {movies} from "./mocks/movies.js";
+import {getGenres} from "./utils/genre.js";
+import {reducer} from "./reducer.js";
 
 const promoMovie = {
   title: `The Grand Budapest Hotel`,
@@ -19,10 +23,21 @@ const promoMovie = {
   starring: `Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other`,
 };
 
+const store = createStore(
+    reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+);
+
+const genres = getGenres(movies);
+// debugger;
+
 ReactDOM.render(
-    <App
-      promoMovie={promoMovie}
-      movies={movies}
-    />,
+    <Provider store={store}>
+      <App
+        promoMovie={promoMovie}
+        movies={movies}
+        genres={genres}
+      />
+    </Provider>,
     document.querySelector(`#root`)
 );
