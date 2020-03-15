@@ -2,21 +2,8 @@ const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
 
-const GenreType = {
-  ALL_GENRES: `All genres`,
-  COMEDIAS: `Comedies`,
-  CRIME: `Crime`,
-  DOCUMENTARY: `Documentary`,
-  DRAMAS: `Dramas`,
-  HORROR: `Horror`,
-  KIDS_FAMILY: `Kids & Family`,
-  ROMANCE: `Kids & Family`,
-  SCI_FI: `Sci-Fi`,
-  THRILLERS: `Thrillers`,
-};
-
 const initialState = {
-  genre: GenreType.ALL_GENRES,
+  genre: -1, // все фильмы
 };
 
 const ActionType = {
@@ -36,6 +23,3 @@ const reducer = (state = initialState, action) => {
 
 
 export {reducer, ActionType};
-
-
-

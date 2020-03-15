@@ -26,6 +26,16 @@ const moviePreviews = [
   `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
 ];
 
+const movieGenres = [
+  `Comedy`,
+  `Crime`,
+  `Documentary`,
+  `Drama`,
+  `Horror`,
+  `Sci-Fi`,
+  `Thriller`,
+];
+
 const getRandomIntegerNumber = (min, max) => {
   return min + Math.floor((max - min) * Math.random());
 };
@@ -41,10 +51,10 @@ const generateMovie = (index) => {
 
   return {
     id: `${index}_${title}`,
-    title,
+    title: getRandomArrayItem(movieTitles),
     poster: `img/${poster}.jpg`,
     preview: moviePreviews[index % 2],
-    genre: `Drama`,
+    genre: getRandomArrayItem(movieGenres),
     date: `2014`,
     background: `img/bg-the-grand-budapest-hotel.jpg`,
     descriptions: [

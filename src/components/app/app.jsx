@@ -77,7 +77,7 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {promoMovie, movies} = this.props;
+    const {promoMovie, movies, genres} = this.props;
     const {movieCardId} = this.state;
 
     if (movieCardId === -1) {
@@ -85,6 +85,7 @@ class App extends PureComponent {
         <Main
           promoMovie={promoMovie}
           movies={movies}
+          genres={genres}
           onMovieCardClick={this._handleMovieCardClick}
         />
       );
@@ -108,6 +109,9 @@ App.propTypes = {
         poster: PropTypes.string.isRequired,
       })
   ).isRequired,
+
+  genres: PropTypes.array.isRequired,
+
 };
 
 export default App;
