@@ -16,8 +16,6 @@ class Genres extends React.Component {
     const genre = evt.currentTarget;
 
     onGenresClick(genre.dataset.genre);
-
-
   }
 
   render() {
