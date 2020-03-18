@@ -1,4 +1,4 @@
-const SMALL_MOVIE_CARD_COUNT = 18;
+const SMALL_MOVIE_CARD_COUNT = 22;
 
 const movieTitles = [
   `Bohemian Rhapsody`,

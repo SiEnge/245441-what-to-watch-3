@@ -1,14 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer.js";
 import MoviesList from "../movies-list/movies-list.jsx";
 import Genres from "../genres/genres.jsx";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 
-const SHOW_MOVIES_COUNT = 8;
-
-
 const Main = (props) => {
-  const {promoMovie, movies, genres, onMovieCardClick} = props;
+  const {promoMovie, movies, showedMoviesCount, onMovieCardClick, onShowMoreButtonClick} = props;
 
   return (<React.Fragment>
     <section className="movie-card">
@@ -73,13 +72,15 @@ const Main = (props) => {
         <Genres />
 
         <MoviesList
-          movies={movies.slice(0, SHOW_MOVIES_COUNT)}
+          movies={movies.slice(0, showedMoviesCount)}
           onMovieCardClick={onMovieCardClick}
         />
 
         <div className="catalog__more">
-          {movies.length > SHOW_MOVIES_COUNT &&
-            <ShowMoreButton />
+          {movies.length > showedMoviesCount &&
+            <ShowMoreButton
+              onShowMoreButtonClick={onShowMoreButtonClick}
+            />
           }
         </div>
       </section>
@@ -118,9 +119,21 @@ Main.propTypes = {
       })
   ).isRequired,
 
-  genres: PropTypes.array.isRequired,
+  showedMoviesCount: PropTypes.number.isRequired,
 
   onMovieCardClick: PropTypes.func.isRequired,
+  onShowMoreButtonClick: PropTypes.func.isRequired,
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  showedMoviesCount: state.showedMoviesCount,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onShowMoreButtonClick() {
+    dispatch(ActionCreator.showMovies());
+  },
+});
+
+export {Main};
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
