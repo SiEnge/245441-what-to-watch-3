@@ -78,7 +78,7 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {promoMovie, movies, genres, activeGenre, onGenresClick} = this.props;
+    const {promoMovie, movies, genres, activeGenre} = this.props;
     const {movieCardId} = this.state;
 
     const moviesToShow = (activeGenre === `all`) ? movies : getGenreMovies(movies, activeGenre);
@@ -90,7 +90,6 @@ class App extends PureComponent {
           movies={moviesToShow}
           genres={genres}
           onMovieCardClick={this._handleMovieCardClick}
-          onGenresClick={onGenresClick}
         />
       );
     }
@@ -116,23 +115,19 @@ App.propTypes = {
 
   genres: PropTypes.array.isRequired,
   activeGenre: PropTypes.string.isRequired,
-  onGenresClick: PropTypes.func.isRequired,
-
 };
 
 const mapStateToProps = (state) => ({
   activeGenre: state.activeGenre,
+  movies: state.movies,
+  genres: state.genres,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onGenresClick(genre) {
-    dispatch(ActionCreator.changeGenre(genre));
-  },
-});
-
+// const mapDispatchToProps = (dispatch) => ({
+//   onGenresClick(genre) {
+//     dispatch(ActionCreator.setGenre(genre));
+//   },
+// });
 
 export {App};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-
-// а может тут нужно доабвить обработчик клика на жанр и потом отправлять данные в стор?
+export default connect(mapStateToProps)(App);

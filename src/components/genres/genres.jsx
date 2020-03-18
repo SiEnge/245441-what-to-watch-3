@@ -1,6 +1,7 @@
 import React from "react";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer.js";
 import PropTypes from "prop-types";
-
 
 class Genres extends React.Component {
   constructor(props) {
@@ -41,7 +42,18 @@ class Genres extends React.Component {
 Genres.propTypes = {
   genres: PropTypes.array.isRequired,
   onGenresClick: PropTypes.func.isRequired,
-
 };
 
-export default Genres;
+const mapStateToProps = (state) => ({
+  genres: state.genres,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onGenresClick(genre) {
+    dispatch(ActionCreator.setGenre(genre));
+    // dispatch(ActionCreator.setFilteredMovies(genre));
+  },
+});
+
+export {Genres};
+export default connect(mapStateToProps, mapDispatchToProps)(Genres);
