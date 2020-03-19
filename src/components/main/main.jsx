@@ -6,8 +6,12 @@ import MoviesList from "../movies-list/movies-list.jsx";
 import Genres from "../genres/genres.jsx";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 
+const PER_PAGE_MOVIE_COUNT = 8;
+
 const Main = (props) => {
-  const {promoMovie, movies, showedMoviesCount, onMovieCardClick, onShowMoreButtonClick} = props;
+  const {promoMovie, movies, page, onMovieCardClick, onShowMoreButtonClick} = props;
+
+  const showedMoviesCount = page * PER_PAGE_MOVIE_COUNT;
 
   return (<React.Fragment>
     <section className="movie-card">
@@ -119,20 +123,19 @@ Main.propTypes = {
       })
   ).isRequired,
 
-  showedMoviesCount: PropTypes.number.isRequired,
+  page: PropTypes.number.isRequired,
 
   onMovieCardClick: PropTypes.func.isRequired,
   onShowMoreButtonClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  showedMoviesCount: state.showedMoviesCount,
+  page: state.page,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onShowMoreButtonClick() {
     dispatch(ActionCreator.incrementPage());
-    dispatch(ActionCreator.showMovies());
   },
 });
 
