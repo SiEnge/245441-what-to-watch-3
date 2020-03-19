@@ -131,6 +131,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onShowMoreButtonClick() {
+    dispatch(ActionCreator.incrementPage());
     dispatch(ActionCreator.showMovies());
   },
 });
