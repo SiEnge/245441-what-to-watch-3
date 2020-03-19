@@ -133,11 +133,7 @@ const mapStateToProps = (state) => ({
   page: state.page,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onShowMoreButtonClick() {
-    dispatch(ActionCreator.incrementPage());
-  },
-});
+const mapDispatchToProps = ({onShowMoreButtonClick: ActionCreator.incrementPage});
 
 export {Main};
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

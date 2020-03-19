@@ -48,11 +48,7 @@ const mapStateToProps = (state) => ({
   genres: state.genres,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onGenresClick(genre) {
-    dispatch(ActionCreator.setGenre(genre));
-  },
-});
+const mapDispatchToProps = ({onGenresClick: ActionCreator.setGenre});
 
 export {Genres};
 export default connect(mapStateToProps, mapDispatchToProps)(Genres);
