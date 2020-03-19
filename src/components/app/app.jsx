@@ -2,7 +2,6 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
 import {getGenreMovies} from "../../utils/genre.js";
 
 import Main from "../main/main.jsx";
@@ -78,7 +77,7 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {promoMovie, movies, genres, activeGenre, onGenresClick} = this.props;
+    const {promoMovie, movies, activeGenre} = this.props;
     const {movieCardId} = this.state;
 
     const moviesToShow = (activeGenre === `all`) ? movies : getGenreMovies(movies, activeGenre);
@@ -88,9 +87,7 @@ class App extends PureComponent {
         <Main
           promoMovie={promoMovie}
           movies={moviesToShow}
-          genres={genres}
           onMovieCardClick={this._handleMovieCardClick}
-          onGenresClick={onGenresClick}
         />
       );
     }
@@ -114,25 +111,13 @@ App.propTypes = {
       })
   ).isRequired,
 
-  genres: PropTypes.array.isRequired,
   activeGenre: PropTypes.string.isRequired,
-  onGenresClick: PropTypes.func.isRequired,
-
 };
 
 const mapStateToProps = (state) => ({
   activeGenre: state.activeGenre,
+  movies: state.movies,
 });
-
-const mapDispatchToProps = (dispatch) => ({
-  onGenresClick(genre) {
-    dispatch(ActionCreator.changeGenre(genre));
-  },
-});
-
 
 export {App};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-
-// а может тут нужно доабвить обработчик клика на жанр и потом отправлять данные в стор?
+export default connect(mapStateToProps)(App);

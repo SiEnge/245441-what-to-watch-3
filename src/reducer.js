@@ -1,27 +1,44 @@
+import {movies} from "./mocks/movies.js";
+import {getGenres} from "./utils/genre.js";
+
+const ActionType = {
+  SET_GENRE: `SET_GENRE`,
+  INCREMENT_PAGE: `INCREMENT_PAGE`,
+};
+
 const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
 
-const initialState = {
-  activeGenre: `all`, // все фильмы
-};
+const genres = getGenres(movies);
 
-const ActionType = {
-  CHANGE_GENRE: `CHANGE_GENRE`,
+const initialState = {
+  activeGenre: `all`,
+  movies,
+  page: 1,
+  genres,
 };
 
 const ActionCreator = {
-  changeGenre: (genre) => ({
-    type: ActionType.CHANGE_GENRE,
+  setGenre: (genre) => ({
+    type: ActionType.SET_GENRE,
     payload: genre,
+  }),
+  incrementPage: () => ({
+    type: ActionType.INCREMENT_PAGE,
   }),
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.CHANGE_GENRE:
+    case ActionType.SET_GENRE:
       return extend(state, {
         activeGenre: action.payload,
+        page: 1
+      });
+    case ActionType.INCREMENT_PAGE:
+      return extend(state, {
+        page: state.page + 1,
       });
   }
 

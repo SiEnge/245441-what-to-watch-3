@@ -1,10 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer.js";
 import MoviesList from "../movies-list/movies-list.jsx";
 import Genres from "../genres/genres.jsx";
+import ShowMoreButton from "../show-more-button/show-more-button.jsx";
+
+const PER_PAGE_MOVIE_COUNT = 8;
 
 const Main = (props) => {
-  const {promoMovie, movies, genres, onMovieCardClick, onGenresClick} = props;
+  const {promoMovie, movies, page, onMovieCardClick, onShowMoreButtonClick} = props;
+
+  const showedMoviesCount = page * PER_PAGE_MOVIE_COUNT;
 
   return (<React.Fragment>
     <section className="movie-card">
@@ -66,18 +73,19 @@ const Main = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <Genres
-          genres={genres}
-          onGenresClick={onGenresClick}
-        />
+        <Genres />
 
         <MoviesList
-          movies={movies}
+          movies={movies.slice(0, showedMoviesCount)}
           onMovieCardClick={onMovieCardClick}
         />
 
         <div className="catalog__more">
-          <button className="catalog__button" type="button">Show more</button>
+          {movies.length > showedMoviesCount &&
+            <ShowMoreButton
+              onShowMoreButtonClick={onShowMoreButtonClick}
+            />
+          }
         </div>
       </section>
 
@@ -115,10 +123,17 @@ Main.propTypes = {
       })
   ).isRequired,
 
-  genres: PropTypes.array.isRequired,
+  page: PropTypes.number.isRequired,
 
   onMovieCardClick: PropTypes.func.isRequired,
-  onGenresClick: PropTypes.func.isRequired,
+  onShowMoreButtonClick: PropTypes.func.isRequired,
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  page: state.page,
+});
+
+const mapDispatchToProps = ({onShowMoreButtonClick: ActionCreator.incrementPage});
+
+export {Main};
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
