@@ -41,8 +41,8 @@ class App extends PureComponent {
   }
 
   _renderMovieCard() {
-    const {movies} = this.props;
-    const {movieCardId} = this.state;
+    const {movies, movieCardId} = this.props;
+    // const {movieCardId} = this.state;
 
     return (
       <React.Fragment>
@@ -54,7 +54,7 @@ class App extends PureComponent {
             <h2 className="catalog__title">More like this</h2>
             <MoviesList
               movies={movies.slice(0, 4)}
-              onMovieCardClick={this._handleMovieCardClick}
+              onMovieCardClick={props.onClickMovieCard}
             />
           </section>
 
@@ -77,8 +77,8 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {promoMovie, movies, activeGenre} = this.props;
-    const {movieCardId} = this.state;
+    const {promoMovie, movies, activeGenre, movieCardId} = this.props;
+    // const {movieCardId} = this.state;
 
     const moviesToShow = (activeGenre === `all`) ? movies : getGenreMovies(movies, activeGenre);
 
@@ -87,7 +87,7 @@ class App extends PureComponent {
         <Main
           promoMovie={promoMovie}
           movies={moviesToShow}
-          onMovieCardClick={this._handleMovieCardClick}
+          onMovieCardClick={props.onClickMovieCard}
         />
       );
     }
@@ -121,3 +121,4 @@ const mapStateToProps = (state) => ({
 
 export {App};
 export default connect(mapStateToProps)(App);
+// export default withActiveTab(Tabs);

@@ -56,3 +56,4 @@ VideoPlayer.propTypes = {
 export default VideoPlayer;
 
 
+// export default withActiveFlag(VideoPlayer);
