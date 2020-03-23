@@ -6,8 +6,8 @@ const Error = {
 
 export const createAPI = (onUnauthorized) => {
   const api = axios.create({
-    baseURL: `https://htmlacademy-react-3.appspot.com/guess-melody`,
-    timeout: 1000 * 5,
+    baseURL: `https://htmlacademy-react-3.appspot.com/wtw`,
+    timeout: 5000,
     withCredentials: true,
   });
 
