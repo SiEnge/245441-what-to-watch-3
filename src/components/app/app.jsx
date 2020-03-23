@@ -117,8 +117,8 @@ App.propTypes = {
 const mapStateToProps = (state) => ({
   activeGenre: state.activeGenre,
   movies: state.movies,
+  promoMovie: state.promoMovie,
 });
 
 export {App};
 export default connect(mapStateToProps)(App);
-// export default withActiveTab(Tabs);

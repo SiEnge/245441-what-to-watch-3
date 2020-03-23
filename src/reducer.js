@@ -1,11 +1,12 @@
 import {getGenres} from "./utils/genre.js";
-import {adapterMovies} from "./utils/movie.js";
+import {adapterMovies, adapterMovie} from "./utils/movie.js";
 const movies = []; //временно, чтобы не было ошибки
 
 const ActionType = {
   SET_GENRE: `SET_GENRE`,
   INCREMENT_PAGE: `INCREMENT_PAGE`,
   LOAD_MOVIES: `LOAD_MOVIES`,
+  LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
 };
 
 const extend = (a, b) => {
@@ -21,6 +22,12 @@ const Operation = {
         dispatch(ActionCreator.loadMovies(response.data));
       });
   },
+  loadPromoMovies: () => (dispatch, getState, api) => {
+    return api.get(`/films/promo`)
+      .then((response) => {
+        dispatch(ActionCreator.loadPromoMovies(response.data));
+      });
+  },
 };
 
 const initialState = {
@@ -28,6 +35,7 @@ const initialState = {
   movies: [],
   page: 1,
   genres,
+  promoMovie: null,
 };
 
 const ActionCreator = {
@@ -41,6 +49,10 @@ const ActionCreator = {
   loadMovies: (movies) => ({
     type: ActionType.LOAD_MOVIES,
     payload: adapterMovies(movies),
+  }),
+  loadPromoMovies: (movie) => ({
+    type: ActionType.LOAD_PROMO_MOVIE,
+    payload: adapterMovie(movie),
   }),
 };
 
@@ -58,6 +70,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_MOVIES:
       return extend(state, {
         movies: action.payload,
+      });
+    case ActionType.LOAD_PROMO_MOVIE:
+      return extend(state, {
+        promoMovie: action.payload,
       });
   }
 
