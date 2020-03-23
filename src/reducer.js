@@ -1,5 +1,5 @@
-import {movies} from "./mocks/movies.js";
 import {getGenres} from "./utils/genre.js";
+const movies = []; //временно, чтобы не было ошибки
 
 const ActionType = {
   SET_GENRE: `SET_GENRE`,
