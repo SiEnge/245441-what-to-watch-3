@@ -77,7 +77,7 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {promoMovie, movies, activeGenre} = this.props;
+    const {movies, activeGenre} = this.props;
     const {movieCardId} = this.state;
 
     const moviesToShow = (activeGenre === `all`) ? movies : getGenreMovies(movies, activeGenre);
@@ -85,7 +85,6 @@ class App extends PureComponent {
     if (movieCardId === -1) {
       return (
         <Main
-          promoMovie={promoMovie}
           movies={moviesToShow}
           onMovieCardClick={this._handleMovieCardClick}
         />
@@ -97,12 +96,6 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  promoMovie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired
-  }),
-
   movies: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
@@ -117,7 +110,6 @@ App.propTypes = {
 const mapStateToProps = (state) => ({
   activeGenre: state.activeGenre,
   movies: state.movies,
-  promoMovie: state.promoMovie,
 });
 
 export {App};

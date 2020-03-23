@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator} from "../../reducer/data.js";
 import MoviesList from "../movies-list/movies-list.jsx";
 import Genres from "../genres/genres.jsx";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
@@ -9,14 +9,14 @@ import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 const PER_PAGE_MOVIE_COUNT = 8;
 
 const Main = (props) => {
-  const {promoMovie, movies, page, onMovieCardClick, onShowMoreButtonClick} = props;
+  const {promoMovie: {title, date, genre}, movies, page, onMovieCardClick, onShowMoreButtonClick} = props;
 
   const showedMoviesCount = page * PER_PAGE_MOVIE_COUNT;
 
   return (<React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src="img/bg-the-grand-budapest-hotel.jpg" alt="{promoMovie.title}" />
+        <img src="img/bg-the-grand-budapest-hotel.jpg" alt="{title}" />
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -44,10 +44,10 @@ const Main = (props) => {
           </div>
 
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">{promoMovie.title}</h2>
+            <h2 className="movie-card__title">{title}</h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">{promoMovie.genre}</span>
-              <span className="movie-card__year">{promoMovie.date}</span>
+              <span className="movie-card__genre">{genre}</span>
+              <span className="movie-card__year">{date}</span>
             </p>
 
             <div className="movie-card__buttons">
@@ -131,6 +131,7 @@ Main.propTypes = {
 
 const mapStateToProps = (state) => ({
   page: state.page,
+  promoMovie: state.promoMovie,
 });
 
 const mapDispatchToProps = ({onShowMoreButtonClick: ActionCreator.incrementPage});
