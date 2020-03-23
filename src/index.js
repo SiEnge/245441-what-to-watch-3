@@ -7,6 +7,8 @@ import App from "./components/app/app.jsx";
 import {reducer} from "./reducer.js";
 import {createAPI} from "./api.js";
 
+const api = createAPI(() => {});
+
 const promoMovie = {
   title: `The Grand Budapest Hotel`,
   genre: `Drama`,
@@ -25,7 +27,10 @@ const promoMovie = {
 
 const store = createStore(
     reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+    compose(
+        applyMiddleware(thunk.withExtraArgument(api)),
+        window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+    )
 );
 
 ReactDOM.render(
