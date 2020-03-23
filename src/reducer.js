@@ -17,7 +17,6 @@ const Operation = {
   loadMovies: () => (dispatch, getState, api) => {
     return api.get(`/films`)
       .then((response) => {
-        debugger;
         dispatch(ActionCreator.loadMovies(response.data));
       });
   },
