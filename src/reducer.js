@@ -1,4 +1,5 @@
 import {getGenres} from "./utils/genre.js";
+import {adapterMovies} from "./utils/movie.js";
 const movies = []; //временно, чтобы не было ошибки
 
 const ActionType = {
@@ -39,7 +40,7 @@ const ActionCreator = {
   }),
   loadMovies: (movies) => ({
     type: ActionType.LOAD_MOVIES,
-    payload: movies,
+    payload: adapterMovies(movies),
   }),
 };
 
