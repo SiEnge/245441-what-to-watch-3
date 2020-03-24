@@ -54,9 +54,9 @@ class MoviesList extends React.Component {
 MoviesList.propTypes = {
   movies: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        poster: PropTypes.string.isRequired,
+        id: PropTypes.string,
+        title: PropTypes.string,
+        poster: PropTypes.string,
       })
   ).isRequired,
 

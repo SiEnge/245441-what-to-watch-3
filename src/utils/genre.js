@@ -1,7 +1,3 @@
-export const getGenreMovies = (movies, genreType) => {
-  return movies.filter((movie) => movie.genre === genreType);
-};
-
 export const getGenres = (movies) => {
   const genres = new Set();
 

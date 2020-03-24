@@ -3,7 +3,7 @@ export const adapterMovie = (movie) => {
     id: movie.id,
     title: movie.name,
     poster: movie.poster_image,
-    // preview: movie.preview_image,
+    previewImage: movie.preview_image,
     preview: movie.video_link,
     // previewImage: movie.preview_video_link,
     genre: movie.genre,
@@ -23,4 +23,3 @@ export const adapterMovie = (movie) => {
 export const adapterMovies = (movies) => {
   return movies.map((movie) => adapterMovie(movie));
 };
-

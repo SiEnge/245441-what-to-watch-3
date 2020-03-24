@@ -1,3 +1,3 @@
-const extend = (a, b) => {
+export const extend = (a, b) => {
   return Object.assign({}, a, b);
 };

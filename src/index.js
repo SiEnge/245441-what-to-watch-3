@@ -18,8 +18,8 @@ const store = createStore(
     )
 );
 
-store.dispatch(Operation.loadMovies());
-store.dispatch(Operation.loadPromoMovies());
+store.dispatch(DataOperation.loadMovies());
+store.dispatch(DataOperation.loadPromoMovies());
 
 ReactDOM.render(
     <Provider store={store}>

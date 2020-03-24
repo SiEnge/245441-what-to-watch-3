@@ -27,7 +27,9 @@ export const withActiveTab = (Component) => {
     }
 
     render() {
-      return <Component {...this.props} activeTab={this.state.activeTab} onClickTab={this._handleTabClick} />
+      return (
+        <Component {...this.props} activeTab={this.state.activeTab} onClickTab={this._handleTabClick} />
+      );
     }
-  }
-}
+  };
+};

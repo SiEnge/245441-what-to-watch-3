@@ -1,13 +1,8 @@
 import {extend} from "../../utils/common.js";
-import {getGenres} from "../../utils/genre.js";
-import {adapterMovies, adapterMovie} from "../../utils/movie.js";
-const movies = []; //временно, чтобы не было ошибки
-const genres = getGenres(movies);
 
 const initialState = {
   activeGenre: `all`,
   page: 1,
-  genres,
 };
 
 const ActionType = {
