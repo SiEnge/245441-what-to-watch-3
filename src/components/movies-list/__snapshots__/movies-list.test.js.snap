@@ -16,7 +16,6 @@ exports[`Render MoviesList 1`] = `
       <img
         alt="film1"
         height="175"
-        src="img/film1.jpg"
         width="280"
       />
     </div>
@@ -44,7 +43,6 @@ exports[`Render MoviesList 1`] = `
       <img
         alt="film2"
         height="175"
-        src="img/film2.jpg"
         width="280"
       />
     </div>
@@ -72,7 +70,6 @@ exports[`Render MoviesList 1`] = `
       <img
         alt="film3"
         height="175"
-        src="img/film3.jpg"
         width="280"
       />
     </div>
@@ -100,7 +97,6 @@ exports[`Render MoviesList 1`] = `
       <img
         alt="film4"
         height="175"
-        src="img/film4.jpg"
         width="280"
       />
     </div>
@@ -128,7 +124,6 @@ exports[`Render MoviesList 1`] = `
       <img
         alt="film5"
         height="175"
-        src="img/film5.jpg"
         width="280"
       />
     </div>
@@ -156,7 +151,6 @@ exports[`Render MoviesList 1`] = `
       <img
         alt="film6"
         height="175"
-        src="img/film6.jpg"
         width="280"
       />
     </div>

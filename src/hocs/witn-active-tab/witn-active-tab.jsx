@@ -1,4 +1,4 @@
-import {PureComponent} from "react";
+import React, {PureComponent} from "react";
 
 const TabsType = {
   OVERVIEW: `Overview`,
@@ -7,7 +7,7 @@ const TabsType = {
 };
 
 export const withActiveTab = (Component) => {
-  return class extends PureComponent {
+  return class withActiveTabComponent extends PureComponent {
     constructor(props) {
       super(props);
       this.state = {
