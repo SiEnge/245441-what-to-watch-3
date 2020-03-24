@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import VideoPlayer from "../video-player/video-player.jsx";
 
 const SmallMovieCard = (props) => {
-  const {movie: {id, title, poster, preview}, isPlaying, onMovieCardClick, onCardHover} = props;
+  const {movie: {id, title, previewImage, poster, preview}, isPlaying, onMovieCardClick, onCardHover} = props;
 
   return (
     <article
@@ -16,7 +16,7 @@ const SmallMovieCard = (props) => {
         {isPlaying ? (
           <VideoPlayer poster={poster} preview={preview} />
         ) : (
-          <img src={poster} alt={title} width="280" height="175" />
+          <img src={previewImage} alt={title} width="280" height="175" />
         )}
       </div>
 
@@ -35,10 +35,11 @@ const SmallMovieCard = (props) => {
 
 SmallMovieCard.propTypes = {
   movie: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
+    id: PropTypes.string,
+    title: PropTypes.string,
+    previewImage: PropTypes.string,
+    preview: PropTypes.string,
+    poster: PropTypes.string,
   }),
 
   isPlaying: PropTypes.bool.isRequired,

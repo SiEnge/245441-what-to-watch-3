@@ -13,7 +13,6 @@ exports[`Render SmallMovieCard 1`] = `
     <img
       alt="film1"
       height="175"
-      src="img/film1.jpg"
       width="280"
     />
   </div>

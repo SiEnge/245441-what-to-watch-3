@@ -202,7 +202,7 @@ const Tabs = (props) => {
       }
     </div>
   );
-}
+};
 
 Tabs.propTypes = {
   movie: PropTypes.shape({
@@ -215,6 +215,8 @@ Tabs.propTypes = {
     director: PropTypes.string.isRequired,
     starring: PropTypes.array.isRequired,
   }),
+  activeTab: PropTypes.string.isRequired,
+  onClickTab: PropTypes.func.isRequired,
 };
 
 export default withActiveTab(Tabs);

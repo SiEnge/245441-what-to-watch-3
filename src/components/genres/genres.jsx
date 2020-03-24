@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
+import {getGenres} from "../../reducer/data/selectors.js";
+import {ActionCreator} from "../../reducer/state/state.js";
 import PropTypes from "prop-types";
 
 class Genres extends React.Component {
@@ -40,12 +41,13 @@ class Genres extends React.Component {
 }
 
 Genres.propTypes = {
-  genres: PropTypes.array.isRequired,
+  genres: PropTypes.array,
   onGenresClick: PropTypes.func.isRequired,
 };
 
+
 const mapStateToProps = (state) => ({
-  genres: state.genres,
+  genres: getGenres(state),
 });
 
 const mapDispatchToProps = ({onGenresClick: ActionCreator.setGenre});

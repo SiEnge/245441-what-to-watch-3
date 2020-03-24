@@ -1,22 +1,13 @@
-import {movies} from "./mocks/movies.js";
-import {getGenres} from "./utils/genre.js";
+import {extend} from "../../utils/common.js";
+
+const initialState = {
+  activeGenre: `all`,
+  page: 1,
+};
 
 const ActionType = {
   SET_GENRE: `SET_GENRE`,
   INCREMENT_PAGE: `INCREMENT_PAGE`,
-};
-
-const extend = (a, b) => {
-  return Object.assign({}, a, b);
-};
-
-const genres = getGenres(movies);
-
-const initialState = {
-  activeGenre: `all`,
-  movies,
-  page: 1,
-  genres,
 };
 
 const ActionCreator = {

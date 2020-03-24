@@ -1,7 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
+
+// import {} from "../../reducer/data/selectors.js";
+import {getPromoMovie, getMoviesByGenre} from "../../reducer/data/selectors.js";
+import {getPage} from "../../reducer/state/selectors.js";
+
+import {ActionCreator} from "../../reducer/state/state.js";
+
 import MoviesList from "../movies-list/movies-list.jsx";
 import Genres from "../genres/genres.jsx";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
@@ -9,14 +15,15 @@ import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 const PER_PAGE_MOVIE_COUNT = 8;
 
 const Main = (props) => {
-  const {promoMovie, movies, page, onMovieCardClick, onShowMoreButtonClick} = props;
+  const {promoMovie, moviesByGenre, page, onMovieCardClick, onShowMoreButtonClick} = props;
 
   const showedMoviesCount = page * PER_PAGE_MOVIE_COUNT;
+  const movies = moviesByGenre.slice(0, showedMoviesCount);
 
   return (<React.Fragment>
     <section className="movie-card">
-      <div className="movie-card__bg">
-        <img src="img/bg-the-grand-budapest-hotel.jpg" alt="{promoMovie.title}" />
+      <div className="movie-card__bg" style={{backgroundColor: promoMovie.backgroundColor}}>
+        <img src={promoMovie.background} alt={promoMovie.title} />
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -40,7 +47,7 @@ const Main = (props) => {
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt="{promoMovie.title} poster" width="218" height="327" />
+            <img src={promoMovie.poster} alt={promoMovie.title} width="218" height="327" />
           </div>
 
           <div className="movie-card__desc">
@@ -76,12 +83,12 @@ const Main = (props) => {
         <Genres />
 
         <MoviesList
-          movies={movies.slice(0, showedMoviesCount)}
+          movies={movies}
           onMovieCardClick={onMovieCardClick}
         />
 
         <div className="catalog__more">
-          {movies.length > showedMoviesCount &&
+          {moviesByGenre.length > showedMoviesCount &&
             <ShowMoreButton
               onShowMoreButtonClick={onShowMoreButtonClick}
             />
@@ -110,18 +117,21 @@ const Main = (props) => {
 
 Main.propTypes = {
   promoMovie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired
+    title: PropTypes.string,
+    genre: PropTypes.string,
+    date: PropTypes.string,
+    poster: PropTypes.string,
+    background: PropTypes.string,
+    backgroundColor: PropTypes.string,
   }),
 
-  movies: PropTypes.arrayOf(
+  moviesByGenre: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        poster: PropTypes.string.isRequired,
+        id: PropTypes.string,
+        title: PropTypes.string,
+        poster: PropTypes.string,
       })
-  ).isRequired,
+  ),
 
   page: PropTypes.number.isRequired,
 
@@ -130,7 +140,9 @@ Main.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  page: state.page,
+  promoMovie: getPromoMovie(state),
+  moviesByGenre: getMoviesByGenre(state),
+  page: getPage(state),
 });
 
 const mapDispatchToProps = ({onShowMoreButtonClick: ActionCreator.incrementPage});
