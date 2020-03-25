@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 // import {} from "../../reducer/data/selectors.js";
 import {getPromoMovie, getMoviesByGenre} from "../../reducer/data/selectors.js";
 import {getPage} from "../../reducer/state/selectors.js";
-import {getAuthStatus} from "../../reducer/user/selectors.js";
+import {getAuthStatus, getAvatarUrl} from "../../reducer/user/selectors.js";
 
 import {ActionCreator} from "../../reducer/state/state.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
@@ -17,7 +17,7 @@ import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 const PER_PAGE_MOVIE_COUNT = 8;
 
 const Main = (props) => {
-  const {promoMovie, moviesByGenre, page, authStatus, onMovieCardClick, onShowMoreButtonClick} = props;
+  const {promoMovie, moviesByGenre, page, authStatus, avatarUrl, onMovieCardClick, onShowMoreButtonClick} = props;
 
   const showedMoviesCount = page * PER_PAGE_MOVIE_COUNT;
   const movies = moviesByGenre.slice(0, showedMoviesCount);
@@ -43,7 +43,7 @@ const Main = (props) => {
           {authStatus === AuthorizationStatus.NO_AUTH ?
             <a href="sign-in.html" className="user-block__link">Sign in</a> :
             <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              <img src={avatarUrl} alt="User avatar" width="63" height="63" />
             </div>
           }
         </div>
@@ -139,6 +139,7 @@ Main.propTypes = {
   ),
 
   authStatus: PropTypes.string.isRequired,
+  avatarUrl: PropTypes.string.isRequired,
 
   page: PropTypes.number.isRequired,
 
@@ -151,6 +152,7 @@ const mapStateToProps = (state) => ({
   moviesByGenre: getMoviesByGenre(state),
   page: getPage(state),
   authStatus: getAuthStatus(state),
+  avatarUrl: getAvatarUrl(state),
 });
 
 const mapDispatchToProps = ({onShowMoreButtonClick: ActionCreator.incrementPage});

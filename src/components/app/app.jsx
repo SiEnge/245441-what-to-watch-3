@@ -36,14 +36,14 @@ class App extends PureComponent {
         <SignIn
           onSubmit={authorization}
         />
-      )
+      );
     } else if (authStatus === AuthorizationStatus.AUTH) {
-      <Main
-        onMovieCardClick={this._handleMovieCardClick}
-      />
+      return (
+        <Main
+          onMovieCardClick={this._handleMovieCardClick}
+        />
+      );
     }
-
-
 
     return (
       <BrowserRouter>
@@ -72,6 +72,7 @@ class App extends PureComponent {
 
 App.propTypes = {
   authorization: PropTypes.func.isRequired,
+  authStatus: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
