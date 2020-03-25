@@ -22,9 +22,20 @@ const ActionCreator = {
 
 const Operation = {
   getAuthStatus: () => (dispatch, getState, api) => {
-    return api.get(`/login`)
+    return api
+      .get(`/login`)
       .then((response) => {
         dispatch(ActionCreator.updateAuthStatus(response.data));
+      });
+  },
+  authorization: (authData) => (dispatch, getState, api) => {
+    return api
+      .post(`/login`, {
+        email: authData.login,
+        password: authData.password,
+      })
+      .then((response) => {
+        dispatch(ActionCreator.updateAuthStatus(AuthorizationStatus.AUTH));
       });
   },
 };
