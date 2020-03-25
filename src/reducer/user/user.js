@@ -21,7 +21,7 @@ const ActionCreator = {
 };
 
 const Operation = {
-  updateAuthStatus: () => (dispatch, getState, api) => {
+  getAuthStatus: () => (dispatch, getState, api) => {
     return api.get(`/login`)
       .then((response) => {
         dispatch(ActionCreator.updateAuthStatus(response.data));
