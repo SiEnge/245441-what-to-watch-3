@@ -7,6 +7,7 @@ import Main from "../main/main.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import {Operation} from "../../reducer/user/user.js";
 import {getAuthStatus} from "../../reducer/user/selectors.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 // import MoviesList from "../movies-list/movies-list.jsx";
 // import MovieCard from "../movie-card/movie-card.jsx";
 
@@ -28,6 +29,22 @@ class App extends PureComponent {
   }
 
   render() {
+    const {authStatus, authorization} = this.props;
+
+    if (authStatus === AuthorizationStatus.NO_AUTH) {
+      return (
+        <SignIn
+          onSubmit={authorization}
+        />
+      )
+    } else if (authStatus === AuthorizationStatus.AUTH) {
+      <Main
+        onMovieCardClick={this._handleMovieCardClick}
+      />
+    }
+
+
+
     return (
       <BrowserRouter>
         <Switch>
