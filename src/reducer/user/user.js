@@ -34,12 +34,11 @@ const Operation = {
         email: authData.login,
         password: authData.password,
       })
-      .then((response) => {
+      .then(() => {
         dispatch(ActionCreator.updateAuthStatus(AuthorizationStatus.AUTH));
       });
   },
 };
-
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
