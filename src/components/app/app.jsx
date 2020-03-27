@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Switch, Route, Router} from "react-router-dom";
 import {connect} from "react-redux";
 
 import Main from "../main/main.jsx";
@@ -11,6 +11,9 @@ import {Operation} from "../../reducer/user/user.js";
 import {Operation as CommentOperation} from "../../reducer/comment/comment.js";
 import {getAuthStatus} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
+import history from "../../history.js";
+import {AppRoute} from "../../const.js";
+
 // import MoviesList from "../movies-list/movies-list.jsx";
 import MovieCard from "../movie-card/movie-card.jsx";
 
@@ -34,52 +37,24 @@ class App extends PureComponent {
   render() {
     const {authStatus, authorization} = this.props;
 
-    // if (authStatus === AuthorizationStatus.NO_AUTH) {
-    //   return (
-    //     <SignIn
-    //       onSubmit={authorization}
-    //     />
-    //   );
-    // } else if (authStatus === AuthorizationStatus.AUTH) {
-    //   return (
-    //     <Main
-    //       onMovieCardClick={this._handleMovieCardClick}
-    //     />
-    //   );
-    // }
-
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <Switch>
-          <Route exact path="/">
-            {this._renderApp()}
+          <Route exact path={AppRoute.ROOT}>
+            <Main
+              onMovieCardClick={this._handleMovieCardClick}
+            />
           </Route>
-          <Route exact path="/dev-auth">
+          <Route exact path={AppRoute.LOGIN}>
             <SignIn
-              onSubmit={this.props.authorization}
-            />
-          </Route>
-          <Route exact path="/dev-review">
-            <AddReview
-              onSubmit={this.props.addComment}
-            />
-          </Route>
-          <Route exact path="/dev-movie">
-            <MovieCard
+              onSubmit={authorization}
             />
           </Route>
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 
-  _renderApp() {
-    return (
-      <Main
-        onMovieCardClick={this._handleMovieCardClick}
-      />
-    );
-  }
 }
 
 App.propTypes = {
