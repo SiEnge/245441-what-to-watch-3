@@ -1,6 +1,5 @@
 import {extend} from "../../utils/common.js";
-
-const URL = `https://htmlacademy-react-3.appspot.com/`;
+import {adapterUser} from "../../utils/user.js";
 
 const AuthorizationStatus = {
   AUTH: `AUTH`,
@@ -9,22 +8,21 @@ const AuthorizationStatus = {
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
-  avatarUrl: ``,
+  user: {},
 };
 
 const ActionType = {
-  UPDATE_AUTH_STATUS: `UPDATE_AUTH_STATUS`,
-  SET_AVATAR_URL: `SET_AVATAR_URL`,
+  SET_AUTH_STATUS: `SET_AUTH_STATUS`,
+  SET_NO_AUTH_STATUS: `SET_NO_AUTH_STATUS`,
 };
 
 const ActionCreator = {
-  updateAuthStatus: (authStatus) => ({
-    type: ActionType.UPDATE_AUTH_STATUS,
-    payload: authStatus,
+  auth: (user) => ({
+    type: ActionType.SET_AUTH_STATUS,
+    payload: adapterUser(user),
   }),
-  setAvatarUrl: (avatarUrl) => ({
-    type: ActionType.SET_AVATAR_URL,
-    payload: avatarUrl,
+  noAuth: () => ({
+    type: ActionType.SET_NO_AUTH_STATUS,
   }),
 };
 
@@ -33,8 +31,7 @@ const Operation = {
     return api
       .get(`/login`)
       .then((response) => {
-        dispatch(ActionCreator.updateAuthStatus(response.data));
-        dispatch(ActionCreator.setAvatarUrl(response.data.avatar_url));
+        dispatch(ActionCreator.auth(response.data));
       });
   },
   authorization: (authData) => (dispatch, getState, api) => {
@@ -44,21 +41,22 @@ const Operation = {
         password: authData.password,
       })
       .then((response) => {
-        dispatch(ActionCreator.updateAuthStatus(AuthorizationStatus.AUTH));
-        dispatch(ActionCreator.setAvatarUrl(response.data.avatar_url));
+        dispatch(ActionCreator.auth(response.data));
       });
   },
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.UPDATE_AUTH_STATUS:
+    case ActionType.SET_AUTH_STATUS:
       return extend(state, {
-        authorizationStatus: action.payload,
+        authorizationStatus: AuthorizationStatus.AUTH,
+        user: action.payload,
       });
-    case ActionType.SET_AVATAR_URL:
+    case ActionType.SET_NO_AUTH_STATUS:
       return extend(state, {
-        avatarUrl: `${URL}${action.payload}`,
+        authorizationStatus: AuthorizationStatus.NO_AUTH,
+        user: {},
       });
   }
   return state;

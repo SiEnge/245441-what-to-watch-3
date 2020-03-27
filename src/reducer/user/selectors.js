@@ -4,6 +4,6 @@ export const getAuthStatus = (state) => {
   return state[NameSpace.USER].authorizationStatus;
 };
 
-export const getAvatarUrl = (state) => {
-  return state[NameSpace.USER].avatarUrl;
+export const getUser = (state) => {
+  return state[NameSpace.USER].user;
 };
