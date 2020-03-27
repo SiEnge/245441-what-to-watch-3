@@ -1,9 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Tabs from "../tabs/tabs.jsx";
+import {getPromoMovie} from "../../reducer/data/selectors.js";
+import {connect} from "react-redux";
+import {getAuthStatus} from "../../reducer/user/selectors.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const MovieCard = (props) => {
-  const {movie, movie: {title, genre, date, poster, background}} = props;
+  const {movie, movie: {title, genre, date, poster, background}, authStatus} = props;
 
   return (
     <section className="movie-card movie-card--full">
@@ -51,7 +55,10 @@ const MovieCard = (props) => {
                 </svg>
                 <span>My list</span>
               </button>
-              <a href="add-review.html" className="btn movie-card__button">Add review</a>
+              {authStatus === AuthorizationStatus.AUTH &&
+                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+              }
+
             </div>
           </div>
         </div>
@@ -63,7 +70,6 @@ const MovieCard = (props) => {
             <img src={poster} alt="{title} poster" width="218" height="327" />
           </div>
 
-          <Tabs movie={movie}/>
         </div>
       </div>
     </section>
@@ -72,14 +78,26 @@ const MovieCard = (props) => {
   );
 };
 
+          // <Tabs movie={movie}/>
+
+
 MovieCard.propTypes = {
   movie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string,
-    date: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
+    // title: PropTypes.string.isRequired,
+    // genre: PropTypes.string,
+    // date: PropTypes.string.isRequired,
+    // poster: PropTypes.string.isRequired,
+    // background: PropTypes.string.isRequired,
   }),
 };
 
-export default MovieCard;
+
+const mapStateToProps = (state) => ({
+  movie: getPromoMovie(state),
+  authStatus: getAuthStatus(state),
+});
+
+// const mapDispatchToProps = ({onShowMoreButtonClick: ActionCreator.incrementPage});
+
+export {MovieCard};
+export default connect(mapStateToProps)(MovieCard);

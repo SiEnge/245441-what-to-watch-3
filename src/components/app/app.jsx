@@ -12,7 +12,7 @@ import {Operation as CommentOperation} from "../../reducer/comment/comment.js";
 import {getAuthStatus} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 // import MoviesList from "../movies-list/movies-list.jsx";
-// import MovieCard from "../movie-card/movie-card.jsx";
+import MovieCard from "../movie-card/movie-card.jsx";
 
 class App extends PureComponent {
   constructor(props) {
@@ -62,6 +62,10 @@ class App extends PureComponent {
           <Route exact path="/dev-review">
             <AddReview
               onSubmit={this.props.addComment}
+            />
+          </Route>
+          <Route exact path="/dev-movie">
+            <MovieCard
             />
           </Route>
         </Switch>
