@@ -22,8 +22,12 @@ const Operation = {
         dispatch(ActionCreator.getComments(response.data));
       });
   },
-  addComment: (movieId) => (dispatch, getState, api) => {
-    return api.post(`/comments/${movieId}`)
+  addComment: (commentData) => (dispatch, getState, api) => {
+    debugger;
+    return api.post(`/comments/${commentData.movieId}`, {
+        rating: commentData.rating,
+        comment: commentData.comment,
+      })
       .then((response) => {
 
       });

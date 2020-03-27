@@ -8,6 +8,7 @@ import SignIn from "../sign-in/sign-in.jsx";
 import AddReview from "../add-review/add-review.jsx";
 
 import {Operation} from "../../reducer/user/user.js";
+import {Operation as CommentOperation} from "../../reducer/comment/comment.js";
 import {getAuthStatus} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 // import MoviesList from "../movies-list/movies-list.jsx";
@@ -60,7 +61,7 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-review">
             <AddReview
-              // onSubmit={this.props.authorization}
+              onSubmit={this.props.addComment}
             />
           </Route>
         </Switch>
@@ -80,13 +81,17 @@ class App extends PureComponent {
 App.propTypes = {
   authorization: PropTypes.func.isRequired,
   authStatus: PropTypes.string.isRequired,
+  // addComment: addComment.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
   authStatus: getAuthStatus(state),
 });
 
-const mapDispatchToProps = ({authorization: Operation.authorization});
+const mapDispatchToProps = ({
+  authorization: Operation.authorization,
+  addComment: CommentOperation.addComment,
+});
 
 export {App};
 export default connect(mapStateToProps, mapDispatchToProps)(App);

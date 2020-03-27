@@ -4,6 +4,23 @@ import PropTypes from "prop-types";
 class AddReview extends PureComponent {
   constructor(props) {
     super(props);
+
+    this.commentRef = createRef();
+    this.formRef = createRef();
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(evt) {
+    const {onSubmit} = this.props;
+
+    evt.preventDefault();
+
+    onSubmit({
+      movieId: "1",
+      rating: this.formRef.current.rating.value,
+      comment: this.commentRef.current.value,
+    });
   }
 
   render() {
@@ -49,7 +66,10 @@ class AddReview extends PureComponent {
       </div>
 
       <div className="add-review">
-        <form action="#" className="add-review__form">
+        <form action="#" className="add-review__form"
+          onSubmit={this.handleSubmit}
+          ref={this.formRef}
+          >
           <div className="rating">
             <div className="rating__stars">
               <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
@@ -70,7 +90,9 @@ class AddReview extends PureComponent {
           </div>
 
           <div className="add-review__text">
-            <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"></textarea>
+            <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"
+              ref={this.commentRef}>
+            </textarea>
             <div className="add-review__submit">
               <button className="add-review__btn" type="submit">Post</button>
             </div>
