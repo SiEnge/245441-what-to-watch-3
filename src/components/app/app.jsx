@@ -5,6 +5,8 @@ import {connect} from "react-redux";
 
 import Main from "../main/main.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
+import AddReview from "../add-review/add-review.jsx";
+
 import {Operation} from "../../reducer/user/user.js";
 import {getAuthStatus} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
@@ -31,19 +33,19 @@ class App extends PureComponent {
   render() {
     const {authStatus, authorization} = this.props;
 
-    if (authStatus === AuthorizationStatus.NO_AUTH) {
-      return (
-        <SignIn
-          onSubmit={authorization}
-        />
-      );
-    } else if (authStatus === AuthorizationStatus.AUTH) {
-      return (
-        <Main
-          onMovieCardClick={this._handleMovieCardClick}
-        />
-      );
-    }
+    // if (authStatus === AuthorizationStatus.NO_AUTH) {
+    //   return (
+    //     <SignIn
+    //       onSubmit={authorization}
+    //     />
+    //   );
+    // } else if (authStatus === AuthorizationStatus.AUTH) {
+    //   return (
+    //     <Main
+    //       onMovieCardClick={this._handleMovieCardClick}
+    //     />
+    //   );
+    // }
 
     return (
       <BrowserRouter>
@@ -54,6 +56,11 @@ class App extends PureComponent {
           <Route exact path="/dev-auth">
             <SignIn
               onSubmit={this.props.authorization}
+            />
+          </Route>
+          <Route exact path="/dev-review">
+            <AddReview
+              // onSubmit={this.props.authorization}
             />
           </Route>
         </Switch>
