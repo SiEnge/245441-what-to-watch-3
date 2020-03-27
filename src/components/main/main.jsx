@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
+
 import {connect} from "react-redux";
 
 // import {} from "../../reducer/data/selectors.js";
@@ -9,6 +11,7 @@ import {getAuthStatus, getUser} from "../../reducer/user/selectors.js";
 
 import {ActionCreator} from "../../reducer/state/state.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {AppRoute} from "../../const.js";
 
 import MoviesList from "../movies-list/movies-list.jsx";
 import Genres from "../genres/genres.jsx";
@@ -43,7 +46,10 @@ const Main = (props) => {
 
         <div className="user-block">
           {authStatus === AuthorizationStatus.NO_AUTH ?
-            <a href="sign-in.html" className="user-block__link">Sign in</a> :
+            <Link
+              to={AppRoute.LOGIN}
+              className="user-block__link">Sign in
+            </Link> :
             <div className="user-block__avatar">
               <img src={avatar} alt="User avatar" width="63" height="63" />
             </div>
