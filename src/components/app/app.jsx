@@ -5,11 +5,14 @@ import {connect} from "react-redux";
 
 import Main from "../main/main.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
+import AddReview from "../add-review/add-review.jsx";
+
 import {Operation} from "../../reducer/user/user.js";
+import {Operation as CommentOperation} from "../../reducer/comment/comment.js";
 import {getAuthStatus} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 // import MoviesList from "../movies-list/movies-list.jsx";
-// import MovieCard from "../movie-card/movie-card.jsx";
+import MovieCard from "../movie-card/movie-card.jsx";
 
 class App extends PureComponent {
   constructor(props) {
@@ -31,19 +34,19 @@ class App extends PureComponent {
   render() {
     const {authStatus, authorization} = this.props;
 
-    if (authStatus === AuthorizationStatus.NO_AUTH) {
-      return (
-        <SignIn
-          onSubmit={authorization}
-        />
-      );
-    } else if (authStatus === AuthorizationStatus.AUTH) {
-      return (
-        <Main
-          onMovieCardClick={this._handleMovieCardClick}
-        />
-      );
-    }
+    // if (authStatus === AuthorizationStatus.NO_AUTH) {
+    //   return (
+    //     <SignIn
+    //       onSubmit={authorization}
+    //     />
+    //   );
+    // } else if (authStatus === AuthorizationStatus.AUTH) {
+    //   return (
+    //     <Main
+    //       onMovieCardClick={this._handleMovieCardClick}
+    //     />
+    //   );
+    // }
 
     return (
       <BrowserRouter>
@@ -54,6 +57,15 @@ class App extends PureComponent {
           <Route exact path="/dev-auth">
             <SignIn
               onSubmit={this.props.authorization}
+            />
+          </Route>
+          <Route exact path="/dev-review">
+            <AddReview
+              onSubmit={this.props.addComment}
+            />
+          </Route>
+          <Route exact path="/dev-movie">
+            <MovieCard
             />
           </Route>
         </Switch>
@@ -73,13 +85,17 @@ class App extends PureComponent {
 App.propTypes = {
   authorization: PropTypes.func.isRequired,
   authStatus: PropTypes.string.isRequired,
+  // addComment: addComment.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
   authStatus: getAuthStatus(state),
 });
 
-const mapDispatchToProps = ({authorization: Operation.authorization});
+const mapDispatchToProps = ({
+  authorization: Operation.authorization,
+  addComment: CommentOperation.addComment,
+});
 
 export {App};
 export default connect(mapStateToProps, mapDispatchToProps)(App);
