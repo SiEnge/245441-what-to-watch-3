@@ -9,6 +9,10 @@ export const getMovies = (state) => {
   return state[NameSpace.DATA].movies;
 };
 
+export const getFavoriteMovies = (state) => {
+  return state[NameSpace.DATA].favoriteMovies;
+};
+
 export const getGenres = (state) => {
   return state[NameSpace.DATA].genres;
 };

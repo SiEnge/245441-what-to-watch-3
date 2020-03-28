@@ -43,7 +43,7 @@ class App extends PureComponent {
         <Switch>
           <Route exact path={AppRoute.ROOT}>
             <Main
-              onMovieCardClick={this._handleMovieCardClick}
+              // onMovieCardClick={this._handleMovieCardClick}
             />
           </Route>
           <Route exact path={AppRoute.LOGIN}>

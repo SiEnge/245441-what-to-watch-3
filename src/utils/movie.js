@@ -23,3 +23,4 @@ export const adapterMovie = (movie) => {
 export const adapterMovies = (movies) => {
   return movies.map((movie) => adapterMovie(movie));
 };
+

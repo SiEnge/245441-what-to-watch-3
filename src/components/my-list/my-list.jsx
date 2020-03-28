@@ -1,11 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 import MoviesList from "../movies-list/movies-list.jsx";
+import {getFavoriteMovies} from "../../reducer/data/selectors.js";
 
 const MyList = (props) => {
+  const {movies} = props;
   // const {onShowMoreButtonClick} = props;
-  const movies = [];
-  const onMovieCardClick = (() => {})
+
+  const onMovieCardClick = (() => {});
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -57,4 +60,13 @@ MyList.propTypes = {
   // onShowMoreButtonClick: PropTypes.func.isRequired,
 };
 
-export default MyList;
+// export default MyList;
+
+const mapStateToProps = (state) => ({
+  movies: getFavoriteMovies(state),
+});
+
+// const mapDispatchToProps = ({onShowMoreButtonClick: ActionCreator.incrementPage});
+
+export {MyList};
+export default connect(mapStateToProps)(MyList);
