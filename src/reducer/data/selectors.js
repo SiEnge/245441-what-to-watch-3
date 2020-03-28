@@ -5,6 +5,10 @@ export const getPromoMovie = (state) => {
   return state[NameSpace.DATA].promoMovie;
 };
 
+export const getActiveMovieId = (state) => {
+  return state[NameSpace.DATA].activeMovieId;
+};
+
 export const getMovies = (state) => {
   return state[NameSpace.DATA].movies;
 };
@@ -26,5 +30,13 @@ export const getMoviesByGenre = createSelector(
     getActiveGenre,
     (movies, activeGenre) => {
       return (activeGenre === `all`) ? movies : movies.filter((movie) => movie.genre === activeGenre);
+    }
+);
+
+export const getActiveMovie = createSelector(
+    getMovies,
+    getActiveMovieId,
+    (movies, activeMovieId) => {
+      return (activeMovieId === -1) ? movies[0] : movies.filter((movie) => movie.id === activeMovieId)[0];
     }
 );

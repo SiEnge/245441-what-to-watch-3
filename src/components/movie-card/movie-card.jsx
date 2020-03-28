@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Tabs from "../tabs/tabs.jsx";
-import {getPromoMovie} from "../../reducer/data/selectors.js";
+import {getPromoMovie, getActiveMovie} from "../../reducer/data/selectors.js";
 import {connect} from "react-redux";
 import {getAuthStatus} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const MovieCard = (props) => {
-  const {movie, movie: {title, genre, date, poster, background}, authStatus} = props;
+  // debugger;
+  const {id, movie, movie: {title, genre, date, poster, background}, authStatus} = props;
 
   return (
     <section className="movie-card movie-card--full">
@@ -93,7 +94,8 @@ MovieCard.propTypes = {
 
 
 const mapStateToProps = (state) => ({
-  movie: getPromoMovie(state),
+  // movie: getPromoMovie(state),
+  movie: getActiveMovie(state),
   authStatus: getAuthStatus(state),
 });
 

@@ -6,6 +6,7 @@ const initialState = {
   movies: [],
   favoriteMovies: [],
   promoMovie: {},
+  activeMovieId: -1,
   genres: [],
 };
 
@@ -13,6 +14,7 @@ const ActionType = {
   LOAD_MOVIES: `LOAD_MOVIES`,
   LOAD_FAVORITE_MOVIES: `LOAD_FAVORITE_MOVIES`,
   LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
+  SET_ACTIVE_MOVIE_ID: `SET_ACTIVE_MOVIE_ID`,
   SET_GENRES: `SET_GENRES`,
 };
 
@@ -28,6 +30,10 @@ const ActionCreator = {
   loadPromoMovies: (movie) => ({
     type: ActionType.LOAD_PROMO_MOVIE,
     payload: adapterMovie(movie),
+  }),
+  setActiveMovieId: (movieId) => ({
+    type: ActionType.SET_ACTIVE_MOVIE_ID,
+    payload: movieId,
   }),
   setGenres: (movies) => ({
     type: ActionType.SET_GENRES,
@@ -70,6 +76,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_PROMO_MOVIE:
       return extend(state, {
         promoMovie: action.payload,
+      });
+    case ActionType.SET_ACTIVE_MOVIE_ID:
+      return extend(state, {
+        activeMovieId: action.payload,
       });
     case ActionType.SET_GENRES:
       return extend(state, {

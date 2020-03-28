@@ -9,6 +9,7 @@ import AddReview from "../add-review/add-review.jsx";
 
 import {Operation} from "../../reducer/user/user.js";
 import {Operation as CommentOperation} from "../../reducer/comment/comment.js";
+import {ActionCreator} from "../../reducer/data/data.js";
 import {getAuthStatus} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import history from "../../history.js";
@@ -22,17 +23,22 @@ class App extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      movieCardId: -1
-    };
+    // this.state = {
+    //   movieCardId: -1
+    // };
 
     this._handleMovieCardClick = this._handleMovieCardClick.bind(this);
   }
 
   _handleMovieCardClick(movieId) {
-    this.setState({
-      movieCardId: movieId,
-    });
+    // this.setState({
+    //   movieCardId: movieId,
+    // });
+    // debugger;
+    this.props.setActiveMovieId(movieId);
+    // setActiveMovieId
+
+    history.push(`${AppRoute.FILMS}/${movieId}`)
   }
 
   render() {
@@ -58,8 +64,12 @@ class App extends PureComponent {
               );
             }}
           />
-          <Route exact path={`${AppRoute.FILMS}/:id`}>
-
+          <Route exact path={`${AppRoute.FILMS}/:id`}
+            render={() => {
+              return (
+                <MovieCard />
+              );
+            }}>
           </Route>
           <Route exact path={`${AppRoute.FILMS}/:id${AppRoute.REVIEW}`}>
 
@@ -88,7 +98,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = ({
   authorization: Operation.authorization,
   addComment: CommentOperation.addComment,
+  setActiveMovieId: ActionCreator.setActiveMovieId,
 });
 
 export {App};
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+
