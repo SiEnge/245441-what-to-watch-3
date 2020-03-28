@@ -5,10 +5,12 @@ import {getPromoMovie, getActiveMovie} from "../../reducer/data/selectors.js";
 import {connect} from "react-redux";
 import {getAuthStatus} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {AppRoute} from "../../const.js";
+import {Link} from "react-router-dom";
 
 const MovieCard = (props) => {
   // debugger;
-  const {id, movie, movie: {title, genre, date, poster, background}, authStatus} = props;
+  const {movie, movie: {id, title, genre, date, poster, background}, authStatus} = props;
 
   return (
     <section className="movie-card movie-card--full">
@@ -56,8 +58,11 @@ const MovieCard = (props) => {
                 </svg>
                 <span>My list</span>
               </button>
+
               {authStatus === AuthorizationStatus.AUTH &&
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                <Link to={`${AppRoute.FILMS}/${id}${AppRoute.REVIEW}`}
+                  className="btn movie-card__button">Add review
+                </Link>
               }
 
             </div>
