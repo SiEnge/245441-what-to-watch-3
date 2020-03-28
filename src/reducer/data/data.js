@@ -61,6 +61,13 @@ const Operation = {
         dispatch(ActionCreator.loadPromoMovies(response.data));
       });
   },
+  setStatusFavoriteMovie: (statusData) => (dispatch, getState, api) => {
+    return api.post(`/favorite/${statusData.movieId}/${statusData.status}`)
+      .then((response) => {
+        debugger;
+        // dispatch(ActionCreator.loadFavoriteMovies(response.data));
+      });
+  },
 };
 
 const reducer = (state = initialState, action) => {
