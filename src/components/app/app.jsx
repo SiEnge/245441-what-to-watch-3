@@ -50,6 +50,15 @@ class App extends PureComponent {
               onSubmit={authorization}
             />
           </Route>
+          <Route exact path={`${AppRoute.FILMS}/:id`}>
+
+          </Route>
+          <Route exact path={`${AppRoute.FILMS}/:id${AppRoute.REVIEW}`}>
+
+          </Route>
+          <Route exact path={`${AppRoute.FILMS}/:id${AppRoute.PLAYER}`}>
+
+          </Route>
         </Switch>
       </Router>
     );
