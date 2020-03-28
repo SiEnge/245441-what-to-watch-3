@@ -10,7 +10,7 @@ export const adapterMovie = (movie) => {
     date: String(movie.released),
     background: movie.background_image,
     backgroundColor: movie.background_color, // добавить в пропс и вывод в UI
-    descriptions: movie.description, // перевести в массив
+    descriptions: movie.description.split(". "),
     score: movie.scores_count,
     rating: movie.rating,
     runtime: movie.run_time,

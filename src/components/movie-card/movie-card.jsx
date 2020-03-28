@@ -76,6 +76,9 @@ const MovieCard = (props) => {
             <img src={poster} alt="{title} poster" width="218" height="327" />
           </div>
 
+          <Tabs movie={movie}/>
+
+
         </div>
       </div>
     </section>
@@ -84,7 +87,6 @@ const MovieCard = (props) => {
   );
 };
 
-          // <Tabs movie={movie}/>
 
 
 MovieCard.propTypes = {
