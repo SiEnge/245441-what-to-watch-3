@@ -6,6 +6,7 @@ import {getFavoriteMovies} from "../../reducer/data/selectors.js";
 
 const MyList = (props) => {
   const {movies} = props;
+  // debugger;
   // const {onShowMoreButtonClick} = props;
 
   const onMovieCardClick = (() => {});

@@ -2,7 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {Switch, Route, Router} from "react-router-dom";
 import {connect} from "react-redux";
-
+import PrivateRoute from "../private-route/private-route.jsx";
 import Main from "../main/main.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import AddReview from "../add-review/add-review.jsx";
@@ -43,7 +43,7 @@ class App extends PureComponent {
         <Switch>
           <Route exact path={AppRoute.ROOT}>
             <Main
-              // onMovieCardClick={this._handleMovieCardClick}
+              onMovieCardClick={this._handleMovieCardClick}
             />
           </Route>
           <Route exact path={AppRoute.LOGIN}>
@@ -51,6 +51,13 @@ class App extends PureComponent {
               onSubmit={authorization}
             />
           </Route>
+          <PrivateRoute exact path={AppRoute.MY_LIST}
+            render={() => {
+              return (
+                <MyList />
+              );
+            }}
+          />
           <Route exact path={`${AppRoute.FILMS}/:id`}>
 
           </Route>
@@ -60,6 +67,7 @@ class App extends PureComponent {
           <Route exact path={`${AppRoute.FILMS}/:id${AppRoute.PLAYER}`}>
 
           </Route>
+
         </Switch>
       </Router>
     );

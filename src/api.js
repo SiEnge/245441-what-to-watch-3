@@ -6,6 +6,8 @@ const Error = {
   UNAUTHORIZED: 401
 };
 
+const LOGIN_URL = `https://htmlacademy-react-3.appspot.com/wtw/login`;
+
 export const createAPI = (onUnauthorized) => {
   const api = axios.create({
     baseURL: `https://htmlacademy-react-3.appspot.com/wtw`,
@@ -18,12 +20,14 @@ export const createAPI = (onUnauthorized) => {
   };
 
   const onFail = (err) => {
-    const {response} = err;
+    const {response, request} = err;
 
     if (response.status === Error.UNAUTHORIZED) {
       onUnauthorized();
 
-      history.push(AppRoute.LOGIN);
+      if (request.responseURL !== LOGIN_URL) {
+        history.push(AppRoute.LOGIN);
+      }
 
       throw err;
     }

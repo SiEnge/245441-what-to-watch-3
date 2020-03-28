@@ -51,7 +51,14 @@ const Main = (props) => {
               className="user-block__link">Sign in
             </Link> :
             <div className="user-block__avatar">
+              <Link
+                to={AppRoute.MY_LIST}
+                >
               <img src={avatar} alt="User avatar" width="63" height="63" />
+
+
+              </Link> :
+
             </div>
           }
         </div>

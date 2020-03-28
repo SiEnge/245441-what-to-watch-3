@@ -8,6 +8,7 @@ import {getAuthStatus} from "../../reducer/user/selectors.js";
 
 
 const PrivateRoute = (props) => {
+  // debugger;
   const {render, path, exact, authStatus} = props;
 
   return (
