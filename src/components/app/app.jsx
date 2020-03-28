@@ -15,6 +15,7 @@ import history from "../../history.js";
 import {AppRoute} from "../../const.js";
 
 // import MoviesList from "../movies-list/movies-list.jsx";
+import MyList from "../my-list/my-list.jsx";
 import MovieCard from "../movie-card/movie-card.jsx";
 
 class App extends PureComponent {
