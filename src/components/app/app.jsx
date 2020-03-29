@@ -34,7 +34,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {authStatus, authorization} = this.props;
+    const {authStatus, authorization, addComment} = this.props;
 
     return (
       <Router history={history}>
@@ -44,11 +44,13 @@ class App extends PureComponent {
               onMovieCardClick={this._handleMovieCardClick}
             />
           </Route>
+
           <Route exact path={AppRoute.LOGIN}>
             <SignIn
               onSubmit={authorization}
             />
           </Route>
+
           <PrivateRoute exact path={AppRoute.MY_LIST}
             render={() => {
               return (
@@ -56,6 +58,7 @@ class App extends PureComponent {
               );
             }}
           />
+
           <Route exact path={`${AppRoute.FILMS}/:id`}>
             <MovieCard />
           </Route>
@@ -63,7 +66,9 @@ class App extends PureComponent {
           <PrivateRoute exact path={`${AppRoute.FILMS}/:id${AppRoute.REVIEW}`}
             render={() => {
               return (
-                <AddReview />
+                <AddReview
+                  onSubmit={addComment}
+                />
               );
             }}
           />

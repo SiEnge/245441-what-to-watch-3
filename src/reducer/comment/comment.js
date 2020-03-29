@@ -1,4 +1,6 @@
 import {extend} from "../../utils/common.js";
+import history from "../../history.js";
+import {AppRoute} from "../../const.js";
 
 const initialState = {
   comments: [],
@@ -25,11 +27,12 @@ const Operation = {
   addComment: (commentData) => (dispatch, getState, api) => {
     debugger;
     return api.post(`/comments/${commentData.movieId}`, {
-        rating: commentData.rating,
+        rating: +commentData.rating,
         comment: commentData.comment,
       })
       .then((response) => {
-
+        dispatch(ActionCreator.getComments(response.data));
+        history.push(`${AppRoute.FILMS}/${commentData.movieId}`)
       });
   },
 };

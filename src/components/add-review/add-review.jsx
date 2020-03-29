@@ -5,6 +5,11 @@ import {getActiveMovie} from "../../reducer/data/selectors.js";
 import UserBlock from "../user-block/user-block.jsx";
 import Logo from "../logo/logo.jsx";
 
+const COUNT_SIMBOLS_TEXTAREA = {
+  Min: 50,
+  Max: 400,
+};
+
 class AddReview extends PureComponent {
   constructor(props) {
     super(props);
@@ -21,7 +26,7 @@ class AddReview extends PureComponent {
     evt.preventDefault();
 
     onSubmit({
-      movieId: "1",
+      movieId: this.props.movie.id,
       rating: this.formRef.current.rating.value,
       comment: this.commentRef.current.value,
     });
@@ -45,7 +50,7 @@ class AddReview extends PureComponent {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="movie-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
+                <a href="movie-page.html" className="breadcrumbs__link">{title}</a>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -76,7 +81,7 @@ class AddReview extends PureComponent {
               <input className="rating__input" id="star-2" type="radio" name="rating" value="2" />
               <label className="rating__label" htmlFor="star-2">Rating 2</label>
 
-              <input className="rating__input" id="star-3" type="radio" name="rating" value="3" checked />
+              <input className="rating__input" id="star-3" type="radio" name="rating" value="3" defaultChecked />
               <label className="rating__label" htmlFor="star-3">Rating 3</label>
 
               <input className="rating__input" id="star-4" type="radio" name="rating" value="4" />
@@ -89,8 +94,10 @@ class AddReview extends PureComponent {
 
           <div className="add-review__text">
             <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"
-              ref={this.commentRef}>
-            </textarea>
+              ref={this.commentRef}
+              minLength={COUNT_SIMBOLS_TEXTAREA.Min}
+              maxLength={COUNT_SIMBOLS_TEXTAREA.Max}
+            />
             <div className="add-review__submit">
               <button className="add-review__btn" type="submit">Post</button>
             </div>
@@ -103,9 +110,10 @@ class AddReview extends PureComponent {
   }
 }
 
+
+
 AddReview.propTypes = {
 };
-
 
 const mapStateToProps = (state) => ({
   movie: getActiveMovie(state),
