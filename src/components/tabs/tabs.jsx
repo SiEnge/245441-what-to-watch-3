@@ -38,6 +38,8 @@ const getScoreType = (score) => {
   return scoreName;
 };
 
+const MAX_COUNT_STARRING = 4;
+
 
 
 const parseDuration = (duration) => {
@@ -53,6 +55,7 @@ const parseDuration = (duration) => {
 const Tabs = (props) => {
   // debugger;
   const {movie: {genre, date, descriptions, score, rating, runtime, director, starring}, activeTab, comments} = props;
+  const starringText = `${starring.slice(0, MAX_COUNT_STARRING).join(`, `)} ${starring.length > MAX_COUNT_STARRING ? ` and other` : ``}`;
 
   return (
     <div className="movie-card__desc">
@@ -68,10 +71,10 @@ const Tabs = (props) => {
 
       {activeTab === TabsType.OVERVIEW &&
         <div className="movie-rating">
-          <div className="movie-rating__score">{score}</div>
+          <div className="movie-rating__score">{rating}</div>
           <p className="movie-rating__meta">
-            <span className="movie-rating__level">{getScoreType(score)}</span>
-            <span className="movie-rating__count">{rating} ratings</span>
+            <span className="movie-rating__level">{getScoreType(rating)}</span>
+            <span className="movie-rating__count">{score} ratings</span>
           </p>
         </div>
       }
@@ -82,9 +85,7 @@ const Tabs = (props) => {
             <p key={i}>{description}</p>
           )}
           <p className="movie-card__director"><strong>Director: {director}</strong></p>
-          <p className="movie-card__starring"><strong>Starring:
-            {starring.slice(0, 4).join(`, `)}
-          </strong></p>
+          <p className="movie-card__starring"><strong>Starring: {starringText}</strong></p>
         </div>
       }
 
@@ -97,9 +98,7 @@ const Tabs = (props) => {
             </p>
             <p className="movie-card__details-item">
               <strong className="movie-card__details-name">Starring</strong>
-              <span className="movie-card__details-value">
-                {starring.join(`,`)}
-              </span>
+              <span className="movie-card__details-value" dangerouslySetInnerHTML={{__html: starring.join(`,<br>`) }} />
             </p>
           </div>
 

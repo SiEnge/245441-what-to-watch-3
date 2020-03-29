@@ -1,5 +1,7 @@
 import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {getActiveMovie} from "../../reducer/data/selectors.js";
 import UserBlock from "../user-block/user-block.jsx";
 import Logo from "../logo/logo.jsx";
 
@@ -26,11 +28,13 @@ class AddReview extends PureComponent {
   }
 
   render() {
+    const {movie: {title, poster, background}} = this.props;
+
     return (
       <section className="movie-card movie-card--full">
       <div className="movie-card__header">
          <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={background} alt={title} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -55,7 +59,7 @@ class AddReview extends PureComponent {
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">
-          <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+          <img src={poster} alt={title} width="218" height="327" />
         </div>
       </div>
 
@@ -102,4 +106,10 @@ class AddReview extends PureComponent {
 AddReview.propTypes = {
 };
 
-export default AddReview;
+
+const mapStateToProps = (state) => ({
+  movie: getActiveMovie(state),
+});
+
+export {AddReview};
+export default connect(mapStateToProps)(AddReview);
