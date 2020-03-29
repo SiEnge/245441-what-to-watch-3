@@ -7,6 +7,8 @@ import {getAuthStatus} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {AppRoute} from "../../const.js";
 import {Link} from "react-router-dom";
+import UserBlock from "../user-block/user-block.jsx";
+import Logo from "../logo/logo.jsx";
 
 const MovieCard = (props) => {
   // debugger;
@@ -22,19 +24,11 @@ const MovieCard = (props) => {
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header movie-card__head">
-          <div className="logo">
-            <a href="main.html" className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+          <Logo classLink={"logo__link"} />
 
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
+          <UserBlock
+            isAuth={authStatus === AuthorizationStatus.AUTH}
+          />
         </header>
 
         <div className="movie-card__wrap">
@@ -77,7 +71,6 @@ const MovieCard = (props) => {
           </div>
 
           <Tabs movie={movie}/>
-
 
         </div>
       </div>

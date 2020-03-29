@@ -1,5 +1,7 @@
 import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
+import UserBlock from "../user-block/user-block.jsx";
+import Logo from "../logo/logo.jsx";
 
 class AddReview extends PureComponent {
   constructor(props) {
@@ -34,13 +36,7 @@ class AddReview extends PureComponent {
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header">
-          <div className="logo">
-            <a href="main.html" className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+          <Logo classLink={"logo__link"} />
 
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
@@ -53,11 +49,9 @@ class AddReview extends PureComponent {
             </ul>
           </nav>
 
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
+          <UserBlock
+            isAuth={true}
+          />
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">

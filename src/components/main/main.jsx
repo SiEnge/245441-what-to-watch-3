@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 // import {} from "../../reducer/data/selectors.js";
 import {getPromoMovie, getMoviesByGenre} from "../../reducer/data/selectors.js";
 import {getPage} from "../../reducer/state/selectors.js";
-import {getAuthStatus, getUser} from "../../reducer/user/selectors.js";
+import {getAuthStatus} from "../../reducer/user/selectors.js";
 
 import {ActionCreator} from "../../reducer/state/state.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
@@ -15,17 +15,17 @@ import {AppRoute} from "../../const.js";
 
 import MoviesList from "../movies-list/movies-list.jsx";
 import Genres from "../genres/genres.jsx";
+import UserBlock from "../user-block/user-block.jsx";
+import Logo from "../logo/logo.jsx";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 
 const PER_PAGE_MOVIE_COUNT = 8;
-const URL = `https://htmlacademy-react-3.appspot.com/`;
 
 const Main = (props) => {
-  const {promoMovie, moviesByGenre, page, authStatus, user, onMovieCardClick, onShowMoreButtonClick} = props;
+  const {promoMovie, moviesByGenre, page, authStatus, onMovieCardClick, onShowMoreButtonClick} = props;
 
   const showedMoviesCount = page * PER_PAGE_MOVIE_COUNT;
   const movies = moviesByGenre.slice(0, showedMoviesCount);
-  const avatar = `${URL}${user.avatarUrl}`;
 
   return (<React.Fragment>
     <section className="movie-card">
@@ -36,32 +36,11 @@ const Main = (props) => {
       <h1 className="visually-hidden">WTW</h1>
 
       <header className="page-header movie-card__head">
-        <div className="logo">
-          <a className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
+        <Logo classLink={"logo__link"} />
 
-        <div className="user-block">
-          {authStatus === AuthorizationStatus.NO_AUTH ?
-            <Link
-              to={AppRoute.LOGIN}
-              className="user-block__link">Sign in
-            </Link> :
-            <div className="user-block__avatar">
-              <Link
-                to={AppRoute.MY_LIST}
-                >
-              <img src={avatar} alt="User avatar" width="63" height="63" />
-
-
-              </Link> :
-
-            </div>
-          }
-        </div>
+        <UserBlock
+          isAuth={authStatus === AuthorizationStatus.AUTH}
+        />
       </header>
 
 
@@ -118,13 +97,7 @@ const Main = (props) => {
       </section>
 
       <footer className="page-footer">
-        <div className="logo">
-          <a className="logo__link logo__link--light">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
+        <Logo classLink={"logo__link logo__link--light"} />
 
         <div className="copyright">
           <p>© 2019 What to watch Ltd.</p>
@@ -156,9 +129,7 @@ Main.propTypes = {
 
   authStatus: PropTypes.string.isRequired,
 
-  user: PropTypes.shape({
-    avatarUrl: PropTypes.string,
-  }),
+
 
   page: PropTypes.number.isRequired,
 
@@ -171,7 +142,7 @@ const mapStateToProps = (state) => ({
   moviesByGenre: getMoviesByGenre(state),
   page: getPage(state),
   authStatus: getAuthStatus(state),
-  user: getUser(state),
+  // user: getUser(state),
 });
 
 const mapDispatchToProps = ({onShowMoreButtonClick: ActionCreator.incrementPage});

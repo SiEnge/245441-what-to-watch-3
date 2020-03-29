@@ -1,5 +1,7 @@
 import {extend} from "../../utils/common.js";
 import {adapterUser} from "../../utils/user.js";
+import history from "../../history.js";
+import {AppRoute} from "../../const.js";
 
 const AuthorizationStatus = {
   AUTH: `AUTH`,
@@ -42,6 +44,8 @@ const Operation = {
       })
       .then((response) => {
         dispatch(ActionCreator.auth(response.data));
+        history.push(AppRoute.ROOT);
+
       });
   },
 };

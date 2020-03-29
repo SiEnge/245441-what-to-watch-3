@@ -68,10 +68,14 @@ class App extends PureComponent {
             <MovieCard />
           </Route>
 
-          <Route exact path={`${AppRoute.FILMS}/:id${AppRoute.REVIEW}`}>
-            <AddReview />
+          <PrivateRoute exact path={`${AppRoute.FILMS}/:id${AppRoute.REVIEW}`}
+            render={() => {
+              return (
+                <AddReview />
+              );
+            }}
+          />
 
-          </Route>
           <Route exact path={`${AppRoute.FILMS}/:id${AppRoute.PLAYER}`}>
 
           </Route>
