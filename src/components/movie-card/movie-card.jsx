@@ -4,15 +4,17 @@ import Tabs from "../tabs/tabs.jsx";
 import {getPromoMovie, getActiveMovie} from "../../reducer/data/selectors.js";
 import {connect} from "react-redux";
 import {getAuthStatus} from "../../reducer/user/selectors.js";
+import {getComments} from "../../reducer/comment/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {AppRoute} from "../../const.js";
 import {Link} from "react-router-dom";
 import UserBlock from "../user-block/user-block.jsx";
 import Logo from "../logo/logo.jsx";
 
+
+
 const MovieCard = (props) => {
-  // debugger;
-  const {movie, movie: {id, title, genre, date, poster, background}, authStatus} = props;
+  const {movie, movie: {id, title, genre, date, poster, background}, comments, authStatus} = props;
 
   return (
     <section className="movie-card movie-card--full">
@@ -70,7 +72,7 @@ const MovieCard = (props) => {
             <img src={poster} alt="{title} poster" width="218" height="327" />
           </div>
 
-          <Tabs movie={movie}/>
+          <Tabs movie={movie} comments={comments}/>
 
         </div>
       </div>
@@ -97,6 +99,7 @@ const mapStateToProps = (state) => ({
   // movie: getPromoMovie(state),
   movie: getActiveMovie(state),
   authStatus: getAuthStatus(state),
+  comments: getComments(state),
 });
 
 // const mapDispatchToProps = ({onShowMoreButtonClick: ActionCreator.incrementPage});

@@ -23,20 +23,12 @@ class App extends PureComponent {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   movieCardId: -1
-    // };
-
     this._handleMovieCardClick = this._handleMovieCardClick.bind(this);
   }
 
   _handleMovieCardClick(movieId) {
-    // this.setState({
-    //   movieCardId: movieId,
-    // });
-    // debugger;
     this.props.setActiveMovieId(movieId);
-    // setActiveMovieId
+    this.props.getComments(movieId);
 
     history.push(`${AppRoute.FILMS}/${movieId}`)
   }
@@ -100,6 +92,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = ({
   authorization: Operation.authorization,
   addComment: CommentOperation.addComment,
+  getComments: CommentOperation.getComments,
   setActiveMovieId: ActionCreator.setActiveMovieId,
 });
 
