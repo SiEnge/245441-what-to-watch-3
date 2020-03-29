@@ -87,13 +87,11 @@ const Main = (props) => {
           onMovieCardClick={onMovieCardClick}
         />
 
-        <div className="catalog__more">
-          {moviesByGenre.length > showedMoviesCount &&
-            <ShowMoreButton
-              onShowMoreButtonClick={onShowMoreButtonClick}
-            />
-          }
-        </div>
+        {moviesByGenre.length > showedMoviesCount &&
+          <ShowMoreButton
+            onShowMoreButtonClick={onShowMoreButtonClick}
+          />
+        }
       </section>
 
       <footer className="page-footer">
