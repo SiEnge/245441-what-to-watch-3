@@ -22,13 +22,16 @@ class Genres extends React.Component {
 
   render() {
     const {genres} = this.props;
+    debugger;
 
     return (
       <ul className="catalog__genres-list">
+
         <li className="catalog__genres-item catalog__genres-item--active">
           <a onClick={this._handleGenreClick} data-genre="all"
             href="#" className="catalog__genres-link">All genres</a>
         </li>
+
         {genres.map((genre, i) =>
           <li key={i} className="catalog__genres-item">
             <a onClick={this._handleGenreClick} data-genre={genre}
@@ -39,6 +42,7 @@ class Genres extends React.Component {
     );
   }
 }
+
 
 Genres.propTypes = {
   genres: PropTypes.array,
@@ -54,3 +58,7 @@ const mapDispatchToProps = ({onGenresClick: ActionCreator.setGenre});
 
 export {Genres};
 export default connect(mapStateToProps, mapDispatchToProps)(Genres);
+
+
+// создать список перечислений
+
