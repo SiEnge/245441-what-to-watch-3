@@ -18,6 +18,7 @@ import {AppRoute} from "../../const.js";
 // import MoviesList from "../movies-list/movies-list.jsx";
 import MyList from "../my-list/my-list.jsx";
 import MovieCard from "../movie-card/movie-card.jsx";
+import Player from "../player/player.jsx";
 
 class App extends PureComponent {
   constructor(props) {
@@ -74,7 +75,7 @@ class App extends PureComponent {
           />
 
           <Route exact path={`${AppRoute.FILMS}/:id${AppRoute.PLAYER}`}>
-
+            <Player />
           </Route>
 
         </Switch>
