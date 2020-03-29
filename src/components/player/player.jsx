@@ -6,7 +6,6 @@ import {getActiveMovie} from "../../reducer/data/selectors.js";
 import {AppRoute} from "../../const.js";
 import {Link} from "react-router-dom";
 
-// const Player = (props) => {
 class Player extends PureComponent {
   constructor(props) {
     super(props);

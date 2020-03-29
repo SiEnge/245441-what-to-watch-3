@@ -12,6 +12,7 @@ import {getAuthStatus} from "../../reducer/user/selectors.js";
 import {ActionCreator} from "../../reducer/state/state.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {AppRoute} from "../../const.js";
+import {Operation} from "../../reducer/data/data.js";
 
 import MoviesList from "../movies-list/movies-list.jsx";
 import Genres from "../genres/genres.jsx";
@@ -22,7 +23,7 @@ import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 const PER_PAGE_MOVIE_COUNT = 8;
 
 const Main = (props) => {
-  const {promoMovie, moviesByGenre, page, authStatus, onMovieCardClick, onShowMoreButtonClick} = props;
+  const {promoMovie, moviesByGenre, page, authStatus, onMovieCardClick, onShowMoreButtonClick, setStatusFavoriteMovie} = props;
 
   const showedMoviesCount = page * PER_PAGE_MOVIE_COUNT;
   const movies = moviesByGenre.slice(0, showedMoviesCount);
@@ -59,6 +60,7 @@ const Main = (props) => {
             </p>
 
             <div className="movie-card__buttons">
+
               <Link to={`${AppRoute.FILMS}/${promoMovie.id}${AppRoute.PLAYER}`}
                 className="btn btn--play movie-card__button" type="button">
                 <svg viewBox="0 0 19 19" width="19" height="19">
@@ -66,12 +68,25 @@ const Main = (props) => {
                 </svg>
                 <span>Play</span>
               </Link>
-              <button className="btn btn--list movie-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
-                </svg>
+
+              <button
+                onClick={() => {
+                  setStatusFavoriteMovie({movieId: promoMovie.id, status: !promoMovie.isFavorite})
+                }}
+
+                data-favorite={promoMovie.isFavorite}
+                className="btn btn--list movie-card__button" type="button">
+                  {promoMovie.isFavorite ?
+                    <svg viewBox="0 0 18 14" width="18" height="14">
+                      <use xlinkHref="#in-list"></use>
+                    </svg> :
+                    <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"></use>
+                    </svg>
+                  }
                 <span>My list</span>
               </button>
+
             </div>
           </div>
         </div>
@@ -142,10 +157,12 @@ const mapStateToProps = (state) => ({
   moviesByGenre: getMoviesByGenre(state),
   page: getPage(state),
   authStatus: getAuthStatus(state),
-  // user: getUser(state),
 });
 
-const mapDispatchToProps = ({onShowMoreButtonClick: ActionCreator.incrementPage});
+const mapDispatchToProps = ({
+  onShowMoreButtonClick: ActionCreator.incrementPage,
+  setStatusFavoriteMovie: Operation.setStatusFavoriteMovie,
+});
 
 export {Main};
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

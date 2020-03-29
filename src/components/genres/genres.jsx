@@ -22,7 +22,6 @@ class Genres extends React.Component {
 
   render() {
     const {genres} = this.props;
-    debugger;
 
     return (
       <ul className="catalog__genres-list">

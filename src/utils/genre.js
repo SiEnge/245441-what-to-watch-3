@@ -6,4 +6,3 @@ export const getGenres = (movies) => {
   movies.forEach((movie) => genres.add(movie.genre));
   return Array.from(genres).slice(0, MAX_COUNT_GENRES);
 };
-

@@ -41,6 +41,7 @@ class VideoPlayer extends PureComponent {
           isPlaying: true
         })}
         poster={poster}
+        muted
         >
         <source src={preview}/>
       </video>

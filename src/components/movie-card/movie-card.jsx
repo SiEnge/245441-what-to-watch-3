@@ -10,11 +10,10 @@ import {AppRoute} from "../../const.js";
 import {Link} from "react-router-dom";
 import UserBlock from "../user-block/user-block.jsx";
 import Logo from "../logo/logo.jsx";
-
-
+import {Operation} from "../../reducer/data/data.js";
 
 const MovieCard = (props) => {
-  const {movie, movie: {id, title, genre, date, poster, background}, comments, authStatus} = props;
+  const {movie, movie: {id, title, genre, date, poster, background, isFavorite}, comments, authStatus, setStatusFavoriteMovie} = props;
 
   return (
     <section className="movie-card movie-card--full">
@@ -50,10 +49,21 @@ const MovieCard = (props) => {
                 <span>Play</span>
               </Link>
 
-              <button className="btn btn--list movie-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
-                </svg>
+              <button
+                onClick={() => {
+                  setStatusFavoriteMovie({movieId: id, status: !isFavorite})
+                }}
+
+                data-favorite={isFavorite}
+                className="btn btn--list movie-card__button" type="button">
+                  {isFavorite ?
+                    <svg viewBox="0 0 18 14" width="18" height="14">
+                      <use xlinkHref="#in-list"></use>
+                    </svg> :
+                    <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"></use>
+                    </svg>
+                  }
                 <span>My list</span>
               </button>
 
@@ -104,7 +114,10 @@ const mapStateToProps = (state) => ({
   comments: getComments(state),
 });
 
-// const mapDispatchToProps = ({onShowMoreButtonClick: ActionCreator.incrementPage});
+const mapDispatchToProps = ({
+  setStatusFavoriteMovie: Operation.setStatusFavoriteMovie,
+});
+
 
 export {MovieCard};
-export default connect(mapStateToProps)(MovieCard);
+export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);

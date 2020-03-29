@@ -18,6 +18,13 @@ const ActionType = {
   SET_GENRES: `SET_GENRES`,
 };
 
+const getStatusId = (status) => {
+  if (status === true) {
+    return "1";
+  }
+  return "0";
+};
+
 const ActionCreator = {
   loadMovies: (movies) => ({
     type: ActionType.LOAD_MOVIES,
@@ -62,10 +69,11 @@ const Operation = {
       });
   },
   setStatusFavoriteMovie: (statusData) => (dispatch, getState, api) => {
-    return api.post(`/favorite/${statusData.movieId}/${statusData.status}`)
+    return api.post(`/favorite/${statusData.movieId}/${getStatusId(statusData.status)}`)
       .then((response) => {
-        debugger;
-        // dispatch(ActionCreator.loadFavoriteMovies(response.data));
+        dispatch(Operation.loadPromoMovies());
+        dispatch(Operation.loadMovies());
+        dispatch(Operation.loadFavoriteMovies());
       });
   },
 };

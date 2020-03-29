@@ -7,8 +7,9 @@ import Main from "../main/main.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import AddReview from "../add-review/add-review.jsx";
 
-import {Operation} from "../../reducer/user/user.js";
+import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as CommentOperation} from "../../reducer/comment/comment.js";
+import {Operation as DataOperation} from "../../reducer/data/data.js";
 import {ActionCreator} from "../../reducer/data/data.js";
 import {getAuthStatus} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
@@ -53,30 +54,30 @@ class App extends PureComponent {
           </Route>
 
           <PrivateRoute exact path={AppRoute.MY_LIST}
-            render={() => {
-              return (
-                <MyList />
-              );
-            }}
+            render={() => (
+              <MyList />
+            )}
           />
 
-          <Route exact path={`${AppRoute.FILMS}/:id`}>
-            <MovieCard />
-          </Route>
+          <Route exact path={`${AppRoute.FILMS}/:id`}
+            render={() => (
+              <MovieCard />
+            )}
+          />
 
           <PrivateRoute exact path={`${AppRoute.FILMS}/:id${AppRoute.REVIEW}`}
-            render={() => {
-              return (
-                <AddReview
-                  onSubmit={addComment}
-                />
-              );
-            }}
+            render={() => (
+              <AddReview
+                onSubmit={addComment}
+              />
+            )}
           />
 
-          <Route exact path={`${AppRoute.FILMS}/:id${AppRoute.PLAYER}`}>
-            <Player />
-          </Route>
+          <Route exact path={`${AppRoute.FILMS}/:id${AppRoute.PLAYER}`}
+            render={() => (
+              <Player />
+            )}
+          />
 
         </Switch>
       </Router>
@@ -88,7 +89,6 @@ class App extends PureComponent {
 App.propTypes = {
   authorization: PropTypes.func.isRequired,
   authStatus: PropTypes.string.isRequired,
-  // addComment: addComment.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -96,7 +96,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = ({
-  authorization: Operation.authorization,
+  authorization: UserOperation.authorization,
   addComment: CommentOperation.addComment,
   getComments: CommentOperation.getComments,
   setActiveMovieId: ActionCreator.setActiveMovieId,
