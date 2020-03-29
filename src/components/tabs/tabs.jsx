@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {withActiveTab} from "../../hocs/witn-active-tab/witn-active-tab.jsx";
+import Comment from "../comment/comment.jsx";
 
 const MINUTE_IN_ONE_HOUR = 60;
 const TEN_MINUTES = 10;
@@ -119,47 +120,18 @@ const Tabs = (props) => {
         </div>
       }
 
-
-
-
       {activeTab === TabsType.REVIEWS &&
         <div className="movie-card__reviews movie-card__row">
           <div className="movie-card__reviews-col">
             {comments
               .filter((comment, i) => i % 2 === 0)
-              .map((comment) =>
-              <div key={comment.id} className="review">
-                <blockquote className="review__quote">
-                  <p className="review__text">{comment.comment}</p>
-
-                  <footer className="review__details">
-                    <cite className="review__author">{comment.user.name}</cite>
-                    <time className="review__date" dateTime="2016-12-24">December 24, 2016</time>
-                  </footer>
-                </blockquote>
-
-                <div className="review__rating">{comment.rating}</div>
-              </div>
+              .map((comment) => <Comment key={comment.id} comment={comment} />
             )}
-
-
           </div>
           <div className="movie-card__reviews-col">
             {comments
               .filter((comment, i) => i % 2 !== 0)
-              .map((comment) =>
-              <div key={comment.id} className="review">
-                <blockquote className="review__quote">
-                  <p className="review__text">{comment.comment}</p>
-
-                  <footer className="review__details">
-                    <cite className="review__author">{comment.user.name}</cite>
-                    <time className="review__date" dateTime="2016-12-24">December 24, 2016</time>
-                  </footer>
-                </blockquote>
-
-                <div className="review__rating">{comment.rating}</div>
-              </div>
+              .map((comment) => <Comment key={comment.id} comment={comment} />
             )}
           </div>
         </div>
