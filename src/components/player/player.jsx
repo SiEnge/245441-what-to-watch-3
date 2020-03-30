@@ -1,43 +1,17 @@
 import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
-import VideoPlayer from "../video-player/video-player.jsx";
 import {connect} from "react-redux";
 import {getActiveMovie} from "../../reducer/data/selectors.js";
 import {AppRoute} from "../../const.js";
 import {Link} from "react-router-dom";
+import {withVideoPlayer} from "../../hocs/with-video-player/witn-video-player.jsx";
+
 
 class Player extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._videoRef = createRef();
-
-    this.state = {
-      isPlaying: false,
-    };
-
-    this._handleCanPlayThrough = this._handleCanPlayThrough.bind(this);
-    this._handlePlayButtonClick = this._handlePlayButtonClick.bind(this);
-    this._handlePauseButtonClick = this._handlePauseButtonClick.bind(this);
     this._handleFullscreenButtonClick = this._handleFullscreenButtonClick.bind(this);
-  }
-
-  _handleCanPlayThrough() {
-    this.setState({
-      isPlaying: true,
-    })
-  }
-
-  _handlePlayButtonClick() {
-    this.setState({
-      isPlaying: true,
-    })
-  }
-
-  _handlePauseButtonClick() {
-    this.setState({
-      isPlaying: false,
-    })
   }
 
   _handleFullscreenButtonClick() {
@@ -53,30 +27,12 @@ class Player extends PureComponent {
     }
   }
 
-  // вызывается при обновлении компонента
-  componentDidUpdate() {
-    const video = this._videoRef.current;
-
-    if (this.state.isPlaying) {
-      video.play();
-    } else {
-      video.pause();
-    }
-  }
-
   render() {
-    const {movie: {id, title, previewVideo, poster, videoLink}} = this.props;
-    const {isPlaying} = this.state;
+    const {movie: {id, isPlaying}, onPlayButtonClick, children} = this.props;
 
     return (
       <div className="player">
-        <video
-          ref={this._videoRef}
-          src={videoLink}
-          onCanPlayThrough={this._handleCanPlayThrough}
-          className="player__video"
-          poster={previewVideo}
-        ></video>
+        {children}
 
         <Link to={`${AppRoute.FILMS}/${id}`}
           type="button" className="player__exit">
@@ -95,7 +51,7 @@ class Player extends PureComponent {
           <div className="player__controls-row">
             {isPlaying ?
               <button
-                onClick={this._handlePauseButtonClick}
+                onClick={() => onPlayButtonClick()}
                 type="button" className="player__play">
                 <svg viewBox="0 0 14 21" width="14" height="21">
                   <use xlinkHref="#pause"></use>
@@ -103,7 +59,8 @@ class Player extends PureComponent {
                 <span>Pause</span>
               </button> :
               <button
-                onClick={this._handlePlayButtonClick}
+                onClick={() => onPlayButtonClick()}
+
                 type="button" className="player__play">
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
@@ -140,5 +97,7 @@ const mapStateToProps = (state) => ({
   movie: getActiveMovie(state),
 });
 
-export {Player};
-export default connect(mapStateToProps)(Player);
+const PlayerWrap = withVideoPlayer(Player);
+
+export {PlayerWrap};
+export default connect(mapStateToProps)(PlayerWrap);

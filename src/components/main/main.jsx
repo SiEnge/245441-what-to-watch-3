@@ -120,26 +120,25 @@ const Main = (props) => {
       </footer>
     </div>
   </React.Fragment>);
-
 };
 
 
 Main.propTypes = {
   promoMovie: PropTypes.shape({
-    title: PropTypes.string,
-    genre: PropTypes.string,
-    date: PropTypes.string,
-    poster: PropTypes.string,
-    background: PropTypes.string,
-    backgroundColor: PropTypes.string,
+    // title: PropTypes.string,
+    // genre: PropTypes.string,
+    // date: PropTypes.string,
+    // poster: PropTypes.string,
+    // background: PropTypes.string,
+    // backgroundColor: PropTypes.string,
   }),
 
   moviesByGenre: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-        title: PropTypes.string,
-        poster: PropTypes.string,
-      })
+      // PropTypes.shape({
+      //   id: PropTypes.string,
+      //   title: PropTypes.string,
+      //   poster: PropTypes.string,
+      // })
   ),
 
   authStatus: PropTypes.string.isRequired,
