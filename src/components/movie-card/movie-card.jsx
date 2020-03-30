@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Tabs from "../tabs/tabs.jsx";
-import {getPromoMovie, getActiveMovie} from "../../reducer/data/selectors.js";
+import {getActiveMovie} from "../../reducer/data/selectors.js";
 import {connect} from "react-redux";
 import {getAuthStatus} from "../../reducer/user/selectors.js";
 import {getComments} from "../../reducer/comment/selectors.js";
@@ -25,7 +25,7 @@ const MovieCard = (props) => {
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header movie-card__head">
-          <Logo classLink={"logo__link"} />
+          <Logo classLink={`logo__link`} />
 
           <UserBlock
             isAuth={authStatus === AuthorizationStatus.AUTH}
@@ -51,19 +51,19 @@ const MovieCard = (props) => {
 
               <button
                 onClick={() => {
-                  setStatusFavoriteMovie({movieId: id, status: !isFavorite})
+                  setStatusFavoriteMovie({movieId: id, status: !isFavorite});
                 }}
 
                 data-favorite={isFavorite}
                 className="btn btn--list movie-card__button" type="button">
-                  {isFavorite ?
-                    <svg viewBox="0 0 18 14" width="18" height="14">
-                      <use xlinkHref="#in-list"></use>
-                    </svg> :
-                    <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add"></use>
-                    </svg>
-                  }
+                {isFavorite ?
+                  <svg viewBox="0 0 18 14" width="18" height="14">
+                    <use xlinkHref="#in-list"></use>
+                  </svg> :
+                  <svg viewBox="0 0 19 20" width="19" height="20">
+                    <use xlinkHref="#add"></use>
+                  </svg>
+                }
                 <span>My list</span>
               </button>
 
@@ -94,21 +94,26 @@ const MovieCard = (props) => {
   );
 };
 
-
-
 MovieCard.propTypes = {
   movie: PropTypes.shape({
-    // title: PropTypes.string.isRequired,
-    // genre: PropTypes.string,
-    // date: PropTypes.string.isRequired,
-    // poster: PropTypes.string.isRequired,
-    // background: PropTypes.string.isRequired,
+    id: PropTypes.number,
+    title: PropTypes.string,
+    genre: PropTypes.string,
+    date: PropTypes.string,
+    poster: PropTypes.string,
+    background: PropTypes.string,
+    isFavorite: PropTypes.bool,
   }),
+
+  comments: PropTypes.array,
+
+  authStatus: PropTypes.string.isRequired,
+
+  setStatusFavoriteMovie: PropTypes.func.isRequired,
 };
 
 
 const mapStateToProps = (state) => ({
-  // movie: getPromoMovie(state),
   movie: getActiveMovie(state),
   authStatus: getAuthStatus(state),
   comments: getComments(state),

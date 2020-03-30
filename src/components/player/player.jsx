@@ -1,11 +1,10 @@
-import React, {PureComponent, createRef} from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getActiveMovie} from "../../reducer/data/selectors.js";
 import {AppRoute} from "../../const.js";
 import {Link} from "react-router-dom";
 import {withVideoPlayer} from "../../hocs/with-video-player/witn-video-player.jsx";
-
 
 class Player extends PureComponent {
   constructor(props) {
@@ -18,10 +17,7 @@ class Player extends PureComponent {
     const video = this._videoRef.current;
 
     if (!document.fullscreenElement) {
-      video.requestFullscreen()
-        .catch(err => {
-          console.log(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-        });
+      video.requestFullscreen();
     } else {
       document.exitFullscreen();
     }
@@ -43,7 +39,7 @@ class Player extends PureComponent {
           <div className="player__controls-row">
             <div className="player__time">
               <progress className="player__progress" value="30" max="100"></progress>
-              <div className="player__toggler" style={{left: "30%"}}>Toggler</div>
+              <div className="player__toggler" style={{left: `30%`}}>Toggler</div>
             </div>
             <div className="player__time-value">1:30:29</div>
           </div>
@@ -85,11 +81,20 @@ class Player extends PureComponent {
       </div>
     );
   }
-
-
-};
+}
 
 Player.propTypes = {
+  movie: PropTypes.shape({
+    id: PropTypes.number,
+    isPlaying: PropTypes.bool,
+  }),
+
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
+
+  onPlayButtonClick: PropTypes.func.isRequired,
 };
 
 

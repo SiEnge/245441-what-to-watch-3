@@ -15,7 +15,7 @@ const Logo = (props) => {
       </Link>
     </div>
   );
-}
+};
 
 Logo.propTypes = {
   classLink: PropTypes.string,

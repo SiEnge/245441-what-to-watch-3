@@ -9,14 +9,11 @@ import AddReview from "../add-review/add-review.jsx";
 
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as CommentOperation} from "../../reducer/comment/comment.js";
-import {Operation as DataOperation} from "../../reducer/data/data.js";
 import {ActionCreator} from "../../reducer/data/data.js";
 import {getAuthStatus} from "../../reducer/user/selectors.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
 import history from "../../history.js";
 import {AppRoute} from "../../const.js";
 
-// import MoviesList from "../movies-list/movies-list.jsx";
 import MyList from "../my-list/my-list.jsx";
 import MovieCard from "../movie-card/movie-card.jsx";
 import Player from "../player/player.jsx";
@@ -32,11 +29,11 @@ class App extends PureComponent {
     this.props.setActiveMovieId(movieId);
     this.props.getComments(movieId);
 
-    history.push(`${AppRoute.FILMS}/${movieId}`)
+    history.push(`${AppRoute.FILMS}/${movieId}`);
   }
 
   render() {
-    const {authStatus, authorization, addComment} = this.props;
+    const {authorization, addComment} = this.props;
 
     return (
       <Router history={history}>
@@ -55,7 +52,9 @@ class App extends PureComponent {
 
           <PrivateRoute exact path={AppRoute.MY_LIST}
             render={() => (
-              <MyList />
+              <MyList
+                onMovieCardClick={this._handleMovieCardClick}
+              />
             )}
           />
 
@@ -87,8 +86,12 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  authorization: PropTypes.func.isRequired,
   authStatus: PropTypes.string.isRequired,
+
+  authorization: PropTypes.func.isRequired,
+  addComment: PropTypes.func.isRequired,
+  getComments: PropTypes.func.isRequired,
+  setActiveMovieId: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

@@ -7,15 +7,12 @@ import UserBlock from "../user-block/user-block.jsx";
 import Logo from "../logo/logo.jsx";
 
 const MyList = (props) => {
-  const {movies} = props;
-  // debugger;
-  // const {onShowMoreButtonClick} = props;
+  const {movies, onMovieCardClick} = props;
 
-  const onMovieCardClick = (() => {});
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
-        <Logo classLink={"logo__link"} />
+        <Logo classLink={`logo__link`} />
 
         <h1 className="page-title user-page__title">My list</h1>
 
@@ -35,7 +32,7 @@ const MyList = (props) => {
       </section>
 
       <footer className="page-footer">
-        <Logo classLink={"logo__link logo__link--light"} />
+        <Logo classLink={`logo__link logo__link--light`} />
 
         <div className="copyright">
           <p>© 2019 What to watch Ltd.</p>
@@ -46,16 +43,13 @@ const MyList = (props) => {
 };
 
 MyList.propTypes = {
-  // onShowMoreButtonClick: PropTypes.func.isRequired,
+  movies: PropTypes.array,
+  onMovieCardClick: PropTypes.func.isRequired,
 };
-
-// export default MyList;
 
 const mapStateToProps = (state) => ({
   movies: getFavoriteMovies(state),
 });
-
-// const mapDispatchToProps = ({onShowMoreButtonClick: ActionCreator.incrementPage});
 
 export {MyList};
 export default connect(mapStateToProps)(MyList);

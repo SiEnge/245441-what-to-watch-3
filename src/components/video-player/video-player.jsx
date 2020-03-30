@@ -42,7 +42,7 @@ class VideoPlayer extends PureComponent {
         })}
         poster={poster}
         muted
-        >
+      >
         <source src={preview}/>
       </video>
     );
@@ -50,12 +50,8 @@ class VideoPlayer extends PureComponent {
 }
 
 VideoPlayer.propTypes = {
+  poster: PropTypes.string.isRequired,
   preview: PropTypes.string.isRequired,
-  previewVideo: PropTypes.string.isRequired,
 };
 
 export default VideoPlayer;
-
-
-
-// export default withActiveFlag(VideoPlayer);

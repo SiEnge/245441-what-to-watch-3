@@ -52,13 +52,7 @@ class MoviesList extends React.Component {
 }
 
 MoviesList.propTypes = {
-  movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-        title: PropTypes.string,
-        poster: PropTypes.string,
-      })
-  ).isRequired,
+  movies: PropTypes.array,
 
   onMovieCardClick: PropTypes.func.isRequired,
 };

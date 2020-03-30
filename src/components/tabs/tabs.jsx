@@ -40,8 +40,6 @@ const getScoreType = (score) => {
 
 const MAX_COUNT_STARRING = 4;
 
-
-
 const parseDuration = (duration) => {
   if (duration > MINUTE_IN_ONE_HOUR) {
     const hour = Math.floor(duration / MINUTE_IN_ONE_HOUR);
@@ -98,7 +96,7 @@ const Tabs = (props) => {
             </p>
             <p className="movie-card__details-item">
               <strong className="movie-card__details-name">Starring</strong>
-              <span className="movie-card__details-value" dangerouslySetInnerHTML={{__html: starring.join(`,<br>`) }} />
+              <span className="movie-card__details-value" dangerouslySetInnerHTML={{__html: starring.join(`,<br>`)}} />
             </p>
           </div>
 
@@ -124,14 +122,14 @@ const Tabs = (props) => {
           <div className="movie-card__reviews-col">
             {comments
               .filter((comment, i) => i % 2 === 0)
-              .map((comment) => <Comment key={comment.id} comment={comment} />
-            )}
+              .map((comment) => <Comment key={comment.id} comment={comment} />)
+            }
           </div>
           <div className="movie-card__reviews-col">
             {comments
               .filter((comment, i) => i % 2 !== 0)
-              .map((comment) => <Comment key={comment.id} comment={comment} />
-            )}
+              .map((comment) => <Comment key={comment.id} comment={comment} />)
+            }
           </div>
         </div>
       }
@@ -146,11 +144,15 @@ Tabs.propTypes = {
     descriptions: PropTypes.array.isRequired,
     score: PropTypes.number.isRequired,
     runtime: PropTypes.number.isRequired,
-    rating: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.array.isRequired,
   }),
+
+  comments: PropTypes.array,
+
   activeTab: PropTypes.string.isRequired,
+
   onClickTab: PropTypes.func.isRequired,
 };
 

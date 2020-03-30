@@ -7,14 +7,14 @@ export const AppRoute = {
   ROOT: `/`,
 };
 
-const GenreType = {
-  ALL_GENRES: `All genres`,
-  COMEDIAS: `Comedies`,
-  CRIME: `Crime`,
-  DOCUMENTARY: `Documentary`,
-  DRAMAS: `Dramas`,
-  HORROR: `Horror`,
-  ROMANCE: `Romance`,
-  SCI_FI: `Sci-Fi`,
-  THRILLERS: `Thrillers`,
-};
+// const GenreType = {
+//   ALL_GENRES: `All genres`,
+//   COMEDIAS: `Comedies`,
+//   CRIME: `Crime`,
+//   DOCUMENTARY: `Documentary`,
+//   DRAMAS: `Dramas`,
+//   HORROR: `Horror`,
+//   ROMANCE: `Romance`,
+//   SCI_FI: `Sci-Fi`,
+//   THRILLERS: `Thrillers`,
+// };

@@ -9,7 +9,7 @@ const URL = `https://htmlacademy-react-3.appspot.com/`;
 
 const UserBlock = (props) => {
   const {isAuth, user} = props;
-  const avatar = `${URL}${user.avatarUrl}` || '';
+  const avatar = `${URL}${user.avatarUrl}` || ``;
 
   return (
     <div className="user-block">
@@ -29,7 +29,7 @@ const UserBlock = (props) => {
       }
     </div>
   );
-}
+};
 
 UserBlock.propTypes = {
   user: PropTypes.shape({

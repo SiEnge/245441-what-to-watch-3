@@ -18,7 +18,7 @@ const Comment = (props) => {
       <div className="review__rating">{rating}</div>
     </div>
   );
-}
+};
 
 Comment.propTypes = {
   comment: PropTypes.shape({

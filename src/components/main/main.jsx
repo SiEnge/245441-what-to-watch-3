@@ -30,52 +30,52 @@ const Main = (props) => {
 
   return (
     <React.Fragment>
-    <section className="movie-card">
-      <div className="movie-card__bg" style={{backgroundColor: promoMovie.backgroundColor}}>
-        <img src={promoMovie.background} alt={promoMovie.title} />
-      </div>
+      <section className="movie-card">
+        <div className="movie-card__bg" style={{backgroundColor: promoMovie.backgroundColor}}>
+          <img src={promoMovie.background} alt={promoMovie.title} />
+        </div>
 
-      <h1 className="visually-hidden">WTW</h1>
+        <h1 className="visually-hidden">WTW</h1>
 
-      <header className="page-header movie-card__head">
-        <Logo classLink={"logo__link"} />
+        <header className="page-header movie-card__head">
+          <Logo classLink={`logo__link`} />
 
-        <UserBlock
-          isAuth={authStatus === AuthorizationStatus.AUTH}
-        />
-      </header>
+          <UserBlock
+            isAuth={authStatus === AuthorizationStatus.AUTH}
+          />
+        </header>
 
 
-      <div className="movie-card__wrap">
-        <div className="movie-card__info">
-          <div className="movie-card__poster">
-            <img src={promoMovie.poster} alt={promoMovie.title} width="218" height="327" />
-          </div>
+        <div className="movie-card__wrap">
+          <div className="movie-card__info">
+            <div className="movie-card__poster">
+              <img src={promoMovie.poster} alt={promoMovie.title} width="218" height="327" />
+            </div>
 
-          <div className="movie-card__desc">
-            <h2 className="movie-card__title">{promoMovie.title}</h2>
-            <p className="movie-card__meta">
-              <span className="movie-card__genre">{promoMovie.genre}</span>
-              <span className="movie-card__year">{promoMovie.date}</span>
-            </p>
+            <div className="movie-card__desc">
+              <h2 className="movie-card__title">{promoMovie.title}</h2>
+              <p className="movie-card__meta">
+                <span className="movie-card__genre">{promoMovie.genre}</span>
+                <span className="movie-card__year">{promoMovie.date}</span>
+              </p>
 
-            <div className="movie-card__buttons">
+              <div className="movie-card__buttons">
 
-              <Link to={`${AppRoute.FILMS}/${promoMovie.id}${AppRoute.PLAYER}`}
-                className="btn btn--play movie-card__button" type="button">
-                <svg viewBox="0 0 19 19" width="19" height="19">
-                  <use xlinkHref="#play-s"></use>
-                </svg>
-                <span>Play</span>
-              </Link>
+                <Link to={`${AppRoute.FILMS}/${promoMovie.id}${AppRoute.PLAYER}`}
+                  className="btn btn--play movie-card__button" type="button">
+                  <svg viewBox="0 0 19 19" width="19" height="19">
+                    <use xlinkHref="#play-s"></use>
+                  </svg>
+                  <span>Play</span>
+                </Link>
 
-              <button
-                onClick={() => {
-                  setStatusFavoriteMovie({movieId: promoMovie.id, status: !promoMovie.isFavorite})
-                }}
+                <button
+                  onClick={() => {
+                    setStatusFavoriteMovie({movieId: promoMovie.id, status: !promoMovie.isFavorite});
+                  }}
 
-                data-favorite={promoMovie.isFavorite}
-                className="btn btn--list movie-card__button" type="button">
+                  data-favorite={promoMovie.isFavorite}
+                  className="btn btn--list movie-card__button" type="button">
                   {promoMovie.isFavorite ?
                     <svg viewBox="0 0 18 14" width="18" height="14">
                       <use xlinkHref="#in-list"></use>
@@ -84,71 +84,73 @@ const Main = (props) => {
                       <use xlinkHref="#add"></use>
                     </svg>
                   }
-                <span>My list</span>
-              </button>
+                  <span>My list</span>
+                </button>
 
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <div className="page-content">
-      <section className="catalog">
-        <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-        <Genres />
-
-        <MoviesList
-          movies={movies}
-          onMovieCardClick={onMovieCardClick}
-        />
-
-        {moviesByGenre.length > showedMoviesCount &&
-          <ShowMoreButton
-            onShowMoreButtonClick={onShowMoreButtonClick}
-          />
-        }
       </section>
 
-      <footer className="page-footer">
-        <Logo classLink={"logo__link logo__link--light"} />
+      <div className="page-content">
+        <section className="catalog">
+          <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
-    </div>
-  </React.Fragment>);
+          <Genres />
+
+          <MoviesList
+            movies={movies}
+            onMovieCardClick={onMovieCardClick}
+          />
+
+          {moviesByGenre.length > showedMoviesCount &&
+            <ShowMoreButton
+              onShowMoreButtonClick={onShowMoreButtonClick}
+            />
+          }
+        </section>
+
+        <footer className="page-footer">
+          <Logo classLink={`logo__link logo__link--light`} />
+
+          <div className="copyright">
+            <p>© 2019 What to watch Ltd.</p>
+          </div>
+        </footer>
+      </div>
+    </React.Fragment>
+  );
 };
-
 
 Main.propTypes = {
   promoMovie: PropTypes.shape({
-    // title: PropTypes.string,
-    // genre: PropTypes.string,
-    // date: PropTypes.string,
-    // poster: PropTypes.string,
-    // background: PropTypes.string,
-    // backgroundColor: PropTypes.string,
+    id: PropTypes.number,
+    title: PropTypes.string,
+    genre: PropTypes.string,
+    date: PropTypes.string,
+    poster: PropTypes.string,
+    background: PropTypes.string,
+    backgroundColor: PropTypes.string,
+    isFavorite: PropTypes.bool,
   }),
 
   moviesByGenre: PropTypes.arrayOf(
-      // PropTypes.shape({
-      //   id: PropTypes.string,
-      //   title: PropTypes.string,
-      //   poster: PropTypes.string,
-      // })
+      PropTypes.shape({
+        id: PropTypes.number,
+        title: PropTypes.string,
+        poster: PropTypes.string,
+      })
   ),
 
   authStatus: PropTypes.string.isRequired,
-
-
 
   page: PropTypes.number.isRequired,
 
   onMovieCardClick: PropTypes.func.isRequired,
   onShowMoreButtonClick: PropTypes.func.isRequired,
+
+  setStatusFavoriteMovie: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

@@ -27,7 +27,7 @@ class SignIn extends PureComponent {
     return (
       <div className="user-page">
         <header className="page-header user-page__head">
-          <Logo classLink={"logo__link"} />
+          <Logo classLink={`logo__link`} />
 
           <h1 className="page-title user-page__title">Sign in</h1>
         </header>
@@ -57,7 +57,7 @@ class SignIn extends PureComponent {
         </div>
 
         <footer className="page-footer">
-          <Logo classLink={"logo__link logo__link--light"} />
+          <Logo classLink={`logo__link logo__link--light`} />
 
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>

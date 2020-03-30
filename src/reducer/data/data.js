@@ -20,9 +20,9 @@ const ActionType = {
 
 const getStatusId = (status) => {
   if (status === true) {
-    return "1";
+    return `1`;
   }
-  return "0";
+  return `0`;
 };
 
 const ActionCreator = {
@@ -70,7 +70,7 @@ const Operation = {
   },
   setStatusFavoriteMovie: (statusData) => (dispatch, getState, api) => {
     return api.post(`/favorite/${statusData.movieId}/${getStatusId(statusData.status)}`)
-      .then((response) => {
+      .then(() => {
         dispatch(Operation.loadPromoMovies());
         dispatch(Operation.loadMovies());
         dispatch(Operation.loadFavoriteMovies());

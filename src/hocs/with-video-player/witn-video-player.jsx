@@ -1,7 +1,8 @@
 import React, {createRef, PureComponent} from "react";
+import PropTypes from "prop-types";
 
 export const withVideoPlayer = (Component) => {
-  return class WithVideoPlayer extends PureComponent {
+  class WithVideoPlayer extends PureComponent {
     constructor(props) {
       super(props);
       this._videoRef = createRef();
@@ -38,7 +39,7 @@ export const withVideoPlayer = (Component) => {
 
       this.setState({
         isPlaying: !isPlaying,
-      })
+      });
     }
 
     _handleCanPlayThrough() {
@@ -70,5 +71,14 @@ export const withVideoPlayer = (Component) => {
         </Component>
       );
     }
+  }
+
+  WithVideoPlayer.propTypes = {
+    movie: PropTypes.shape({
+      videoLink: PropTypes.string,
+      previewVideo: PropTypes.string,
+    }),
   };
+
+  return WithVideoPlayer;
 };
