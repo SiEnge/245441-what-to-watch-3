@@ -60,7 +60,9 @@ class App extends PureComponent {
 
           <Route exact path={`${AppRoute.FILMS}/:id`}
             render={() => (
-              <MovieCard />
+              <MovieCard
+                onMovieCardClick={this._handleMovieCardClick}
+              />
             )}
           />
 

@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {getGenres} from "../../reducer/data/selectors.js";
+import {getGenres, getActiveGenre} from "../../reducer/data/selectors.js";
 import {ActionCreator} from "../../reducer/state/state.js";
 import PropTypes from "prop-types";
 
@@ -14,6 +14,7 @@ class Genres extends React.Component {
   _handleGenreClick(evt) {
     const {onGenresClick} = this.props;
 
+
     evt.preventDefault();
     const genre = evt.currentTarget;
 
@@ -21,18 +22,18 @@ class Genres extends React.Component {
   }
 
   render() {
-    const {genres} = this.props;
+    const {genres, activeGenre} = this.props;
 
     return (
       <ul className="catalog__genres-list">
 
-        <li className="catalog__genres-item catalog__genres-item--active">
+        <li className={`catalog__genres-item ${activeGenre == 'all' ? `catalog__genres-item--active` : ``}`}>
           <a onClick={this._handleGenreClick} data-genre="all"
             href="#" className="catalog__genres-link">All genres</a>
         </li>
 
         {genres.map((genre, i) =>
-          <li key={i} className="catalog__genres-item">
+          <li key={i} className={`catalog__genres-item ${activeGenre == genre ? `catalog__genres-item--active` : ``}`}>
             <a onClick={this._handleGenreClick} data-genre={genre}
               href="#" className="catalog__genres-link">{genre}</a>
           </li>
@@ -42,22 +43,20 @@ class Genres extends React.Component {
   }
 }
 
-
 Genres.propTypes = {
   genres: PropTypes.array,
+  activeGenre: PropTypes.string.isRequired,
   onGenresClick: PropTypes.func.isRequired,
 };
 
 
 const mapStateToProps = (state) => ({
   genres: getGenres(state),
+  activeGenre: getActiveGenre(state),
 });
 
 const mapDispatchToProps = ({onGenresClick: ActionCreator.setGenre});
 
 export {Genres};
 export default connect(mapStateToProps, mapDispatchToProps)(Genres);
-
-
-// создать список перечислений
 

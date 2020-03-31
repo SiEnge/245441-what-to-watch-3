@@ -1,19 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Tabs from "../tabs/tabs.jsx";
-import {getActiveMovie} from "../../reducer/data/selectors.js";
+import {getActiveMovie, getMovies} from "../../reducer/data/selectors.js";
+import {getSimilarByGenre} from "../../utils/genre.js";
 import {connect} from "react-redux";
 import {getAuthStatus} from "../../reducer/user/selectors.js";
 import {getComments} from "../../reducer/comment/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {AppRoute} from "../../const.js";
 import {Link} from "react-router-dom";
+import MoviesList from "../movies-list/movies-list.jsx";
 import UserBlock from "../user-block/user-block.jsx";
 import Logo from "../logo/logo.jsx";
 import {Operation} from "../../reducer/data/data.js";
 
+const MAX_COUNT_SIMILAR_MOVIES = 4;
+
 const MovieCard = (props) => {
-  const {movie, movie: {id, title, genre, date, poster, background, isFavorite}, comments, authStatus, setStatusFavoriteMovie} = props;
+  const {movie, movie: {id, title, genre, date, poster, background, isFavorite}, movies, onMovieCardClick,
+  comments, authStatus, setStatusFavoriteMovie} = props;
+
+  const similarMovies = getSimilarByGenre(movies, genre).slice(0, 4);
 
   return (
     <section className="movie-card movie-card--full">
@@ -88,6 +95,26 @@ const MovieCard = (props) => {
 
         </div>
       </div>
+
+      <div className="page-content">
+        <section className="catalog catalog--like-this">
+          <h2 className="catalog__title">More like this</h2>
+
+          <MoviesList
+            movies={similarMovies}
+            onMovieCardClick={onMovieCardClick}
+          />
+        </section>
+
+        <footer className="page-footer">
+          <Logo classLink={`logo__link logo__link--light`} />
+
+          <div className="copyright">
+            <p>© 2019 What to watch Ltd.</p>
+          </div>
+        </footer>
+      </div>
+
     </section>
 
 
@@ -117,6 +144,8 @@ const mapStateToProps = (state) => ({
   movie: getActiveMovie(state),
   authStatus: getAuthStatus(state),
   comments: getComments(state),
+  movies: getMovies(state),
+
 });
 
 const mapDispatchToProps = ({
