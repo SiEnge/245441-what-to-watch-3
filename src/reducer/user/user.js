@@ -45,7 +45,6 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.auth(response.data));
         history.push(AppRoute.ROOT);
-
       });
   },
 };

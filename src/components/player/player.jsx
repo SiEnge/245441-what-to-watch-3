@@ -24,16 +24,17 @@ class Player extends PureComponent {
   }
 
   render() {
-    const {movie: {id, isPlaying}, onPlayButtonClick, children} = this.props;
+    const {movie: {id, isPlaying}, onPlayButtonClick, onExitButtonClick, children} = this.props;
 
     return (
       <div className="player">
         {children}
 
-        <Link to={`${AppRoute.FILMS}/${id}`}
+        <button
+          onClick={onExitButtonClick}
           type="button" className="player__exit">
           Exit
-        </Link>
+        </button>
 
         <div className="player__controls">
           <div className="player__controls-row">

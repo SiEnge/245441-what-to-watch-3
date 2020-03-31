@@ -23,6 +23,7 @@ class App extends PureComponent {
     super(props);
 
     this._handleMovieCardClick = this._handleMovieCardClick.bind(this);
+    this._handleBackButtonClick = this._handleBackButtonClick.bind(this);
   }
 
   _handleMovieCardClick(movieId) {
@@ -30,6 +31,12 @@ class App extends PureComponent {
     this.props.getComments(movieId);
 
     history.push(`${AppRoute.FILMS}/${movieId}`);
+  }
+
+  _handleBackButtonClick(evt) {
+    evt.preventDefault();
+
+    history.goBack();
   }
 
   render() {
@@ -70,13 +77,16 @@ class App extends PureComponent {
             render={() => (
               <AddReview
                 onSubmit={addComment}
+                onBackButtonClick={this._handleBackButtonClick}
               />
             )}
           />
 
           <Route exact path={`${AppRoute.FILMS}/:id${AppRoute.PLAYER}`}
             render={() => (
-              <Player />
+              <Player
+                onExitButtonClick={this._handleBackButtonClick}
+              />
             )}
           />
 

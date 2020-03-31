@@ -33,7 +33,7 @@ class AddReview extends PureComponent {
   }
 
   render() {
-    const {movie: {title, poster, background}} = this.props;
+    const {movie: {title, poster, background}, onBackButtonClick} = this.props;
 
     return (
       <section className="movie-card movie-card--full">
@@ -50,7 +50,7 @@ class AddReview extends PureComponent {
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <a href="movie-page.html" className="breadcrumbs__link">{title}</a>
+                  <a onClick={onBackButtonClick} href="movie-page.html" className="breadcrumbs__link">{title}</a>
                 </li>
                 <li className="breadcrumbs__item">
                   <a className="breadcrumbs__link">Add review</a>
