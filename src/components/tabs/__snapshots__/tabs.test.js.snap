@@ -54,7 +54,7 @@ exports[`Render Tabs 1`] = `
     <div
       className="movie-rating__score"
     >
-      6.6
+      240
     </div>
     <p
       className="movie-rating__meta"
@@ -62,12 +62,12 @@ exports[`Render Tabs 1`] = `
       <span
         className="movie-rating__level"
       >
-        Good
+        Awesome
       </span>
       <span
         className="movie-rating__count"
       >
-        240
+        6.6
          ratings
       </span>
     </p>
@@ -93,8 +93,8 @@ exports[`Render Tabs 1`] = `
       className="movie-card__starring"
     >
       <strong>
-        Starring:
-        Bill Murray, Edward Norton, Jude Law, Willem Dafoe
+        Starring: 
+        Bill Murray, Edward Norton, Jude Law, Willem Dafoe  and other
       </strong>
     </p>
   </div>
