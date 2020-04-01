@@ -10,7 +10,7 @@ import {getPage} from "../../reducer/state/selectors.js";
 import {getAuthStatus} from "../../reducer/user/selectors.js";
 
 import {ActionCreator} from "../../reducer/state/state.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {AuthorizationStatus} from "../../const.js";
 import {AppRoute} from "../../const.js";
 import {Operation} from "../../reducer/data/data.js";
 
@@ -143,9 +143,9 @@ Main.propTypes = {
       })
   ),
 
-  authStatus: PropTypes.string.isRequired,
+  authStatus: PropTypes.string,
 
-  page: PropTypes.number.isRequired,
+  page: PropTypes.number,
 
   onMovieCardClick: PropTypes.func.isRequired,
   onShowMoreButtonClick: PropTypes.func.isRequired,

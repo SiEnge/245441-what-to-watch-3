@@ -51,7 +51,7 @@ export const withVideoPlayer = (Component) => {
     }
 
     render() {
-      const {movie: {videoLink, previewVideo}} = this.props;
+      const {movie: {videoLink, previewVideo}, isMuted} = this.props;
       const {isPlaying} = this.state;
 
       return (
@@ -66,6 +66,7 @@ export const withVideoPlayer = (Component) => {
             onCanPlayThrough={this._handleCanPlayThrough}
             className="player__video"
             poster={previewVideo}
+            muted={isMuted}
           />
 
         </Component>
@@ -78,6 +79,8 @@ export const withVideoPlayer = (Component) => {
       videoLink: PropTypes.string,
       previewVideo: PropTypes.string,
     }),
+
+    isMuted: PropTypes.bool,
   };
 
   return WithVideoPlayer;

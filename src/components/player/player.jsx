@@ -2,8 +2,8 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getActiveMovie} from "../../reducer/data/selectors.js";
-import {AppRoute} from "../../const.js";
-import {Link} from "react-router-dom";
+// import {AppRoute} from "../../const.js";
+// import {Link} from "react-router-dom";
 import {withVideoPlayer} from "../../hocs/with-video-player/witn-video-player.jsx";
 
 class Player extends PureComponent {
@@ -24,7 +24,9 @@ class Player extends PureComponent {
   }
 
   render() {
-    const {movie: {id, isPlaying}, onPlayButtonClick, onExitButtonClick, children} = this.props;
+    // const {onPlayButtonClick, onExitButtonClick, children} = this.props;
+    const {movie: {isPlaying}, onPlayButtonClick, onExitButtonClick, children} = this.props;
+    // const isPlaying = false;
 
     return (
       <div className="player">
@@ -96,6 +98,7 @@ Player.propTypes = {
   ]).isRequired,
 
   onPlayButtonClick: PropTypes.func.isRequired,
+  onExitButtonClick: PropTypes.func.isRequired,
 };
 
 
@@ -103,7 +106,7 @@ const mapStateToProps = (state) => ({
   movie: getActiveMovie(state),
 });
 
-const PlayerWrap = withVideoPlayer(Player);
+const PlayerWrapped = withVideoPlayer(Player);
 
-export {PlayerWrap};
-export default connect(mapStateToProps)(PlayerWrap);
+export {PlayerWrapped};
+export default connect(mapStateToProps)(PlayerWrapped);

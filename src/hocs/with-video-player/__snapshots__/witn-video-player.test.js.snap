@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withVideoPlayer is rendered correctly 1`] = `
+<div>
+  <video
+    className="player__video"
+    onCanPlayThrough={[Function]}
+    poster="img/the-grand-budapest-hotel.jpg"
+    src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+  />
+</div>
+`;

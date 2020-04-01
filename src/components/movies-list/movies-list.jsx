@@ -1,10 +1,10 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import SmallMovieCard from "../small-movie-card/small-movie-card.jsx";
 
 const VIDEO_DELAY = 1000;
 
-class MoviesList extends React.Component {
+class MoviesList extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -12,29 +12,10 @@ class MoviesList extends React.Component {
       activeSmallCard: -1,
     };
 
-    this.onCardHover = this.onCardHover.bind(this);
+    this._handleCardHover = this._handleCardHover.bind(this);
   }
 
-  render() {
-    const {movies, onMovieCardClick} = this.props;
-    const {activeSmallCard} = this.state;
-
-    return (
-      <div className="catalog__movies-list">
-        {movies.map((movie) =>
-          <SmallMovieCard
-            key={movie.id}
-            movie={movie}
-            isPlaying={movie.id === activeSmallCard}
-            onMovieCardClick={onMovieCardClick}
-            onCardHover={this.onCardHover}
-          />
-        )}
-      </div>
-    );
-  }
-
-  onCardHover(id) {
+  _handleCardHover(id) {
     if (id !== this.state.activeSmallCard) {
       if (id === -1) {
         this.setState({
@@ -49,6 +30,26 @@ class MoviesList extends React.Component {
       }
     }
   }
+
+  render() {
+    const {movies, onMovieCardClick} = this.props;
+    const {activeSmallCard} = this.state;
+
+    return (
+      <div className="catalog__movies-list">
+        {movies.map((movie) =>
+          <SmallMovieCard
+            key={movie.id}
+            movie={movie}
+            isPlaying={movie.id === activeSmallCard}
+            onMovieCardClick={onMovieCardClick}
+            onCardHover={this._handleCardHover}
+          />
+        )}
+      </div>
+    );
+  }
+
 }
 
 MoviesList.propTypes = {

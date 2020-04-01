@@ -118,6 +118,7 @@ AddReview.propTypes = {
   }),
 
   onSubmit: PropTypes.func.isRequired,
+  onBackButtonClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

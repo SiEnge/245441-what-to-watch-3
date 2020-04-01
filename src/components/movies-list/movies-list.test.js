@@ -5,10 +5,12 @@ import {movies} from "../../utils/test.utils.js";
 
 it(`Render MoviesList`, () => {
   const tree = renderer
-    .create(<MoviesList
-      movies={movies}
-      onMovieCardClick={() => {}}
-    />)
+    .create(
+        <MoviesList
+          movies={movies}
+          onMovieCardClick={() => {}}
+        />
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();

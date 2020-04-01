@@ -6,7 +6,7 @@ import {getSimilarByGenre} from "../../utils/genre.js";
 import {connect} from "react-redux";
 import {getAuthStatus} from "../../reducer/user/selectors.js";
 import {getComments} from "../../reducer/comment/selectors.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {AuthorizationStatus} from "../../const.js";
 import {AppRoute} from "../../const.js";
 import {Link} from "react-router-dom";
 import MoviesList from "../movies-list/movies-list.jsx";
@@ -18,9 +18,9 @@ const MAX_COUNT_SIMILAR_MOVIES = 4;
 
 const MovieCard = (props) => {
   const {movie, movie: {id, title, genre, date, poster, background, isFavorite}, movies, onMovieCardClick,
-  comments, authStatus, setStatusFavoriteMovie} = props;
+    comments, authStatus, setStatusFavoriteMovie} = props;
 
-  const similarMovies = getSimilarByGenre(movies, genre).slice(0, 4);
+  const similarMovies = getSimilarByGenre(movies, genre).slice(0, MAX_COUNT_SIMILAR_MOVIES);
 
   return (
     <section className="movie-card movie-card--full">
@@ -132,11 +132,15 @@ MovieCard.propTypes = {
     isFavorite: PropTypes.bool,
   }),
 
+  movies: PropTypes.array,
+
   comments: PropTypes.array,
 
-  authStatus: PropTypes.string.isRequired,
+  authStatus: PropTypes.string,
 
   setStatusFavoriteMovie: PropTypes.func.isRequired,
+  onMovieCardClick: PropTypes.func.isRequired,
+
 };
 
 

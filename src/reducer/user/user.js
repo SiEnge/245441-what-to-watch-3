@@ -3,10 +3,13 @@ import {adapterUser} from "../../utils/user.js";
 import history from "../../history.js";
 import {AppRoute} from "../../const.js";
 
-const AuthorizationStatus = {
-  AUTH: `AUTH`,
-  NO_AUTH: `NO_AUTH`
-};
+import {AuthorizationStatus} from "../../const.js";
+
+
+// const AuthorizationStatus = {
+//   AUTH: `AUTH`,
+//   NO_AUTH: `NO_AUTH`
+// };
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,

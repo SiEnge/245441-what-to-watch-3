@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Genres 1`] = `
+<ul
+  className="catalog__genres-list"
+>
+  <li
+    className="catalog__genres-item "
+  >
+    <a
+      className="catalog__genres-link"
+      data-genre="all"
+      href="#"
+      onClick={[Function]}
+    >
+      All genres
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item "
+  >
+    <a
+      className="catalog__genres-link"
+      data-genre="Comedies"
+      href="#"
+      onClick={[Function]}
+    >
+      Comedies
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item "
+  >
+    <a
+      className="catalog__genres-link"
+      data-genre="Crime"
+      href="#"
+      onClick={[Function]}
+    >
+      Crime
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item "
+  >
+    <a
+      className="catalog__genres-link"
+      data-genre="Documentary"
+      href="#"
+      onClick={[Function]}
+    >
+      Documentary
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item "
+  >
+    <a
+      className="catalog__genres-link"
+      data-genre="Dramas"
+      href="#"
+      onClick={[Function]}
+    >
+      Dramas
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item catalog__genres-item--active"
+  >
+    <a
+      className="catalog__genres-link"
+      data-genre="Horror"
+      href="#"
+      onClick={[Function]}
+    >
+      Horror
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item "
+  >
+    <a
+      className="catalog__genres-link"
+      data-genre="Romance"
+      href="#"
+      onClick={[Function]}
+    >
+      Romance
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item "
+  >
+    <a
+      className="catalog__genres-link"
+      data-genre="Sci-Fi"
+      href="#"
+      onClick={[Function]}
+    >
+      Sci-Fi
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item "
+  >
+    <a
+      className="catalog__genres-link"
+      data-genre="Thrillers"
+      href="#"
+      onClick={[Function]}
+    >
+      Thrillers
+    </a>
+  </li>
+</ul>
+`;

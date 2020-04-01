@@ -2,56 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import {withActiveTab} from "../../hocs/witn-active-tab/witn-active-tab.jsx";
 import Comment from "../comment/comment.jsx";
-
-const MINUTE_IN_ONE_HOUR = 60;
-const TEN_MINUTES = 10;
-
-const TabsType = {
-  OVERVIEW: `Overview`,
-  DETAIL: `Details`,
-  REVIEWS: `Reviews`
-};
-
-const ScoreType = {
-  BAD: `Bad`,
-  NORMAL: `Normal`,
-  GOOD: `Good`,
-  VERY_GOOD: `Very good`,
-  AWESOME: `Awesome`,
-};
-
-const getScoreType = (score) => {
-  let scoreName;
-
-  if (score >= 0 && score < 3) {
-    scoreName = ScoreType.BAD;
-  } else if (score >= 3 && score < 5) {
-    scoreName = ScoreType.NORMAL;
-  } else if (score >= 5 && score < 8) {
-    scoreName = ScoreType.GOOD;
-  } else if (score >= 8 && score < 10) {
-    scoreName = ScoreType.VERY_GOOD;
-  } else if (score >= 10) {
-    scoreName = ScoreType.AWESOME;
-  }
-
-  return scoreName;
-};
+import {TabsType} from "../../const.js";
+import {getScoreType, parseDuration} from "../../utils/common.js";
 
 const MAX_COUNT_STARRING = 4;
 
-const parseDuration = (duration) => {
-  if (duration > MINUTE_IN_ONE_HOUR) {
-    const hour = Math.floor(duration / MINUTE_IN_ONE_HOUR);
-    const minute = (duration % MINUTE_IN_ONE_HOUR < TEN_MINUTES) ? `0${duration % MINUTE_IN_ONE_HOUR}` : duration % MINUTE_IN_ONE_HOUR;
-    return `${hour}h ${minute}m`;
-  }
-
-  return `${duration}m`;
-};
-
 const Tabs = (props) => {
-  // debugger;
   const {movie: {genre, date, descriptions, score, rating, runtime, director, starring}, activeTab, comments} = props;
   const starringText = `${starring.slice(0, MAX_COUNT_STARRING).join(`, `)} ${starring.length > MAX_COUNT_STARRING ? ` and other` : ``}`;
 

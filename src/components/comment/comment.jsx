@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {parseDateComment} from "../../utils/comment.js";
 
 const Comment = (props) => {
-  const {comment: {userName, comment, rating}} = props;
+  const {comment: {userName, comment, date, rating}} = props;
 
   return (
     <div className="review">
@@ -11,7 +12,7 @@ const Comment = (props) => {
 
         <footer className="review__details">
           <cite className="review__author">{userName}</cite>
-          <time className="review__date" dateTime="2016-12-24">December 24, 2016</time>
+          <time className="review__date" dateTime={date}>{parseDateComment(date)}</time>
         </footer>
       </blockquote>
 
@@ -24,8 +25,8 @@ Comment.propTypes = {
   comment: PropTypes.shape({
     userName: PropTypes.string,
     comment: PropTypes.string,
-    // date: PropTypes.string,
-    rating: PropTypes.string,
+    date: PropTypes.date,
+    rating: PropTypes.number,
   }),
 };
 

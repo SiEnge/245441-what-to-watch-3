@@ -1,3 +1,11 @@
+export const MINUTE_IN_ONE_HOUR = 60;
+export const TEN_MINUTES = 10;
+
+export const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`
+};
+
 export const AppRoute = {
   LOGIN: `/login`,
   REVIEW: `/review`,
@@ -5,6 +13,20 @@ export const AppRoute = {
   FILMS: `/films`,
   PLAYER: `/player`,
   ROOT: `/`,
+};
+
+export const TabsType = {
+  OVERVIEW: `Overview`,
+  DETAIL: `Details`,
+  REVIEWS: `Reviews`
+};
+
+export const ScoreType = {
+  BAD: `Bad`,
+  NORMAL: `Normal`,
+  GOOD: `Good`,
+  VERY_GOOD: `Very good`,
+  AWESOME: `Awesome`,
 };
 
 // const GenreType = {

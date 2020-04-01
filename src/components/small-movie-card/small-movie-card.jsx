@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import VideoPlayer from "../video-player/video-player.jsx";
+import SmallVideoPlayer from "../small-video-player/small-video-player.jsx";
 
 const SmallMovieCard = (props) => {
-  const {movie: {id, title, previewImage, previewVideo, videoLink}, isPlaying, onMovieCardClick, onCardHover} = props;
+
+  const {movie, movie: {id, title, previewImage}, isPlaying, onMovieCardClick, onCardHover} = props;
 
   return (
     <article
@@ -11,14 +12,18 @@ const SmallMovieCard = (props) => {
       onMouseOut={() => onCardHover(-1)}
       className="small-movie-card catalog__movies-card"
     >
-      <div onClick={() => onMovieCardClick(id)}
-        className="small-movie-card__image">
-        {isPlaying ? (
-          <VideoPlayer poster={previewVideo} preview={videoLink} isMuted={true} isFullscreen={false}/>
-        ) : (
+
+      {isPlaying ?
+        <SmallVideoPlayer
+          movie={movie}
+          onClick={() => onMovieCardClick(id)}
+          isMuted={true}
+        /> :
+        <div onClick={() => onMovieCardClick(id)}
+          className="small-movie-card__image">
           <img src={previewImage} alt={title} width="280" height="175" />
-        )}
-      </div>
+        </div>
+      }
 
       <h3 className="small-movie-card__title">
         <a onClick={(evt) => {

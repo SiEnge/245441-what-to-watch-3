@@ -86,6 +86,7 @@ class App extends PureComponent {
             render={() => (
               <Player
                 onExitButtonClick={this._handleBackButtonClick}
+                isMuted={false}
               />
             )}
           />
@@ -94,11 +95,10 @@ class App extends PureComponent {
       </Router>
     );
   }
-
 }
 
 App.propTypes = {
-  authStatus: PropTypes.string.isRequired,
+  authStatus: PropTypes.string,
 
   authorization: PropTypes.func.isRequired,
   addComment: PropTypes.func.isRequired,

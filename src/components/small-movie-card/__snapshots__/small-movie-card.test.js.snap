@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render SmallMovieCard 1`] = `
+exports[`Render SmallMovieCard not Playing 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onMouseOut={[Function]}
@@ -13,7 +13,39 @@ exports[`Render SmallMovieCard 1`] = `
     <img
       alt="film1"
       height="175"
+      src="img/the-grand-budapest-hotel.jpg"
       width="280"
+    />
+  </div>
+  <h3
+    className="small-movie-card__title"
+  >
+    <a
+      className="small-movie-card__link"
+      href="movie-page.html"
+      onClick={[Function]}
+    >
+      film1
+    </a>
+  </h3>
+</article>
+`;
+
+exports[`Render SmallMovieCard with Playing 1`] = `
+<article
+  className="small-movie-card catalog__movies-card"
+  onMouseOut={[Function]}
+  onMouseOver={[Function]}
+>
+  <div
+    className="small-movie-card__image"
+  >
+    <video
+      className="player__video"
+      muted={true}
+      onCanPlayThrough={[Function]}
+      poster="img/the-grand-budapest-hotel.jpg"
+      src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
     />
   </div>
   <h3
