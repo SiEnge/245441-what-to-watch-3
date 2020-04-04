@@ -248,6 +248,13 @@ export const user = {
   avatarUrl: `img/1.png`,
 };
 
+export const serverUser = {
+  'id': 1,
+  'email': `Oliver.conner@gmail.com`,
+  'name': `Oliver.conner`,
+  'avatar_url': `img/1.png`,
+};
+
 export const genres = [
   `all`,
   `Comedies`,
