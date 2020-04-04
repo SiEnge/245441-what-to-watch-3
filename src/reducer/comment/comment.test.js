@@ -1,10 +1,9 @@
-// import MockAdapter from "axios-mock-adapter";
-// import {createAPI} from "../../api.js";
-import {reducer, ActionType} from "./comment.js";
-// import {reducer, ActionType, Operation} from "./comment.js";
+import MockAdapter from "axios-mock-adapter";
+import {createAPI} from "../../api.js";
+import {reducer, ActionType, ActionCreator, Operation} from "./comment.js";
 import {comments} from "../../utils/test.utils.js";
 
-// const api = createAPI(() => {});
+const api = createAPI(() => {});
 
 it(`Reducer Comment without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
@@ -23,106 +22,55 @@ it(`Reducer Comment should update comments by load comments`, () => {
   });
 });
 
+describe(`Operation Comment work correctly`, () => {
+  it(`Should make a correct API call to get/comments`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const getComments = Operation.getComments(1);
 
-// describe(`Operation comment work correctly`, () => {
-//   it(`Should make a correct API call to get/comments/:id`, function () {
-//     const apiMock = new MockAdapter(api);
-//     const dispatch = jest.fn();
-//     const commentsLoader = Operation.getComments();
+    apiMock.onGet(`/comments/1`).reply(200, [{fake: true}]);
 
-//     apiMock
-//       .onGet(`/comments/1`)
-//       .reply(200, []);
+    return getComments(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.GET_COMMENTS,
+          payload: [{fake: true}],
+        });
+      });
+  });
 
-//     return commentsLoader(dispatch, () => {}, api)
-//       .then(() => {
-//         expect(dispatch).toHaveBeenCalledTimes(1);
-//         expect(dispatch).toHaveBeenNthCalledWith(1, {
-//           type: ActionType.GET_COMMENTS,
-//           payload: [],
-//         });
-//       });
-//   });
+  it(`Should make a correct API call to post/comments`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const onSuccess = jest.fn();
+    const onError = jest.fn();
 
-//   it(`Should make a correct API call to post/comments/:id`, function () {
-//     const apiMock = new MockAdapter(api);
-//     const dispatch = jest.fn();
-//     const commentsSet = Operation.addComment({
-//       rating: 5,
-//       comment: ``
-//     });
+    const addComment = Operation.addComment({
+      movieId: 1,
+      rating: `5`,
+      comment: `comment`,
+    }, onSuccess, onError);
 
-//     // const login = Operation.addComment({
-//     //   login: `test@123.com`,
-//     //   password: `qweasd`
-//     // });
+    apiMock.onPost(`/comments/1`).reply(200, {fake: true});
 
-//     apiMock
-//       .onPost(`/comments/1`)
-//       .reply(200, []);
+    return addComment(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.GET_COMMENTS,
+          payload: {fake: true},
+        });
+      });
+  });
+});
 
-//     return commentsSet(dispatch, () => {}, api)
-//       .then(() => {
-//         expect(dispatch).toHaveBeenCalledTimes(1);
-//         expect(dispatch).toHaveBeenNthCalledWith(1, {
-//           type: ActionType.GET_COMMENTS,
-//           payload: [],
-//         });
-//       });
-//   });
-// });
-
-// it(`Should make a correct API call to /comments/1`, function () {
-//     const apiMock = new MockAdapter(api);
-//     const dispatch = jest.fn();
-//     const moviesLoader = Operation.getComments(1);
-
-//     apiMock.onGet(`/comments/1`).reply(200, []);
-
-//     return moviesLoader(dispatch, noop, api).then(() => {
-//       expect(dispatch).toHaveBeenCalledTimes(1);
-//       expect(dispatch).toHaveBeenNthCalledWith(1, {
-//         type: ActionType.GET_COMMENTS,
-//         payload: []
-//       });
-//     });
-//   });
-
-// it(`Should make a correct API call to /login`, function () {
-//   const apiMock = new MockAdapter(api);
-//   const dispatch = jest.fn();
-//   const login = Operation.login({
-//     login: `test@123.com`,
-//     password: `qweasd`
-//   });
-
-//   apiMock.onPost(`/login`).reply(200, []);
-
-//   return login(dispatch, noop, api)
-//   .then(() => {
-//     expect(dispatch).toHaveBeenCalledTimes(2);
-//     expect(dispatch).toHaveBeenNthCalledWith(1, {
-//       type: ActionType.REQUIRE_AUTHORIZATION,
-//       payload: AuthorizationStatus.AUTH
-//     });
-//   });
-// });
-
-// const Operation = {
-//   getComments: (movieId) => (dispatch, getState, api) => {
-//     return api.get(`/comments/${movieId}`)
-//       .then((response) => {
-//         dispatch(ActionCreator.getComments(response.data));
-//       });
-//   },
-//   addComment: (commentData) => (dispatch, getState, api) => {
-//     return api.post(`/comments/${commentData.movieId}`, {
-//       rating: +commentData.rating,
-//       comment: commentData.comment,
-//     })
-//     .then((response) => {
-//       dispatch(ActionCreator.getComments(response.data));
-//       history.push(`${AppRoute.FILMS}/${commentData.movieId}`);
-//     });
-//   },
-// };
+describe(`Action Comment creators work correctly`, () => {
+  it(`Action creator returns correct action`, () => {
+    expect(ActionCreator.getComments([{fake: true}]))
+      .toEqual({
+        type: ActionType.GET_COMMENTS,
+        payload: [{fake: true}]
+      });
+  });
+});

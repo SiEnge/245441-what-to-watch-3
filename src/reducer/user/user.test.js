@@ -39,7 +39,7 @@ it(`Reducer User should update authorizationStatus and user by non-authorization
   });
 });
 
-describe(`Operation work correctly`, () => {
+describe(`Operation User work correctly`, () => {
   it(`Should make a correct API call to /login`, function () {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
@@ -61,8 +61,7 @@ describe(`Operation work correctly`, () => {
   });
 });
 
-
-describe(`Action creators work correctly`, () => {
+describe(`Action User creators work correctly`, () => {
   it(`Action creator for require authorization returns correct action`, () => {
     expect(ActionCreator.auth(serverUser))
       .toEqual({

@@ -30,31 +30,11 @@ const Operation = {
     .then((response) => {
       dispatch(ActionCreator.getComments(response.data));
       onSuccess();
-      // history.push(`${AppRoute.FILMS}/${commentData.movieId}`);
     })
     .catch(() => {
       onError();
     });
   },
-
-  // addComment: (commentData, onSuccess, onError) => (
-  //     dispatch,
-  //     getState,
-  //     api
-  // ) => {
-  //   return api
-  //     .post(`/comments/${commentData.movieId}`, {
-  //       rating: commentData.rating,
-  //       comment: commentData.comment
-  //     })
-  //     .then(() => {
-  //       dispatch(Operation.getComments(commentData.movieId));
-  //       onSuccess();
-  //     })
-  //     .catch(() => {
-  //       onError();
-  //     });
-  // },
 };
 
 const reducer = (state = initialState, action) => {

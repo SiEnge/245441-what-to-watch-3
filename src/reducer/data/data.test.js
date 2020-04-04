@@ -1,5 +1,9 @@
-import {reducer, ActionType} from "./data.js";
+import MockAdapter from "axios-mock-adapter";
+import {createAPI} from "../../api.js";
+import {reducer, ActionType, Operation} from "./data.js";
 import {movies, movie, genres} from "../../utils/test.utils.js";
+
+const api = createAPI(() => {});
 
 
 it(`Reducer Data without additional parameters should return initial state`, () => {
@@ -74,5 +78,46 @@ it(`Reducer Data should set active movie id by load active movie id`, () => {
     payload: 1,
   })).toEqual({
     activeMovieId: 1,
+  });
+});
+
+
+describe(`Operation Data work correctly`, () => {
+  it(`Should make a correct API call to get/films`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const loadMovies = Operation.loadMovies();
+
+    apiMock.onGet(`/films`).reply(200, []);
+
+    return loadMovies(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_MOVIES,
+          payload: []
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.GET_GENRES,
+          payload: []
+        });
+      });
+  });
+
+  it(`Should make a correct API call to get/favorite films`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const loadFavoriteMovies = Operation.loadFavoriteMovies();
+
+    apiMock.onGet(`/favorite`).reply(200, []);
+
+    return loadFavoriteMovies(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_FAVORITE_MOVIES,
+          payload: []
+        });
+      });
   });
 });
