@@ -44,7 +44,6 @@ const Main = (props) => {
           />
         </header>
 
-
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">

@@ -24,7 +24,7 @@ class App extends PureComponent {
     super(props);
 
     this._handleMovieCardClick = this._handleMovieCardClick.bind(this);
-    this._handleBackButtonClick = this._handleBackButtonClick.bind(this);
+    this._handleHistoryBack = this._handleHistoryBack.bind(this);
     this._handleFavoriteButtonClick = this._handleFavoriteButtonClick.bind(this);
   }
 
@@ -35,9 +35,7 @@ class App extends PureComponent {
     history.push(`${AppRoute.FILMS}/${movieId}`);
   }
 
-  _handleBackButtonClick(evt) {
-    evt.preventDefault();
-
+  _handleHistoryBack() {
     history.goBack();
   }
 
@@ -61,6 +59,7 @@ class App extends PureComponent {
           <Route exact path={AppRoute.LOGIN}>
             <SignIn
               onSubmit={authorization}
+              onHistoryBack={this._handleHistoryBack}
             />
           </Route>
 
@@ -85,7 +84,7 @@ class App extends PureComponent {
             render={() => (
               <AddReview
                 onSubmit={addComment}
-                onBackButtonClick={this._handleBackButtonClick}
+                onBackButtonClick={this._handleHistoryBack}
               />
             )}
           />
@@ -93,7 +92,7 @@ class App extends PureComponent {
           <Route exact path={`${AppRoute.FILMS}/:id${AppRoute.PLAYER}`}
             render={() => (
               <Player
-                onExitButtonClick={this._handleBackButtonClick}
+                onExitButtonClick={this._handleHistoryBack}
                 isMuted={false}
               />
             )}

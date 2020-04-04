@@ -76,9 +76,3 @@ it(`Reducer Data should set active movie id by load active movie id`, () => {
     activeMovieId: 1,
   });
 });
-
-
-// case ActionType.SET_ACTIVE_MOVIE_ID:
-//   return extend(state, {
-//     activeMovieId: action.payload,
-//   });

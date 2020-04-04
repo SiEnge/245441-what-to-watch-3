@@ -1,7 +1,7 @@
 import {extend} from "../../utils/common.js";
 import {adapterUser} from "../../utils/user.js";
-import history from "../../history.js";
-import {AppRoute} from "../../const.js";
+// import history from "../../history.js";
+// import {AppRoute} from "../../const.js";
 
 import {AuthorizationStatus} from "../../const.js";
 
@@ -31,9 +31,12 @@ const Operation = {
       .get(`/login`)
       .then((response) => {
         dispatch(ActionCreator.auth(response.data));
+      })
+      .catch((error) => {
+        throw error;
       });
   },
-  authorization: (authData) => (dispatch, getState, api) => {
+  authorization: (authData, onSuccess, onError) => (dispatch, getState, api) => {
     return api
       .post(`/login`, {
         email: authData.login,
@@ -41,7 +44,12 @@ const Operation = {
       })
       .then((response) => {
         dispatch(ActionCreator.auth(response.data));
-        history.push(AppRoute.ROOT);
+        onSuccess();
+      })
+      .catch((error) => {
+        if (error.response) {
+          onError(error.response.data.error);
+        }
       });
   },
 };

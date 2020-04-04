@@ -1,6 +1,7 @@
 import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import Logo from "../logo/logo.jsx";
+import withError from "../../hocs/with-error/with-error.jsx";
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -9,21 +10,40 @@ class SignIn extends PureComponent {
     this.loginRef = createRef();
     this.passwordRef = createRef();
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this._handleSubmitForm = this._handleSubmitForm.bind(this);
   }
 
-  handleSubmit(evt) {
-    const {onSubmit} = this.props;
+  _validateForm() {
+    const {onError} = this.props;
+    const login = this.loginRef.current.value;
 
-    evt.preventDefault();
+    if (login.indexOf(`@`) > 0) {
+      return true;
+    }
 
-    onSubmit({
+    onError(`Please enter a valid email address`);
+    return false;
+  }
+
+  _handleSubmitForm() {
+    const {onSubmit, onError, onHistoryBack} = this.props;
+    const isValidate = this._validateForm();
+
+    if (!isValidate) {
+      return;
+    }
+
+    const authData = {
       login: this.loginRef.current.value,
       password: this.passwordRef.current.value,
-    });
+    };
+
+    onSubmit(authData, onHistoryBack, onError);
   }
 
   render() {
+    const {errorMessage} = this.props;
+
     return (
       <div className="user-page">
         <header className="page-header user-page__head">
@@ -34,8 +54,18 @@ class SignIn extends PureComponent {
 
         <div className="sign-in user-page__content">
           <form action="#" className="sign-in__form"
-            onSubmit={this.handleSubmit}
+            onSubmit={(evt) => {
+              evt.preventDefault();
+              this._handleSubmitForm();
+            }}
           >
+
+            {(errorMessage !== ``) && (
+              <div className="sign-in__message">
+                <p>{errorMessage}</p>
+              </div>
+            )}
+
             <div className="sign-in__fields">
               <div className="sign-in__field">
                 <input className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email"
@@ -69,7 +99,13 @@ class SignIn extends PureComponent {
 }
 
 SignIn.propTypes = {
+  errorMessage: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  onError: PropTypes.func.isRequired,
+  onHistoryBack: PropTypes.func,
 };
 
-export default SignIn;
+export default withError(SignIn);
+
+
+// по клику можно дедать проверку заполнения формы, если она не заполнена правильно, то показывать ошибку
