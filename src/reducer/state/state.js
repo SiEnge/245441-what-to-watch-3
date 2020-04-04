@@ -17,6 +17,7 @@ const ActionCreator = {
   }),
   incrementPage: () => ({
     type: ActionType.INCREMENT_PAGE,
+    payload: 1,
   }),
 };
 
@@ -29,7 +30,7 @@ const reducer = (state = initialState, action) => {
       });
     case ActionType.INCREMENT_PAGE:
       return extend(state, {
-        page: state.page + 1,
+        page: state.page + action.payload,
       });
   }
 

@@ -24,6 +24,7 @@ it(`Render Player`, () => {
             movie={movie}
             onPlayButtonClick={() => {}}
             onExitButtonClick={() => {}}
+            onFullscreenButtonClick={() => {}}
           />
         </Provider>
     )

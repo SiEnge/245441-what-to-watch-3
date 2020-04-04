@@ -7,8 +7,10 @@ it(`Render MoviesList`, () => {
   const tree = renderer
     .create(
         <MoviesList
+          activeSmallCard={1}
           movies={movies}
           onMovieCardClick={() => {}}
+          onCardHover={() => {}}
         />
     )
     .toJSON();

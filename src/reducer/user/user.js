@@ -5,12 +5,6 @@ import {AppRoute} from "../../const.js";
 
 import {AuthorizationStatus} from "../../const.js";
 
-
-// const AuthorizationStatus = {
-//   AUTH: `AUTH`,
-//   NO_AUTH: `NO_AUTH`
-// };
-
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   user: {},

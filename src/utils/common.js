@@ -31,3 +31,35 @@ export const parseDuration = (duration) => {
 
   return `${duration}m`;
 };
+
+export const parseTime = (duration) => {
+  let hour = `00`;
+  let minut = `00`;
+  let second = `00`;
+
+  if (+duration < 60 && +duration !== 0) {
+    second = duration;
+  } else {
+    minut = String(Math.floor(+duration / 60));
+    second = String(+duration - (+minut * 60));
+  }
+
+  if (+minut > 60) {
+    hour = String(Math.floor(+minut / 60));
+    minut = String(+minut - (+hour * 60));
+  }
+
+  if (hour.length === 1) {
+    hour = `0${hour}`;
+  }
+
+  if (minut.length === 1) {
+    minut = `0${minut}`;
+  }
+
+  if (second.length === 1) {
+    second = `0${second}`;
+  }
+
+  return `${hour}:${minut}:${second}`;
+};

@@ -255,6 +255,7 @@ export const user = {
 };
 
 export const genres = [
+  `all`,
   `Comedies`,
   `Crime`,
   `Documentary`,

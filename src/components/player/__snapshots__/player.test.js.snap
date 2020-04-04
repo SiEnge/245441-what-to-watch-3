@@ -7,6 +7,7 @@ exports[`Render Player 1`] = `
   <video
     className="player__video"
     onCanPlayThrough={[Function]}
+    onTimeUpdate={[Function]}
     poster="img/the-grand-budapest-hotel.jpg"
     src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
   />
@@ -29,13 +30,13 @@ exports[`Render Player 1`] = `
         <progress
           className="player__progress"
           max="100"
-          value="30"
+          value=""
         />
         <div
           className="player__toggler"
           style={
             Object {
-              "left": "30%",
+              "left": "%",
             }
           }
         >
@@ -45,7 +46,7 @@ exports[`Render Player 1`] = `
       <div
         className="player__time-value"
       >
-        1:30:29
+        
       </div>
     </div>
     <div

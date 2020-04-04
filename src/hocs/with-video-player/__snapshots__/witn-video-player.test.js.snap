@@ -5,6 +5,7 @@ exports[`withVideoPlayer is rendered correctly 1`] = `
   <video
     className="player__video"
     onCanPlayThrough={[Function]}
+    onTimeUpdate={[Function]}
     poster="img/the-grand-budapest-hotel.jpg"
     src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
   />

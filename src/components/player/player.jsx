@@ -1,104 +1,86 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getActiveMovie} from "../../reducer/data/selectors.js";
-// import {AppRoute} from "../../const.js";
-// import {Link} from "react-router-dom";
 import {withVideoPlayer} from "../../hocs/with-video-player/witn-video-player.jsx";
 
-class Player extends PureComponent {
-  constructor(props) {
-    super(props);
+const Player = (props) => {
+  const {isPlaying, onPlayButtonClick, onFullscreenButtonClick, onExitButtonClick, children,
+    elapsedTime, progress} = props;
 
-    this._handleFullscreenButtonClick = this._handleFullscreenButtonClick.bind(this);
-  }
+  return (
+    <div className="player">
+      {children}
 
-  _handleFullscreenButtonClick() {
-    const video = this._videoRef.current;
+      <button
+        onClick={onExitButtonClick}
+        type="button" className="player__exit">
+        Exit
+      </button>
 
-    if (!document.fullscreenElement) {
-      video.requestFullscreen();
-    } else {
-      document.exitFullscreen();
-    }
-  }
-
-  render() {
-    // const {onPlayButtonClick, onExitButtonClick, children} = this.props;
-    const {movie: {isPlaying}, onPlayButtonClick, onExitButtonClick, children} = this.props;
-    // const isPlaying = false;
-
-    return (
-      <div className="player">
-        {children}
-
-        <button
-          onClick={onExitButtonClick}
-          type="button" className="player__exit">
-          Exit
-        </button>
-
-        <div className="player__controls">
-          <div className="player__controls-row">
-            <div className="player__time">
-              <progress className="player__progress" value="30" max="100"></progress>
-              <div className="player__toggler" style={{left: `30%`}}>Toggler</div>
-            </div>
-            <div className="player__time-value">1:30:29</div>
+      <div className="player__controls">
+        <div className="player__controls-row">
+          <div className="player__time">
+            <progress className="player__progress" value={progress} max="100"></progress>
+            <div className="player__toggler" style={{left: `${progress}%`}}>Toggler</div>
           </div>
+          <div className="player__time-value">{elapsedTime}</div>
+        </div>
 
-          <div className="player__controls-row">
-            {isPlaying ?
-              <button
-                onClick={() => onPlayButtonClick()}
-                type="button" className="player__play">
-                <svg viewBox="0 0 14 21" width="14" height="21">
-                  <use xlinkHref="#pause"></use>
-                </svg>
-                <span>Pause</span>
-              </button> :
-              <button
-                onClick={() => onPlayButtonClick()}
-
-                type="button" className="player__play">
-                <svg viewBox="0 0 19 19" width="19" height="19">
-                  <use xlinkHref="#play-s"></use>
-                </svg>
-                <span>Play</span>
-              </button>
-            }
-
-
-            <div className="player__name">Transpotting</div>
-
+        <div className="player__controls-row">
+          {isPlaying ?
             <button
-              onClick={this._handleFullscreenButtonClick}
-              type="button" className="player__full-screen">
-              <svg viewBox="0 0 27 27" width="27" height="27">
-                <use xlinkHref="#full-screen"></use>
+              onClick={onPlayButtonClick}
+              type="button" className="player__play">
+              <svg viewBox="0 0 14 21" width="14" height="21">
+                <use xlinkHref="#pause"></use>
               </svg>
-              <span>Full screen</span>
+              <span>Pause</span>
+            </button> :
+            <button
+              onClick={onPlayButtonClick}
+              type="button" className="player__play">
+              <svg viewBox="0 0 19 19" width="19" height="19">
+                <use xlinkHref="#play-s"></use>
+              </svg>
+              <span>Play</span>
             </button>
-          </div>
+          }
+
+          <div className="player__name">Transpotting</div>
+
+          <button
+            onClick={onFullscreenButtonClick}
+            type="button" className="player__full-screen">
+            <svg viewBox="0 0 27 27" width="27" height="27">
+              <use xlinkHref="#full-screen"></use>
+            </svg>
+            <span>Full screen</span>
+          </button>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 Player.propTypes = {
   movie: PropTypes.shape({
     id: PropTypes.number,
-    isPlaying: PropTypes.bool,
   }),
+
+  isPlaying: PropTypes.bool,
 
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]).isRequired,
 
+  elapsedTime: PropTypes.string.isRequired,
+  progress: PropTypes.string.isRequired,
+
   onPlayButtonClick: PropTypes.func.isRequired,
   onExitButtonClick: PropTypes.func.isRequired,
+  onFullscreenButtonClick: PropTypes.func.isRequired,
 };
 
 

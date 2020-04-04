@@ -15,7 +15,7 @@ const ActionType = {
   LOAD_FAVORITE_MOVIES: `LOAD_FAVORITE_MOVIES`,
   LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
   SET_ACTIVE_MOVIE_ID: `SET_ACTIVE_MOVIE_ID`,
-  SET_GENRES: `SET_GENRES`,
+  GET_GENRES: `GET_GENRES`,
 };
 
 const getStatusId = (status) => {
@@ -42,8 +42,8 @@ const ActionCreator = {
     type: ActionType.SET_ACTIVE_MOVIE_ID,
     payload: movieId,
   }),
-  setGenres: (movies) => ({
-    type: ActionType.SET_GENRES,
+  getGenres: (movies) => ({
+    type: ActionType.GET_GENRES,
     payload: getGenres(adapterMovies(movies)),
   }),
 };
@@ -53,7 +53,7 @@ const Operation = {
     return api.get(`/films`)
       .then((response) => {
         dispatch(ActionCreator.loadMovies(response.data));
-        dispatch(ActionCreator.setGenres(response.data));
+        dispatch(ActionCreator.getGenres(response.data));
       });
   },
   loadFavoriteMovies: () => (dispatch, getState, api) => {
@@ -96,7 +96,7 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         activeMovieId: action.payload,
       });
-    case ActionType.SET_GENRES:
+    case ActionType.GET_GENRES:
       return extend(state, {
         genres: action.payload,
       });

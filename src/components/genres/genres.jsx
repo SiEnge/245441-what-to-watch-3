@@ -11,13 +11,10 @@ class Genres extends React.Component {
     this._handleGenreClick = this._handleGenreClick.bind(this);
   }
 
-  _handleGenreClick(evt) {
+  _handleGenreClick(evt, genre) {
     const {onGenresClick} = this.props;
 
-    evt.preventDefault();
-    const genre = evt.currentTarget;
-
-    onGenresClick(genre.dataset.genre);
+    onGenresClick(genre);
   }
 
   render() {
@@ -27,13 +24,26 @@ class Genres extends React.Component {
       <ul className="catalog__genres-list">
 
         <li className={`catalog__genres-item ${activeGenre === `all` ? `catalog__genres-item--active` : ``}`}>
-          <a onClick={this._handleGenreClick} data-genre="all"
+          <a
+            onClick={
+              (evt) => {
+                evt.preventDefault();
+                this._handleGenreClick(evt, `all`);
+              }
+            }
             href="#" className="catalog__genres-link">All genres</a>
         </li>
 
         {genres.map((genre, i) =>
           <li key={i} className={`catalog__genres-item ${activeGenre === genre ? `catalog__genres-item--active` : ``}`}>
-            <a onClick={this._handleGenreClick} data-genre={genre}
+            <a
+              onClick={
+                (evt) => {
+                  evt.preventDefault();
+                  this._handleGenreClick(evt, genre);
+                }
+              }
+
               href="#" className="catalog__genres-link">{genre}</a>
           </li>
         )}
