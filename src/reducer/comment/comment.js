@@ -1,6 +1,4 @@
 import {extend} from "../../utils/common.js";
-import history from "../../history.js";
-import {AppRoute} from "../../const.js";
 
 const initialState = {
   comments: [],
@@ -24,16 +22,39 @@ const Operation = {
         dispatch(ActionCreator.getComments(response.data));
       });
   },
-  addComment: (commentData) => (dispatch, getState, api) => {
+  addComment: (commentData, onSuccess, onError) => (dispatch, getState, api) => {
     return api.post(`/comments/${commentData.movieId}`, {
       rating: +commentData.rating,
       comment: commentData.comment,
     })
     .then((response) => {
       dispatch(ActionCreator.getComments(response.data));
-      history.push(`${AppRoute.FILMS}/${commentData.movieId}`);
+      onSuccess();
+      // history.push(`${AppRoute.FILMS}/${commentData.movieId}`);
+    })
+    .catch(() => {
+      onError();
     });
   },
+
+  // addComment: (commentData, onSuccess, onError) => (
+  //     dispatch,
+  //     getState,
+  //     api
+  // ) => {
+  //   return api
+  //     .post(`/comments/${commentData.movieId}`, {
+  //       rating: commentData.rating,
+  //       comment: commentData.comment
+  //     })
+  //     .then(() => {
+  //       dispatch(Operation.getComments(commentData.movieId));
+  //       onSuccess();
+  //     })
+  //     .catch(() => {
+  //       onError();
+  //     });
+  // },
 };
 
 const reducer = (state = initialState, action) => {

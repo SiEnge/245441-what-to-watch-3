@@ -85,6 +85,7 @@ class App extends PureComponent {
               <AddReview
                 onSubmit={addComment}
                 onBackButtonClick={this._handleHistoryBack}
+                onHistoryBack={this._handleHistoryBack}
               />
             )}
           />

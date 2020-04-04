@@ -23,15 +23,42 @@ const store = mockStore({
   },
 });
 
-it(`Render AddReview`, () => {
+it(`Render AddReview with disabled form`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
           <Router history={history}>
             <AddReview
               movie={movie}
+              isDisabledForm={true}
               onSubmit={() => {}}
               onBackButtonClick={() => {}}
+              onDisabledForm={() => {}}
+              onError={() => {}}
+              onHistoryBack={() => {}}
+            />
+          </Router>
+        </Provider>
+    )
+    .toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+
+
+it(`Render AddReview without disabled form`, () => {
+  const tree = renderer
+    .create(
+        <Provider store={store}>
+          <Router history={history}>
+            <AddReview
+              movie={movie}
+              isDisabledForm={false}
+              onSubmit={() => {}}
+              onBackButtonClick={() => {}}
+              onDisabledForm={() => {}}
+              onError={() => {}}
+              onHistoryBack={() => {}}
             />
           </Router>
         </Provider>
