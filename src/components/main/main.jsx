@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 
 import {connect} from "react-redux";
 
-// import {} from "../../reducer/data/selectors.js";
 import {getPromoMovie, getMoviesByGenre} from "../../reducer/data/selectors.js";
 import {getPage} from "../../reducer/state/selectors.js";
 import {getAuthStatus} from "../../reducer/user/selectors.js";
@@ -12,18 +11,18 @@ import {getAuthStatus} from "../../reducer/user/selectors.js";
 import {ActionCreator} from "../../reducer/state/state.js";
 import {AuthorizationStatus} from "../../const.js";
 import {AppRoute} from "../../const.js";
-import {Operation} from "../../reducer/data/data.js";
 
 import MoviesList from "../movies-list/movies-list.jsx";
 import Genres from "../genres/genres.jsx";
 import UserBlock from "../user-block/user-block.jsx";
 import Logo from "../logo/logo.jsx";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
+import FavoriteButton from "../favorite-button/favorite-button.jsx";
 
 const PER_PAGE_MOVIE_COUNT = 8;
 
 const Main = (props) => {
-  const {promoMovie, moviesByGenre, page, authStatus, onMovieCardClick, onShowMoreButtonClick, setStatusFavoriteMovie} = props;
+  const {promoMovie, moviesByGenre, page, authStatus, onMovieCardClick, onShowMoreButtonClick, onFavoriteButtonClick} = props;
 
   const showedMoviesCount = page * PER_PAGE_MOVIE_COUNT;
   const movies = moviesByGenre.slice(0, showedMoviesCount);
@@ -69,23 +68,11 @@ const Main = (props) => {
                   <span>Play</span>
                 </Link>
 
-                <button
-                  onClick={() => {
-                    setStatusFavoriteMovie({movieId: promoMovie.id, status: !promoMovie.isFavorite});
-                  }}
-
-                  data-favorite={promoMovie.isFavorite}
-                  className="btn btn--list movie-card__button" type="button">
-                  {promoMovie.isFavorite ?
-                    <svg viewBox="0 0 18 14" width="18" height="14">
-                      <use xlinkHref="#in-list"></use>
-                    </svg> :
-                    <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add"></use>
-                    </svg>
-                  }
-                  <span>My list</span>
-                </button>
+                <FavoriteButton
+                  movieId={promoMovie.id}
+                  isFavorite={promoMovie.isFavorite}
+                  onFavoriteButtonClick={onFavoriteButtonClick}
+                />
 
               </div>
             </div>
@@ -149,8 +136,7 @@ Main.propTypes = {
 
   onMovieCardClick: PropTypes.func.isRequired,
   onShowMoreButtonClick: PropTypes.func.isRequired,
-
-  setStatusFavoriteMovie: PropTypes.func.isRequired,
+  onFavoriteButtonClick: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -162,7 +148,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = ({
   onShowMoreButtonClick: ActionCreator.incrementPage,
-  setStatusFavoriteMovie: Operation.setStatusFavoriteMovie,
 });
 
 export {Main};

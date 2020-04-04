@@ -7,6 +7,7 @@ import Main from "../main/main.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import AddReview from "../add-review/add-review.jsx";
 
+import {Operation as DataOperation} from "../../reducer/data/data.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as CommentOperation} from "../../reducer/comment/comment.js";
 import {ActionCreator} from "../../reducer/data/data.js";
@@ -24,6 +25,7 @@ class App extends PureComponent {
 
     this._handleMovieCardClick = this._handleMovieCardClick.bind(this);
     this._handleBackButtonClick = this._handleBackButtonClick.bind(this);
+    this._handleFavoriteButtonClick = this._handleFavoriteButtonClick.bind(this);
   }
 
   _handleMovieCardClick(movieId) {
@@ -39,6 +41,10 @@ class App extends PureComponent {
     history.goBack();
   }
 
+  _handleFavoriteButtonClick(statusData) {
+    this.props.setStatusFavoriteMovie(statusData);
+  }
+
   render() {
     const {authorization, addComment} = this.props;
 
@@ -48,6 +54,7 @@ class App extends PureComponent {
           <Route exact path={AppRoute.ROOT}>
             <Main
               onMovieCardClick={this._handleMovieCardClick}
+              onFavoriteButtonClick={this._handleFavoriteButtonClick}
             />
           </Route>
 
@@ -69,6 +76,7 @@ class App extends PureComponent {
             render={() => (
               <MovieCard
                 onMovieCardClick={this._handleMovieCardClick}
+                onFavoriteButtonClick={this._handleFavoriteButtonClick}
               />
             )}
           />
@@ -104,6 +112,7 @@ App.propTypes = {
   addComment: PropTypes.func.isRequired,
   getComments: PropTypes.func.isRequired,
   setActiveMovieId: PropTypes.func.isRequired,
+  setStatusFavoriteMovie: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -115,9 +124,8 @@ const mapDispatchToProps = ({
   addComment: CommentOperation.addComment,
   getComments: CommentOperation.getComments,
   setActiveMovieId: ActionCreator.setActiveMovieId,
+  setStatusFavoriteMovie: DataOperation.setStatusFavoriteMovie,
 });
 
 export {App};
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-

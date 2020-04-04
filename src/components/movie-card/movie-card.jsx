@@ -12,13 +12,14 @@ import {Link} from "react-router-dom";
 import MoviesList from "../movies-list/movies-list.jsx";
 import UserBlock from "../user-block/user-block.jsx";
 import Logo from "../logo/logo.jsx";
-import {Operation} from "../../reducer/data/data.js";
+import FavoriteButton from "../favorite-button/favorite-button.jsx";
+// import {Operation} from "../../reducer/data/data.js";
 
 const MAX_COUNT_SIMILAR_MOVIES = 4;
 
 const MovieCard = (props) => {
   const {movie, movie: {id, title, genre, date, poster, background, isFavorite}, movies, onMovieCardClick,
-    comments, authStatus, setStatusFavoriteMovie} = props;
+    comments, authStatus, onFavoriteButtonClick} = props;
 
   const similarMovies = getSimilarByGenre(movies, genre).slice(0, MAX_COUNT_SIMILAR_MOVIES);
 
@@ -56,30 +57,17 @@ const MovieCard = (props) => {
                 <span>Play</span>
               </Link>
 
-              <button
-                onClick={() => {
-                  setStatusFavoriteMovie({movieId: id, status: !isFavorite});
-                }}
-
-                data-favorite={isFavorite}
-                className="btn btn--list movie-card__button" type="button">
-                {isFavorite ?
-                  <svg viewBox="0 0 18 14" width="18" height="14">
-                    <use xlinkHref="#in-list"></use>
-                  </svg> :
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                }
-                <span>My list</span>
-              </button>
+              <FavoriteButton
+                movieId={id}
+                isFavorite={isFavorite}
+                onFavoriteButtonClick={onFavoriteButtonClick}
+              />
 
               {authStatus === AuthorizationStatus.AUTH &&
                 <Link to={`${AppRoute.FILMS}/${id}${AppRoute.REVIEW}`}
                   className="btn movie-card__button">Add review
                 </Link>
               }
-
             </div>
           </div>
         </div>
@@ -116,8 +104,6 @@ const MovieCard = (props) => {
       </div>
 
     </section>
-
-
   );
 };
 
@@ -138,24 +124,16 @@ MovieCard.propTypes = {
 
   authStatus: PropTypes.string,
 
-  setStatusFavoriteMovie: PropTypes.func.isRequired,
+  onFavoriteButtonClick: PropTypes.func,
   onMovieCardClick: PropTypes.func.isRequired,
-
 };
-
 
 const mapStateToProps = (state) => ({
   movie: getActiveMovie(state),
   authStatus: getAuthStatus(state),
   comments: getComments(state),
   movies: getMovies(state),
-
 });
-
-const mapDispatchToProps = ({
-  setStatusFavoriteMovie: Operation.setStatusFavoriteMovie,
-});
-
 
 export {MovieCard};
-export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);
+export default connect(mapStateToProps)(MovieCard);
