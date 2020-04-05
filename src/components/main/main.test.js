@@ -1,13 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {Router} from "react-router-dom";
-import Main from "../main/main.jsx";
+import Main from "./main.jsx";
 import history from "../../history.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import NameSpace from "../../reducer/name-space";
 import {movies, user, activeGenre, genres} from "../../utils/test.utils.js";
-import {AuthorizationStatus} from "../../const.js";
+import {AuthorizationStatus, noop} from "../../const.js";
 
 
 const mockStore = configureStore([]);
@@ -37,9 +37,9 @@ it(`Render Main with authorization`, () => {
               page={1}
               authStatus={AuthorizationStatus.AUTH}
 
-              onMovieCardClick={() => {}}
-              onShowMoreButtonClick={() => {}}
-              setStatusFavoriteMovie={() => {}}
+              onMovieCardClick={noop}
+              onShowMoreButtonClick={noop}
+              setStatusFavoriteMovie={noop}
             />
           </Router>
         </Provider>

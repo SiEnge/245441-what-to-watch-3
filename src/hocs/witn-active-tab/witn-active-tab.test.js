@@ -1,8 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import PropTypes from "prop-types";
-import {withActiveTab} from "../witn-active-tab/witn-active-tab.jsx";
+import {withActiveTab} from "./witn-active-tab.jsx";
 import {activeTab} from "../../utils/test.utils.js";
+import {noop} from "../../const.js";
 
 const MockComponent = (props) => {
   const {children} = props;
@@ -28,7 +29,7 @@ it(`withActiveTab is rendered correctly`, () => {
   const tree = renderer.create((
     <MockComponentWrapped
       activeTab={activeTab}
-      onClickTab={() => {}}
+      onClickTab={noop}
     />
   ), {
     createNodeMock() {

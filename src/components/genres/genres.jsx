@@ -1,10 +1,11 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import {getGenres, getActiveGenre} from "../../reducer/data/selectors.js";
 import {ActionCreator} from "../../reducer/state/state.js";
 import PropTypes from "prop-types";
+import {GENRE_ALL} from "../../const.js";
 
-class Genres extends React.Component {
+class Genres extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -23,12 +24,12 @@ class Genres extends React.Component {
     return (
       <ul className="catalog__genres-list">
 
-        <li className={`catalog__genres-item ${activeGenre === `all` ? `catalog__genres-item--active` : ``}`}>
+        <li className={`catalog__genres-item ${activeGenre === GENRE_ALL ? `catalog__genres-item--active` : ``}`}>
           <a
             onClick={
               (evt) => {
                 evt.preventDefault();
-                this._handleGenreClick(evt, `all`);
+                this._handleGenreClick(evt, GENRE_ALL);
               }
             }
             href="#" className="catalog__genres-link">All genres</a>

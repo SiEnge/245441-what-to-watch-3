@@ -2,8 +2,9 @@ import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "../../api.js";
 import {reducer, ActionType, ActionCreator, Operation} from "./comment.js";
 import {comments} from "../../utils/test.utils.js";
+import {noop} from "../../const.js";
 
-const api = createAPI(() => {});
+const api = createAPI(noop);
 
 it(`Reducer Comment without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
@@ -30,7 +31,7 @@ describe(`Operation Comment work correctly`, () => {
 
     apiMock.onGet(`/comments/1`).reply(200, [{fake: true}]);
 
-    return getComments(dispatch, () => {}, api)
+    return getComments(dispatch, noop, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
@@ -54,7 +55,7 @@ describe(`Operation Comment work correctly`, () => {
 
     apiMock.onPost(`/comments/1`).reply(200, {fake: true});
 
-    return addComment(dispatch, () => {}, api)
+    return addComment(dispatch, noop, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {

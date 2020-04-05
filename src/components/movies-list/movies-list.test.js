@@ -1,7 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import MoviesList from "../movies-list/movies-list.jsx";
+import MoviesList from "./movies-list.jsx";
 import {movies} from "../../utils/test.utils.js";
+import {noop} from "../../const.js";
 
 it(`Render MoviesList`, () => {
   const tree = renderer
@@ -9,8 +10,8 @@ it(`Render MoviesList`, () => {
         <MoviesList
           activeSmallCard={1}
           movies={movies}
-          onMovieCardClick={() => {}}
-          onCardHover={() => {}}
+          onMovieCardClick={noop}
+          onCardHover={noop}
         />
     )
     .toJSON();

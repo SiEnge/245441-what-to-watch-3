@@ -1,13 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {Router} from "react-router-dom";
-import AddReview from "../add-review/add-review.jsx";
+import AddReview from "./add-review.jsx";
 import history from "../../history.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import NameSpace from "../../reducer/name-space";
 import {movie, movies, user} from "../../utils/test.utils.js";
-import {AuthorizationStatus} from "../../const.js";
+import {AuthorizationStatus, noop} from "../../const.js";
 
 const mockStore = configureStore([]);
 
@@ -31,11 +31,11 @@ it(`Render AddReview with disabled form`, () => {
             <AddReview
               movie={movie}
               isDisabledForm={true}
-              onSubmit={() => {}}
-              onBackButtonClick={() => {}}
-              onDisabledForm={() => {}}
-              onError={() => {}}
-              onHistoryBack={() => {}}
+              onSubmit={noop}
+              onBackButtonClick={noop}
+              onDisabledForm={noop}
+              onError={noop}
+              onHistoryBack={noop}
             />
           </Router>
         </Provider>
@@ -54,11 +54,11 @@ it(`Render AddReview without disabled form`, () => {
             <AddReview
               movie={movie}
               isDisabledForm={false}
-              onSubmit={() => {}}
-              onBackButtonClick={() => {}}
-              onDisabledForm={() => {}}
-              onError={() => {}}
-              onHistoryBack={() => {}}
+              onSubmit={noop}
+              onBackButtonClick={noop}
+              onDisabledForm={noop}
+              onError={noop}
+              onHistoryBack={noop}
             />
           </Router>
         </Provider>

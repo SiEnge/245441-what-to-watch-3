@@ -1,7 +1,8 @@
 import {extend} from "../../utils/common.js";
+import {GENRE_ALL} from "../../const.js";
 
 const initialState = {
-  activeGenre: `all`,
+  activeGenre: GENRE_ALL,
   page: 1,
 };
 

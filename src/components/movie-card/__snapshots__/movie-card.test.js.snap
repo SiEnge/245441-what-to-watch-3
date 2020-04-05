@@ -12,7 +12,7 @@ exports[`Render MovieCard with authorization 1`] = `
     >
       <img
         alt="{title}"
-        src="img/bg-the-grand-budapest-hotel.jpg"
+        src="img/the-grand-budapest-hotel-bg.jpg"
       />
     </div>
     <h1
@@ -69,7 +69,7 @@ exports[`Render MovieCard with authorization 1`] = `
         <h2
           className="movie-card__title"
         >
-          film1
+          The Grand Budapest Hotel
         </h2>
         <p
           className="movie-card__meta"
@@ -77,7 +77,7 @@ exports[`Render MovieCard with authorization 1`] = `
           <span
             className="movie-card__genre"
           >
-            Drama
+            Comedy
           </span>
           <span
             className="movie-card__year"
@@ -142,7 +142,7 @@ exports[`Render MovieCard with authorization 1`] = `
         <img
           alt="{title} poster"
           height="327"
-          src="img/film1.jpg"
+          src="img/the-grand-budapest-hotel-poster.jpg"
           width="218"
         />
       </div>
@@ -199,7 +199,7 @@ exports[`Render MovieCard with authorization 1`] = `
           <div
             className="movie-rating__score"
           >
-            6.6
+            8.9
           </div>
           <p
             className="movie-rating__meta"
@@ -207,7 +207,7 @@ exports[`Render MovieCard with authorization 1`] = `
             <span
               className="movie-rating__level"
             >
-              Good
+              Very good
             </span>
             <span
               className="movie-rating__count"
@@ -221,10 +221,10 @@ exports[`Render MovieCard with authorization 1`] = `
           className="movie-card__text"
         >
           <p>
-            In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.
+            In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H
           </p>
           <p>
-            Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.
+            Zero, a junior lobby boy, becomes Gustave's friend and protege.
           </p>
           <p
             className="movie-card__director"
@@ -270,7 +270,7 @@ exports[`Render MovieCard with authorization 1`] = `
             onClick={[Function]}
           >
             <img
-              alt="film1"
+              alt="film2"
               height="175"
               src="img/the-grand-budapest-hotel.jpg"
               width="280"
@@ -284,91 +284,7 @@ exports[`Render MovieCard with authorization 1`] = `
               href="movie-page.html"
               onClick={[Function]}
             >
-              film1
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-            onClick={[Function]}
-          >
-            <img
-              alt="film3"
-              height="175"
-              src="img/the-grand-budapest-hotel.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
-            >
-              film3
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-            onClick={[Function]}
-          >
-            <img
-              alt="film4"
-              height="175"
-              src="img/the-grand-budapest-hotel.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
-            >
-              film4
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-            onClick={[Function]}
-          >
-            <img
-              alt="film5"
-              height="175"
-              src="img/the-grand-budapest-hotel.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
-            >
-              film5
+              film2
             </a>
           </h3>
         </article>
@@ -426,7 +342,7 @@ exports[`Render MovieCard without authorization 1`] = `
     >
       <img
         alt="{title}"
-        src="img/bg-the-grand-budapest-hotel.jpg"
+        src="img/the-grand-budapest-hotel-bg.jpg"
       />
     </div>
     <h1
@@ -483,7 +399,7 @@ exports[`Render MovieCard without authorization 1`] = `
         <h2
           className="movie-card__title"
         >
-          film1
+          The Grand Budapest Hotel
         </h2>
         <p
           className="movie-card__meta"
@@ -491,7 +407,7 @@ exports[`Render MovieCard without authorization 1`] = `
           <span
             className="movie-card__genre"
           >
-            Drama
+            Comedy
           </span>
           <span
             className="movie-card__year"
@@ -556,7 +472,7 @@ exports[`Render MovieCard without authorization 1`] = `
         <img
           alt="{title} poster"
           height="327"
-          src="img/film1.jpg"
+          src="img/the-grand-budapest-hotel-poster.jpg"
           width="218"
         />
       </div>
@@ -613,7 +529,7 @@ exports[`Render MovieCard without authorization 1`] = `
           <div
             className="movie-rating__score"
           >
-            6.6
+            8.9
           </div>
           <p
             className="movie-rating__meta"
@@ -621,7 +537,7 @@ exports[`Render MovieCard without authorization 1`] = `
             <span
               className="movie-rating__level"
             >
-              Good
+              Very good
             </span>
             <span
               className="movie-rating__count"
@@ -635,10 +551,10 @@ exports[`Render MovieCard without authorization 1`] = `
           className="movie-card__text"
         >
           <p>
-            In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.
+            In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H
           </p>
           <p>
-            Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.
+            Zero, a junior lobby boy, becomes Gustave's friend and protege.
           </p>
           <p
             className="movie-card__director"
@@ -684,7 +600,7 @@ exports[`Render MovieCard without authorization 1`] = `
             onClick={[Function]}
           >
             <img
-              alt="film1"
+              alt="film2"
               height="175"
               src="img/the-grand-budapest-hotel.jpg"
               width="280"
@@ -698,91 +614,7 @@ exports[`Render MovieCard without authorization 1`] = `
               href="movie-page.html"
               onClick={[Function]}
             >
-              film1
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-            onClick={[Function]}
-          >
-            <img
-              alt="film3"
-              height="175"
-              src="img/the-grand-budapest-hotel.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
-            >
-              film3
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-            onClick={[Function]}
-          >
-            <img
-              alt="film4"
-              height="175"
-              src="img/the-grand-budapest-hotel.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
-            >
-              film4
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-            onClick={[Function]}
-          >
-            <img
-              alt="film5"
-              height="175"
-              src="img/the-grand-budapest-hotel.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
-            >
-              film5
+              film2
             </a>
           </h3>
         </article>

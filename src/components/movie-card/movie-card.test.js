@@ -1,13 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {Router} from "react-router-dom";
-import MovieCard from "../movie-card/movie-card.jsx";
+import MovieCard from "./movie-card.jsx";
 import history from "../../history.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import NameSpace from "../../reducer/name-space";
 import {movie, movies, comments, user} from "../../utils/test.utils.js";
-import {AuthorizationStatus} from "../../const.js";
+import {AuthorizationStatus, noop} from "../../const.js";
 
 const mockStore = configureStore([]);
 
@@ -34,10 +34,10 @@ it(`Render MovieCard with authorization`, () => {
             <MovieCard
               movie={movie}
               movies={movies}
-              onMovieCardClick={() => {}}
+              onMovieCardClick={noop}
               comments={comments}
               authStatus={AuthorizationStatus.AUTH}
-              setStatusFavoriteMovie={() => {}}
+              setStatusFavoriteMovie={noop}
             />
           </Router>
         </Provider>
@@ -70,10 +70,10 @@ it(`Render MovieCard without authorization`, () => {
             <MovieCard
               movie={movie}
               movies={movies}
-              onMovieCardClick={() => {}}
+              onMovieCardClick={noop}
               comments={comments}
               authStatus={AuthorizationStatus.NO_AUTH}
-              setStatusFavoriteMovie={() => {}}
+              setStatusFavoriteMovie={noop}
             />
           </Router>
         </Provider>

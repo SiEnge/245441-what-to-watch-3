@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Tabs from "../tabs/tabs.jsx";
-import {getActiveMovie, getMovies} from "../../reducer/data/selectors.js";
-import {getSimilarByGenre} from "../../utils/genre.js";
+import {getActiveMovie} from "../../reducer/data/selectors.js";
 import {connect} from "react-redux";
 import {getAuthStatus} from "../../reducer/user/selectors.js";
 import {getComments} from "../../reducer/comment/selectors.js";
+import {getSimilarMovies} from "../../reducer/data/selectors.js";
 import {AuthorizationStatus} from "../../const.js";
 import {AppRoute} from "../../const.js";
 import {Link} from "react-router-dom";
@@ -13,15 +13,12 @@ import MoviesList from "../movies-list/movies-list.jsx";
 import UserBlock from "../user-block/user-block.jsx";
 import Logo from "../logo/logo.jsx";
 import FavoriteButton from "../favorite-button/favorite-button.jsx";
-// import {Operation} from "../../reducer/data/data.js";
 
 const MAX_COUNT_SIMILAR_MOVIES = 4;
 
 const MovieCard = (props) => {
   const {movie, movie: {id, title, genre, date, poster, background, isFavorite}, movies, onMovieCardClick,
     comments, authStatus, onFavoriteButtonClick} = props;
-
-  const similarMovies = getSimilarByGenre(movies, genre).slice(0, MAX_COUNT_SIMILAR_MOVIES);
 
   return (
     <section className="movie-card movie-card--full">
@@ -61,6 +58,7 @@ const MovieCard = (props) => {
                 movieId={id}
                 isFavorite={isFavorite}
                 onFavoriteButtonClick={onFavoriteButtonClick}
+                isPromo={false}
               />
 
               {authStatus === AuthorizationStatus.AUTH &&
@@ -89,7 +87,7 @@ const MovieCard = (props) => {
           <h2 className="catalog__title">More like this</h2>
 
           <MoviesList
-            movies={similarMovies}
+            movies={movies.slice(0, MAX_COUNT_SIMILAR_MOVIES)}
             onMovieCardClick={onMovieCardClick}
           />
         </section>
@@ -105,6 +103,7 @@ const MovieCard = (props) => {
 
     </section>
   );
+
 };
 
 MovieCard.propTypes = {
@@ -132,7 +131,7 @@ const mapStateToProps = (state) => ({
   movie: getActiveMovie(state),
   authStatus: getAuthStatus(state),
   comments: getComments(state),
-  movies: getMovies(state),
+  movies: getSimilarMovies(state),
 });
 
 export {MovieCard};

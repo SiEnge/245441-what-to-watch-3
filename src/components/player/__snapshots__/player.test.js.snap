@@ -8,8 +8,8 @@ exports[`Render Player 1`] = `
     className="player__video"
     onCanPlayThrough={[Function]}
     onTimeUpdate={[Function]}
-    poster="img/the-grand-budapest-hotel.jpg"
-    src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+    poster="https://some-link"
+    src="https://some-link"
   />
   <button
     className="player__exit"

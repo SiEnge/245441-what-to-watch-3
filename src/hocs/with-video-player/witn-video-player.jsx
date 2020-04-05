@@ -103,8 +103,6 @@ export const withVideoPlayer = (Component) => {
             className="player__video"
             poster={previewVideo}
             muted={isMuted}
-
-            // onLoadedMetadata={this._handleLoadedMetadata}
             onTimeUpdate={this._handleTimeUpdate}
           />
 

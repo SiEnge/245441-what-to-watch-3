@@ -1,13 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {Router} from "react-router-dom";
-import App from "../app/app.jsx";
+import App from "./app.jsx";
 import history from "../../history.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import NameSpace from "../../reducer/name-space";
 import {movies, user, genres, activeGenre} from "../../utils/test.utils.js";
-import {AuthorizationStatus} from "../../const.js";
+import {AuthorizationStatus, noop} from "../../const.js";
 
 const mockStore = configureStore([]);
 
@@ -33,10 +33,10 @@ it(`Render App`, () => {
           <Router history={history}>
             <App
               authStatus={AuthorizationStatus.AUTH}
-              authorization={() => {}}
-              addComment={() => {}}
-              getComment={() => {}}
-              setActiveMovieId={() => {}}
+              authorization={noop}
+              addComment={noop}
+              getComment={noop}
+              setActiveMovieId={noop}
             />
           </Router>
         </Provider>

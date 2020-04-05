@@ -1,7 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import SmallMovieCard from "../small-movie-card/small-movie-card.jsx";
+import SmallMovieCard from "./small-movie-card.jsx";
 import {movie} from "../../utils/test.utils.js";
+import {noop} from "../../const.js";
 
 it(`Render SmallMovieCard with Playing`, () => {
   const tree = renderer
@@ -9,8 +10,8 @@ it(`Render SmallMovieCard with Playing`, () => {
         <SmallMovieCard
           movie={movie}
           isPlaying={true}
-          onMovieCardClick={() => {}}
-          onCardHover={() => {}}
+          onMovieCardClick={noop}
+          onCardHover={noop}
         />
     )
     .toJSON();
@@ -24,8 +25,8 @@ it(`Render SmallMovieCard not Playing`, () => {
         <SmallMovieCard
           movie={movie}
           isPlaying={false}
-          onMovieCardClick={() => {}}
-          onCardHover={() => {}}
+          onMovieCardClick={noop}
+          onCardHover={noop}
         />
     )
     .toJSON();

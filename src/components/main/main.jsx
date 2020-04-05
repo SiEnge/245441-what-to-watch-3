@@ -1,17 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-
 import {connect} from "react-redux";
-
 import {getPromoMovie, getMoviesByGenre} from "../../reducer/data/selectors.js";
 import {getPage} from "../../reducer/state/selectors.js";
 import {getAuthStatus} from "../../reducer/user/selectors.js";
-
 import {ActionCreator} from "../../reducer/state/state.js";
 import {AuthorizationStatus} from "../../const.js";
 import {AppRoute} from "../../const.js";
-
 import MoviesList from "../movies-list/movies-list.jsx";
 import Genres from "../genres/genres.jsx";
 import UserBlock from "../user-block/user-block.jsx";
@@ -71,6 +67,7 @@ const Main = (props) => {
                   movieId={promoMovie.id}
                   isFavorite={promoMovie.isFavorite}
                   onFavoriteButtonClick={onFavoriteButtonClick}
+                  isPromo={true}
                 />
 
               </div>

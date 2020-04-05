@@ -89,6 +89,6 @@ const mapStateToProps = (state) => ({
 });
 
 const PlayerWrapped = withVideoPlayer(Player);
-
 export {PlayerWrapped};
 export default connect(mapStateToProps)(PlayerWrapped);
+

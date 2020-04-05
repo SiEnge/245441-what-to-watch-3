@@ -1,15 +1,14 @@
 import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "../../api.js";
 import {reducer, ActionType, Operation} from "./data.js";
-import {movies, movie, genres} from "../../utils/test.utils.js";
+import {movies, movie, genres, promoMovieServer} from "../../utils/test.utils.js";
+import {noop} from "../../const.js";
 
-const api = createAPI(() => {});
-
+const api = createAPI(noop);
 
 it(`Reducer Data without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
     movies: [],
-    favoriteMovies: [],
     promoMovie: {},
     activeMovieId: -1,
     genres: [],
@@ -28,14 +27,14 @@ it(`Reducer Data should update movies by load movies`, () => {
   });
 });
 
-it(`Reducer Data should update favorite movies by load favorite movies`, () => {
+it(`Reducer Data should update movies by update movies`, () => {
   expect(reducer({
-    favoriteMovies: [],
+    movies: [movie],
   }, {
-    type: ActionType.LOAD_FAVORITE_MOVIES,
-    payload: movies,
+    type: ActionType.UPDATE_MOVIES,
+    payload: movie,
   })).toEqual({
-    favoriteMovies: movies,
+    movies: [movie],
   });
 });
 
@@ -90,7 +89,7 @@ describe(`Operation Data work correctly`, () => {
 
     apiMock.onGet(`/films`).reply(200, []);
 
-    return loadMovies(dispatch, () => {}, api)
+    return loadMovies(dispatch, noop, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
@@ -104,19 +103,103 @@ describe(`Operation Data work correctly`, () => {
       });
   });
 
-  it(`Should make a correct API call to get/favorite films`, function () {
+  it(`Should make a correct API call to get/films/promo`, function () {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const loadFavoriteMovies = Operation.loadFavoriteMovies();
+    const loadPromoMovies = Operation.loadPromoMovies();
 
-    apiMock.onGet(`/favorite`).reply(200, []);
+    apiMock.onGet(`/films/promo`).reply(200, promoMovieServer);
 
-    return loadFavoriteMovies(dispatch, () => {}, api)
+    return loadPromoMovies(dispatch, noop, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: ActionType.LOAD_FAVORITE_MOVIES,
-          payload: []
+          type: ActionType.LOAD_PROMO_MOVIE,
+          payload: movie,
+        });
+      });
+  });
+
+  it(`Should make a correct API call to post/favorite/:id/:status`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const setStatusFavoriteMovie = Operation.setStatusFavoriteMovie({
+      movieId: 1,
+      isFavorite: true,
+      isPromo: true,
+    });
+
+    apiMock.onPost(`/favorite/1/1`).reply(200, promoMovieServer);
+
+    return setStatusFavoriteMovie(dispatch, noop, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_PROMO_MOVIE,
+          payload: movie,
+        });
+      });
+  });
+
+  it(`Should make a correct API call to post/favorite/:id/:status`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const setStatusFavoriteMovie = Operation.setStatusFavoriteMovie({
+      movieId: 1,
+      isFavorite: false,
+      isPromo: true,
+    });
+
+    apiMock.onPost(`/favorite/1/0`).reply(200, promoMovieServer);
+
+    return setStatusFavoriteMovie(dispatch, noop, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_PROMO_MOVIE,
+          payload: movie,
+        });
+      });
+  });
+
+  it(`Should make a correct API call to post/favorite/:id/:status`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const setStatusFavoriteMovie = Operation.setStatusFavoriteMovie({
+      movieId: 1,
+      isFavorite: true,
+      isPromo: false,
+    });
+
+    apiMock.onPost(`/favorite/1/1`).reply(200, promoMovieServer);
+
+    return setStatusFavoriteMovie(dispatch, noop, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.UPDATE_MOVIES,
+          payload: movie,
+        });
+      });
+  });
+
+  it(`Should make a correct API call to post/favorite/:id/:status`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const setStatusFavoriteMovie = Operation.setStatusFavoriteMovie({
+      movieId: 1,
+      isFavorite: false,
+      isPromo: false,
+    });
+
+    apiMock.onPost(`/favorite/1/0`).reply(200, promoMovieServer);
+
+    return setStatusFavoriteMovie(dispatch, noop, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.UPDATE_MOVIES,
+          payload: movie,
         });
       });
   });

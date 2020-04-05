@@ -3,8 +3,9 @@ import {createAPI} from "../../api.js";
 import {AuthorizationStatus} from "../../const.js";
 import {reducer, ActionType, ActionCreator, Operation} from "./user.js";
 import {user, serverUser} from "../../utils/test.utils.js";
+import {noop} from "../../const.js";
 
-const api = createAPI(() => {});
+const api = createAPI(noop);
 
 it(`Reducer User without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
@@ -50,7 +51,7 @@ describe(`Operation User work correctly`, () => {
 
     apiMock.onPost(`/login`).reply(200, serverUser);
 
-    return authorization(dispatch, () => {}, api)
+    return authorization(dispatch, noop, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {

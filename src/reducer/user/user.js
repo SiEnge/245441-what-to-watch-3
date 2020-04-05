@@ -1,8 +1,5 @@
 import {extend} from "../../utils/common.js";
 import {adapterUser} from "../../utils/user.js";
-// import history from "../../history.js";
-// import {AppRoute} from "../../const.js";
-
 import {AuthorizationStatus} from "../../const.js";
 
 const initialState = {

@@ -1,14 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import ShowMoreButton from "../show-more-button/show-more-button.jsx";
-// import {comment} from "../../utils/test.utils.js";
+import ShowMoreButton from "./show-more-button.jsx";
+import {noop} from "../../const.js";
 
 it(`Render ShowMoreButton`, () => {
-  const onShowMoreButtonClick = jest.fn();
-
   const tree = renderer
     .create(<ShowMoreButton
-      onClick={onShowMoreButtonClick}
+      onShowMoreButtonClick={noop}
     />)
     .toJSON();
 

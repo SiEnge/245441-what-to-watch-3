@@ -4,7 +4,6 @@ import {getGenres} from "../../utils/genre.js";
 
 const initialState = {
   movies: [],
-  favoriteMovies: [],
   promoMovie: {},
   activeMovieId: -1,
   genres: [],
@@ -12,17 +11,10 @@ const initialState = {
 
 const ActionType = {
   LOAD_MOVIES: `LOAD_MOVIES`,
-  LOAD_FAVORITE_MOVIES: `LOAD_FAVORITE_MOVIES`,
+  UPDATE_MOVIES: `UPDATE_MOVIES`,
   LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
   SET_ACTIVE_MOVIE_ID: `SET_ACTIVE_MOVIE_ID`,
   GET_GENRES: `GET_GENRES`,
-};
-
-const getStatusId = (status) => {
-  if (status === true) {
-    return `1`;
-  }
-  return `0`;
 };
 
 const ActionCreator = {
@@ -30,9 +22,9 @@ const ActionCreator = {
     type: ActionType.LOAD_MOVIES,
     payload: adapterMovies(movies),
   }),
-  loadFavoriteMovies: (favortiveMovies) => ({
-    type: ActionType.LOAD_FAVORITE_MOVIES,
-    payload: adapterMovies(favortiveMovies),
+  updateMovies: (movie) => ({
+    type: ActionType.UPDATE_MOVIES,
+    payload: adapterMovie(movie),
   }),
   loadPromoMovies: (movie) => ({
     type: ActionType.LOAD_PROMO_MOVIE,
@@ -56,12 +48,6 @@ const Operation = {
         dispatch(ActionCreator.getGenres(response.data));
       });
   },
-  loadFavoriteMovies: () => (dispatch, getState, api) => {
-    return api.get(`/favorite`)
-      .then((response) => {
-        dispatch(ActionCreator.loadFavoriteMovies(response.data));
-      });
-  },
   loadPromoMovies: () => (dispatch, getState, api) => {
     return api.get(`/films/promo`)
       .then((response) => {
@@ -69,11 +55,13 @@ const Operation = {
       });
   },
   setStatusFavoriteMovie: (statusData) => (dispatch, getState, api) => {
-    return api.post(`/favorite/${statusData.movieId}/${getStatusId(statusData.status)}`)
-      .then(() => {
-        dispatch(Operation.loadPromoMovies());
-        dispatch(Operation.loadMovies());
-        dispatch(Operation.loadFavoriteMovies());
+    return api.post(`/favorite/${statusData.movieId}/${statusData.isFavorite ? `1` : `0`}`)
+      .then((response) => {
+        if (statusData.isPromo) {
+          dispatch(ActionCreator.loadPromoMovies(response.data));
+        } else {
+          dispatch(ActionCreator.updateMovies(response.data));
+        }
       });
   },
 };
@@ -84,9 +72,13 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         movies: action.payload,
       });
-    case ActionType.LOAD_FAVORITE_MOVIES:
+    case ActionType.UPDATE_MOVIES:
+      const movies = state.movies;
+      const movie = action.payload;
+      const index = movies.findIndex((it) => movie.id === it.id);
+      const result = [].concat(movies.slice(0, index), movie, movies.slice(index + 1));
       return extend(state, {
-        favoriteMovies: action.payload,
+        movies: result,
       });
     case ActionType.LOAD_PROMO_MOVIE:
       return extend(state, {

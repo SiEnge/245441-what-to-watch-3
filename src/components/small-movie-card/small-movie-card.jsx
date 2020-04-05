@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import SmallVideoPlayer from "../small-video-player/small-video-player.jsx";
 
 const SmallMovieCard = (props) => {
-
   const {movie, movie: {id, title, previewImage}, isPlaying, onMovieCardClick, onCardHover} = props;
 
   return (
@@ -16,7 +15,7 @@ const SmallMovieCard = (props) => {
       {isPlaying ?
         <SmallVideoPlayer
           movie={movie}
-          onClick={() => onMovieCardClick(id)}
+          onMovieCardClick={() => onMovieCardClick(id)}
           isMuted={true}
         /> :
         <div onClick={() => onMovieCardClick(id)}

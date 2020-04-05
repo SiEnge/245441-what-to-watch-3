@@ -1,10 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Player from "../player/player.jsx";
+import Player from "./player.jsx";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import NameSpace from "../../reducer/name-space";
 import {movie, movies} from "../../utils/test.utils.js";
+import {noop} from "../../const.js";
 
 const mockStore = configureStore([]);
 
@@ -22,9 +23,9 @@ it(`Render Player`, () => {
         <Provider store={store}>
           <Player
             movie={movie}
-            onPlayButtonClick={() => {}}
-            onExitButtonClick={() => {}}
-            onFullscreenButtonClick={() => {}}
+            onPlayButtonClick={noop}
+            onExitButtonClick={noop}
+            onFullscreenButtonClick={noop}
           />
         </Provider>
     )

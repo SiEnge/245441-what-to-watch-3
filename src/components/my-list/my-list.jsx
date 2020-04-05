@@ -2,8 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import MoviesList from "../movies-list/movies-list.jsx";
-import {getMovies} from "../../reducer/data/selectors.js";
-// import {getFavoriteMovies, getMovies} from "../../reducer/data/selectors.js";
+import {getFavoriteMovies} from "../../reducer/data/selectors.js";
 import UserBlock from "../user-block/user-block.jsx";
 import Logo from "../logo/logo.jsx";
 
@@ -49,8 +48,7 @@ MyList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movies: getMovies(state),
-  // movies: getFavoriteMovies(state),
+  movies: getFavoriteMovies(state),
 });
 
 export {MyList};

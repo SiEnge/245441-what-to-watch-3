@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Tabs from "../tabs/tabs.jsx";
+import Tabs from "./tabs.jsx";
 import {TabsType} from "../../const.js";
 import {movie, comments} from "../../utils/test.utils.js";
 

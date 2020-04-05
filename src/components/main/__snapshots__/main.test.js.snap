@@ -14,8 +14,8 @@ Array [
       }
     >
       <img
-        alt="film1"
-        src="img/bg-the-grand-budapest-hotel.jpg"
+        alt="The Grand Budapest Hotel"
+        src="img/the-grand-budapest-hotel-bg.jpg"
       />
     </div>
     <h1
@@ -73,9 +73,9 @@ Array [
           className="movie-card__poster"
         >
           <img
-            alt="film1"
+            alt="The Grand Budapest Hotel"
             height="327"
-            src="img/film1.jpg"
+            src="img/the-grand-budapest-hotel-poster.jpg"
             width="218"
           />
         </div>
@@ -85,7 +85,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            film1
+            The Grand Budapest Hotel
           </h2>
           <p
             className="movie-card__meta"
@@ -93,7 +93,7 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Drama
+              Comedy
             </span>
             <span
               className="movie-card__year"

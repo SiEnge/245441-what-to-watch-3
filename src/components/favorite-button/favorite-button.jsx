@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const FavoriteButton = (props) => {
-  const {movieId, isFavorite, onFavoriteButtonClick} = props;
+  const {movieId, isFavorite, onFavoriteButtonClick, isPromo} = props;
 
   return (
     <button
-      onClick={() => onFavoriteButtonClick({movieId, status: !isFavorite})}
+      onClick={() => onFavoriteButtonClick({movieId, isFavorite: !isFavorite, isPromo})}
 
       data-favorite={isFavorite}
       className="btn btn--list movie-card__button" type="button">
@@ -26,6 +26,7 @@ const FavoriteButton = (props) => {
 FavoriteButton.propTypes = {
   movieId: PropTypes.number,
   isFavorite: PropTypes.bool,
+  isPromo: PropTypes.bool,
 
   onFavoriteButtonClick: PropTypes.func,
 };

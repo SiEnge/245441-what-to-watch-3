@@ -1,5 +1,7 @@
 export const MINUTE_IN_ONE_HOUR = 60;
 export const TEN_MINUTES = 10;
+export const GENRE_ALL = `all`;
+export const noop = () => {};
 
 export const AuthorizationStatus = {
   AUTH: `AUTH`,
@@ -28,15 +30,3 @@ export const ScoreType = {
   VERY_GOOD: `Very good`,
   AWESOME: `Awesome`,
 };
-
-// const GenreType = {
-//   ALL_GENRES: `All genres`,
-//   COMEDIAS: `Comedies`,
-//   CRIME: `Crime`,
-//   DOCUMENTARY: `Documentary`,
-//   DRAMAS: `Dramas`,
-//   HORROR: `Horror`,
-//   ROMANCE: `Romance`,
-//   SCI_FI: `Sci-Fi`,
-//   THRILLERS: `Thrillers`,
-// };
