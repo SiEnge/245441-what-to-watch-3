@@ -22,15 +22,18 @@ const Operation = {
         dispatch(ActionCreator.getComments(response.data));
       });
   },
-  addComment: (commentData) => (dispatch, getState, api) => {
-    debugger;
+  addComment: (commentData, onSuccess, onError) => (dispatch, getState, api) => {
     return api.post(`/comments/${commentData.movieId}`, {
-        rating: commentData.rating,
-        comment: commentData.comment,
-      })
-      .then((response) => {
-
-      });
+      rating: +commentData.rating,
+      comment: commentData.comment,
+    })
+    .then((response) => {
+      dispatch(ActionCreator.getComments(response.data));
+      onSuccess();
+    })
+    .catch(() => {
+      onError();
+    });
   },
 };
 

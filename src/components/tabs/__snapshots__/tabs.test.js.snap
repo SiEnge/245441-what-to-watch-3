@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render Tabs 1`] = `
+exports[`Render Tabs Detail 1`] = `
 <div
   className="movie-card__desc"
 >
@@ -54,7 +54,7 @@ exports[`Render Tabs 1`] = `
     <div
       className="movie-rating__score"
     >
-      6.6
+      8.9
     </div>
     <p
       className="movie-rating__meta"
@@ -62,7 +62,7 @@ exports[`Render Tabs 1`] = `
       <span
         className="movie-rating__level"
       >
-        Good
+        Very good
       </span>
       <span
         className="movie-rating__count"
@@ -76,10 +76,10 @@ exports[`Render Tabs 1`] = `
     className="movie-card__text"
   >
     <p>
-      In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.
+      In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H
     </p>
     <p>
-      Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.
+      Zero, a junior lobby boy, becomes Gustave's friend and protege.
     </p>
     <p
       className="movie-card__director"
@@ -93,8 +93,210 @@ exports[`Render Tabs 1`] = `
       className="movie-card__starring"
     >
       <strong>
-        Starring:
-        Bill Murray, Edward Norton, Jude Law, Willem Dafoe
+        Starring: 
+        Bill Murray, Edward Norton, Jude Law, Willem Dafoe  and other
+      </strong>
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Render Tabs Overview 1`] = `
+<div
+  className="movie-card__desc"
+>
+  <nav
+    className="movie-nav movie-card__nav"
+  >
+    <ul
+      className="movie-nav__list"
+    >
+      <li
+        className="movie-nav__item movie-nav__item--active"
+      >
+        <a
+          className="movie-nav__link"
+          data-name="Overview"
+          href="#"
+          onClick={[Function]}
+        >
+          Overview
+        </a>
+      </li>
+      <li
+        className="movie-nav__item"
+      >
+        <a
+          className="movie-nav__link"
+          data-name="Details"
+          href="#"
+          onClick={[Function]}
+        >
+          Details
+        </a>
+      </li>
+      <li
+        className="movie-nav__item"
+      >
+        <a
+          className="movie-nav__link"
+          data-name="Reviews"
+          href="#"
+          onClick={[Function]}
+        >
+          Reviews
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div
+    className="movie-rating"
+  >
+    <div
+      className="movie-rating__score"
+    >
+      8.9
+    </div>
+    <p
+      className="movie-rating__meta"
+    >
+      <span
+        className="movie-rating__level"
+      >
+        Very good
+      </span>
+      <span
+        className="movie-rating__count"
+      >
+        240
+         ratings
+      </span>
+    </p>
+  </div>
+  <div
+    className="movie-card__text"
+  >
+    <p>
+      In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H
+    </p>
+    <p>
+      Zero, a junior lobby boy, becomes Gustave's friend and protege.
+    </p>
+    <p
+      className="movie-card__director"
+    >
+      <strong>
+        Director: 
+        Wes Andreson
+      </strong>
+    </p>
+    <p
+      className="movie-card__starring"
+    >
+      <strong>
+        Starring: 
+        Bill Murray, Edward Norton, Jude Law, Willem Dafoe  and other
+      </strong>
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Render Tabs Reviews 1`] = `
+<div
+  className="movie-card__desc"
+>
+  <nav
+    className="movie-nav movie-card__nav"
+  >
+    <ul
+      className="movie-nav__list"
+    >
+      <li
+        className="movie-nav__item movie-nav__item--active"
+      >
+        <a
+          className="movie-nav__link"
+          data-name="Overview"
+          href="#"
+          onClick={[Function]}
+        >
+          Overview
+        </a>
+      </li>
+      <li
+        className="movie-nav__item"
+      >
+        <a
+          className="movie-nav__link"
+          data-name="Details"
+          href="#"
+          onClick={[Function]}
+        >
+          Details
+        </a>
+      </li>
+      <li
+        className="movie-nav__item"
+      >
+        <a
+          className="movie-nav__link"
+          data-name="Reviews"
+          href="#"
+          onClick={[Function]}
+        >
+          Reviews
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div
+    className="movie-rating"
+  >
+    <div
+      className="movie-rating__score"
+    >
+      8.9
+    </div>
+    <p
+      className="movie-rating__meta"
+    >
+      <span
+        className="movie-rating__level"
+      >
+        Very good
+      </span>
+      <span
+        className="movie-rating__count"
+      >
+        240
+         ratings
+      </span>
+    </p>
+  </div>
+  <div
+    className="movie-card__text"
+  >
+    <p>
+      In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H
+    </p>
+    <p>
+      Zero, a junior lobby boy, becomes Gustave's friend and protege.
+    </p>
+    <p
+      className="movie-card__director"
+    >
+      <strong>
+        Director: 
+        Wes Andreson
+      </strong>
+    </p>
+    <p
+      className="movie-card__starring"
+    >
+      <strong>
+        Starring: 
+        Bill Murray, Edward Norton, Jude Law, Willem Dafoe  and other
       </strong>
     </p>
   </div>

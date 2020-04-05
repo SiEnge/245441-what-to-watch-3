@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import VideoPlayer from "../video-player/video-player.jsx";
+import SmallVideoPlayer from "../small-video-player/small-video-player.jsx";
 
 const SmallMovieCard = (props) => {
-  const {movie: {id, title, previewImage, poster, preview}, isPlaying, onMovieCardClick, onCardHover} = props;
+  const {movie, movie: {id, title, previewImage}, isPlaying, onMovieCardClick, onCardHover} = props;
 
   return (
     <article
@@ -11,14 +11,18 @@ const SmallMovieCard = (props) => {
       onMouseOut={() => onCardHover(-1)}
       className="small-movie-card catalog__movies-card"
     >
-      <div onClick={() => onMovieCardClick(id)}
-        className="small-movie-card__image">
-        {isPlaying ? (
-          <VideoPlayer poster={poster} preview={preview} />
-        ) : (
+
+      {isPlaying ?
+        <SmallVideoPlayer
+          movie={movie}
+          onMovieCardClick={() => onMovieCardClick(id)}
+          isMuted={true}
+        /> :
+        <div onClick={() => onMovieCardClick(id)}
+          className="small-movie-card__image">
           <img src={previewImage} alt={title} width="280" height="175" />
-        )}
-      </div>
+        </div>
+      }
 
       <h3 className="small-movie-card__title">
         <a onClick={(evt) => {
@@ -35,11 +39,12 @@ const SmallMovieCard = (props) => {
 
 SmallMovieCard.propTypes = {
   movie: PropTypes.shape({
-    id: PropTypes.string,
+    id: PropTypes.number,
     title: PropTypes.string,
     previewImage: PropTypes.string,
-    preview: PropTypes.string,
-    poster: PropTypes.string,
+    previewVideo: PropTypes.string,
+    videoLink: PropTypes.string,
+    isPlaying: PropTypes.bool,
   }),
 
   isPlaying: PropTypes.bool.isRequired,

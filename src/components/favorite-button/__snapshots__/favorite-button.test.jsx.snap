@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render FavoriteButton isFavorite = false 1`] = `
+<button
+  className="btn btn--list movie-card__button"
+  data-favorite={false}
+  onClick={[Function]}
+  type="button"
+>
+  <svg
+    height="20"
+    viewBox="0 0 19 20"
+    width="19"
+  >
+    <use
+      xlinkHref="#add"
+    />
+  </svg>
+  <span>
+    My list
+  </span>
+</button>
+`;
+
+exports[`Render FavoriteButton isFavorite = true 1`] = `
+<button
+  className="btn btn--list movie-card__button"
+  data-favorite={true}
+  onClick={[Function]}
+  type="button"
+>
+  <svg
+    height="14"
+    viewBox="0 0 18 14"
+    width="18"
+  >
+    <use
+      xlinkHref="#in-list"
+    />
+  </svg>
+  <span>
+    My list
+  </span>
+</button>
+`;

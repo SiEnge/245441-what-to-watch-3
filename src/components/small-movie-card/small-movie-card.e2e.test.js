@@ -4,84 +4,83 @@ import Adapter from "enzyme-adapter-react-16";
 import SmallMovieCard from "./small-movie-card.jsx";
 import {movie} from "../../utils/test.utils.js";
 
-const isPlaying = false;
-
 Enzyme.configure({
   adapter: new Adapter(),
 });
 
-it(`Should card be hover`, () => {
+it(`Should title small card be pressed`, () => {
   const onMovieCardClick = jest.fn();
   const onCardHover = jest.fn();
 
-  const smallMovieCard = shallow(
+  const smallMovieCardComponent = shallow(
       <SmallMovieCard
         movie={movie}
-        isPlaying={isPlaying}
+        isPlaying={false}
         onMovieCardClick={onMovieCardClick}
         onCardHover={onCardHover}
       />
   );
 
-  const card = smallMovieCard.find(`article.small-movie-card`);
+  const title = smallMovieCardComponent.find(`a.small-movie-card__link`);
+
+  title.simulate(`click`, {preventDefault() {}});
+  expect(onMovieCardClick.mock.calls.length).toBe(1);
+});
+
+it(`Should poster small card be pressed`, () => {
+  const onMovieCardClick = jest.fn();
+  const onCardHover = jest.fn();
+
+  const smallMovieCardComponent = shallow(
+      <SmallMovieCard
+        movie={movie}
+        isPlaying={false}
+        onMovieCardClick={onMovieCardClick}
+        onCardHover={onCardHover}
+      />
+  );
+
+  const poster = smallMovieCardComponent.find(`div.small-movie-card__image`);
+
+  poster.simulate(`click`, {preventDefault() {}});
+  expect(onMovieCardClick.mock.calls.length).toBe(1);
+});
+
+
+it(`Should card be hover`, () => {
+  const onMovieCardClick = jest.fn();
+  const onCardHover = jest.fn();
+
+  const smallMovieCardComponent = shallow(
+      <SmallMovieCard
+        movie={movie}
+        isPlaying={false}
+        onMovieCardClick={onMovieCardClick}
+        onCardHover={onCardHover}
+      />
+  );
+
+  const card = smallMovieCardComponent.find(`article.small-movie-card`);
   card.simulate(`mouseover`);
 
-  expect(onCardHover).toHaveBeenCalledWith(`1`);
+  expect(onCardHover).toHaveBeenCalledWith(1);
 });
 
 it(`Should card be unhover`, () => {
   const onMovieCardClick = jest.fn();
   const onCardHover = jest.fn();
 
-  const smallMovieCard = shallow(
+  const smallMovieCardComponent = shallow(
       <SmallMovieCard
         movie={movie}
-        isPlaying={isPlaying}
+        isPlaying={false}
         onMovieCardClick={onMovieCardClick}
         onCardHover={onCardHover}
       />
   );
 
-  const card = smallMovieCard.find(`article.small-movie-card`);
+  const card = smallMovieCardComponent.find(`article.small-movie-card`);
   card.simulate(`mouseout`);
 
   expect(onCardHover).toHaveBeenCalledWith(-1);
-});
-
-it(`Should title card be pressed`, () => {
-  const onMovieCardClick = jest.fn();
-  const onCardHover = jest.fn();
-
-  const smallMovieCard = shallow(
-      <SmallMovieCard
-        movie={movie}
-        isPlaying={isPlaying}
-        onMovieCardClick={onMovieCardClick}
-        onCardHover={onCardHover}
-      />
-  );
-
-  const title = smallMovieCard.find(`a.small-movie-card__link`);
-  title.simulate(`click`, {preventDefault() {}});
-
-  expect(onMovieCardClick).toHaveBeenCalledTimes(1);
-});
-
-it(`Should poster card be pressed`, () => {
-  const onMovieCardClick = jest.fn();
-  const onCardHover = jest.fn();
-
-  const smallMovieCard = shallow(
-      <SmallMovieCard
-        movie={movie}
-        isPlaying={isPlaying}
-        onMovieCardClick={onMovieCardClick}
-        onCardHover={onCardHover}
-      />
-  );
-
-  const poster = smallMovieCard.find(`div.small-movie-card__image`);
-
-  poster.simulate(`click`);
-  expect(onMovieCardClick.mock.calls.length).toBe(1);
 });

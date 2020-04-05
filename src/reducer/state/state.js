@@ -1,7 +1,8 @@
 import {extend} from "../../utils/common.js";
+import {GENRE_ALL} from "../../const.js";
 
 const initialState = {
-  activeGenre: `all`,
+  activeGenre: GENRE_ALL,
   page: 1,
 };
 
@@ -17,6 +18,7 @@ const ActionCreator = {
   }),
   incrementPage: () => ({
     type: ActionType.INCREMENT_PAGE,
+    payload: 1,
   }),
 };
 
@@ -29,7 +31,7 @@ const reducer = (state = initialState, action) => {
       });
     case ActionType.INCREMENT_PAGE:
       return extend(state, {
-        page: state.page + 1,
+        page: state.page + action.payload,
       });
   }
 

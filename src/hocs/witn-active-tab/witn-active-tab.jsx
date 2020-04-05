@@ -1,13 +1,8 @@
 import React, {PureComponent} from "react";
-
-const TabsType = {
-  OVERVIEW: `Overview`,
-  DETAIL: `Details`,
-  REVIEWS: `Reviews`
-};
+import {TabsType} from "../../const.js";
 
 export const withActiveTab = (Component) => {
-  return class withActiveTabComponent extends PureComponent {
+  return class WithActiveTab extends PureComponent {
     constructor(props) {
       super(props);
       this.state = {

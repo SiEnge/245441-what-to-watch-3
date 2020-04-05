@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withVideoPlayer is rendered correctly 1`] = `
+<div>
+  <video
+    className="player__video"
+    onCanPlayThrough={[Function]}
+    onTimeUpdate={[Function]}
+    poster="https://some-link"
+    src="https://some-link"
+  />
+</div>
+`;

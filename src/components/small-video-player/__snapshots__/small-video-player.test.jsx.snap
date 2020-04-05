@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render SmallVideoPlayer 1`] = `
+<div
+  className="small-movie-card__image"
+  onClick={[Function]}
+>
+  <video
+    className="player__video"
+    onCanPlayThrough={[Function]}
+    onTimeUpdate={[Function]}
+    poster="https://some-link"
+    src="https://some-link"
+  />
+</div>
+`;

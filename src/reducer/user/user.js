@@ -1,10 +1,6 @@
 import {extend} from "../../utils/common.js";
 import {adapterUser} from "../../utils/user.js";
-
-const AuthorizationStatus = {
-  AUTH: `AUTH`,
-  NO_AUTH: `NO_AUTH`
-};
+import {AuthorizationStatus} from "../../const.js";
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
@@ -32,9 +28,12 @@ const Operation = {
       .get(`/login`)
       .then((response) => {
         dispatch(ActionCreator.auth(response.data));
+      })
+      .catch((error) => {
+        throw error;
       });
   },
-  authorization: (authData) => (dispatch, getState, api) => {
+  authorization: (authData, onSuccess, onError) => (dispatch, getState, api) => {
     return api
       .post(`/login`, {
         email: authData.login,
@@ -42,6 +41,12 @@ const Operation = {
       })
       .then((response) => {
         dispatch(ActionCreator.auth(response.data));
+        onSuccess();
+      })
+      .catch((error) => {
+        if (error.response) {
+          onError(error.response.data.error);
+        }
       });
   },
 };

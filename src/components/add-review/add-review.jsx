@@ -1,5 +1,22 @@
 import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
+import {compose} from "redux";
+import {connect} from "react-redux";
+import {getActiveMovie} from "../../reducer/data/selectors.js";
+import UserBlock from "../user-block/user-block.jsx";
+import Logo from "../logo/logo.jsx";
+import withError from "../../hocs/with-error/with-error.jsx";
+import withDisabledForm from "../../hocs/with-disabled-form/with-disabled-form.jsx";
+
+const CountSimbolsTextarea = {
+  MIN: 50,
+  MAX: 400,
+};
+
+const Disabled = {
+  TRUE: true,
+  FALSE: false,
+};
 
 class AddReview extends PureComponent {
   constructor(props) {
@@ -8,105 +25,172 @@ class AddReview extends PureComponent {
     this.commentRef = createRef();
     this.formRef = createRef();
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this._handleSubmitForm = this._handleSubmitForm.bind(this);
   }
 
-  handleSubmit(evt) {
-    const {onSubmit} = this.props;
+  _validateForm() {
+    const {onError} = this.props;
+    const rating = this.formRef.current.rating.value;
+    const comment = this.commentRef.current.value;
+    const errors = [];
 
-    evt.preventDefault();
+    if (rating === ``) {
+      errors.push(`select rating`);
+    }
 
-    onSubmit({
-      movieId: "1",
+    if (comment.length < CountSimbolsTextarea.MIN) {
+      errors.push(`text must be at least ${CountSimbolsTextarea.MIN} characters`);
+    }
+
+    if (errors.length === 0) {
+      return true;
+    }
+
+    onError(`Warning: ${errors.join(`, `)}`);
+    return false;
+  }
+
+  _handleSubmitForm() {
+    const {onSubmit, onHistoryBack, onDisabledForm, onError} = this.props;
+    const isValidate = this._validateForm();
+
+    if (!isValidate) {
+      return;
+    }
+
+    const reviewData = {
+      movieId: this.props.movie.id,
       rating: this.formRef.current.rating.value,
       comment: this.commentRef.current.value,
-    });
+    };
+
+    onDisabledForm(Disabled.TRUE);
+
+    const onSuccessSubmit = () => {
+      onDisabledForm(Disabled.FALSE);
+      onHistoryBack();
+    };
+
+    const onErrorSubmit = () => {
+      onDisabledForm(Disabled.FALSE);
+      onError(`Oops... Please, try again :)`);
+    };
+
+    onSubmit(reviewData, onSuccessSubmit, onErrorSubmit);
   }
 
   render() {
+    const {movie: {title, poster, background}, onBackButtonClick, errorMessage, isDisabledForm} = this.props;
+
     return (
       <section className="movie-card movie-card--full">
-      <div className="movie-card__header">
-         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
-        </div>
-
-        <h1 className="visually-hidden">WTW</h1>
-
-        <header className="page-header">
-          <div className="logo">
-            <a href="main.html" className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
+        <div className="movie-card__header">
+          <div className="movie-card__bg">
+            <img src={background} alt={title} />
           </div>
 
-          <nav className="breadcrumbs">
-            <ul className="breadcrumbs__list">
-              <li className="breadcrumbs__item">
-                <a href="movie-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
-              </li>
-              <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link">Add review</a>
-              </li>
-            </ul>
-          </nav>
+          <h1 className="visually-hidden">WTW</h1>
 
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
+          <header className="page-header">
+            <Logo classLink={`logo__link`} />
+
+            <nav className="breadcrumbs">
+              <ul className="breadcrumbs__list">
+                <li className="breadcrumbs__item">
+                  <a onClick={onBackButtonClick} href="movie-page.html" className="breadcrumbs__link">{title}</a>
+                </li>
+                <li className="breadcrumbs__item">
+                  <a className="breadcrumbs__link">Add review</a>
+                </li>
+              </ul>
+            </nav>
+
+            <UserBlock
+              isAuth={true}
+            />
+          </header>
+
+          <div className="movie-card__poster movie-card__poster--small">
+            <img src={poster} alt={title} width="218" height="327" />
           </div>
-        </header>
-
-        <div className="movie-card__poster movie-card__poster--small">
-          <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
         </div>
-      </div>
 
-      <div className="add-review">
-        <form action="#" className="add-review__form"
-          onSubmit={this.handleSubmit}
-          ref={this.formRef}
+        <div className="add-review">
+          <form action="#" className="add-review__form"
+            onSubmit={(evt) => {
+              evt.preventDefault();
+              this._handleSubmitForm();
+            }}
+            ref={this.formRef}
           >
-          <div className="rating">
-            <div className="rating__stars">
-              <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
-              <label className="rating__label" htmlFor="star-1">Rating 1</label>
 
-              <input className="rating__input" id="star-2" type="radio" name="rating" value="2" />
-              <label className="rating__label" htmlFor="star-2">Rating 2</label>
+            {errorMessage !== `` &&
+              <p style={{color: `black`, textAlign: `center`}} >{errorMessage}</p>
+            }
+            <div className="rating">
+              <div className="rating__stars">
+                <input className="rating__input" id="star-1" type="radio" name="rating" value="1" disabled={isDisabledForm} />
+                <label className="rating__label" htmlFor="star-1">Rating 1</label>
 
-              <input className="rating__input" id="star-3" type="radio" name="rating" value="3" checked />
-              <label className="rating__label" htmlFor="star-3">Rating 3</label>
+                <input className="rating__input" id="star-2" type="radio" name="rating" value="2" disabled={isDisabledForm} />
+                <label className="rating__label" htmlFor="star-2">Rating 2</label>
 
-              <input className="rating__input" id="star-4" type="radio" name="rating" value="4" />
-              <label className="rating__label" htmlFor="star-4">Rating 4</label>
+                <input className="rating__input" id="star-3" type="radio" name="rating" value="3" disabled={isDisabledForm} />
+                <label className="rating__label" htmlFor="star-3">Rating 3</label>
 
-              <input className="rating__input" id="star-5" type="radio" name="rating" value="5" />
-              <label className="rating__label" htmlFor="star-5">Rating 5</label>
-            </div>
-          </div>
+                <input className="rating__input" id="star-4" type="radio" name="rating" value="4" disabled={isDisabledForm} />
+                <label className="rating__label" htmlFor="star-4">Rating 4</label>
 
-          <div className="add-review__text">
-            <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"
-              ref={this.commentRef}>
-            </textarea>
-            <div className="add-review__submit">
-              <button className="add-review__btn" type="submit">Post</button>
+                <input className="rating__input" id="star-5" type="radio" name="rating" value="5" disabled={isDisabledForm} />
+                <label className="rating__label" htmlFor="star-5">Rating 5</label>
+              </div>
             </div>
 
-          </div>
-        </form>
-      </div>
-
-    </section>
+            <div className="add-review__text">
+              <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"
+                disabled={isDisabledForm}
+                ref={this.commentRef}
+                minLength={CountSimbolsTextarea.MIN}
+                maxLength={CountSimbolsTextarea.MAX}
+              />
+              <div className="add-review__submit">
+                <button className="add-review__btn" type="submit" disabled={isDisabledForm}>Post</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
     );
   }
 }
 
 AddReview.propTypes = {
+  movie: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    poster: PropTypes.string,
+    background: PropTypes.string,
+  }),
+
+  errorMessage: PropTypes.string,
+  isDisabledForm: PropTypes.bool,
+  onSubmit: PropTypes.func.isRequired,
+  onBackButtonClick: PropTypes.func.isRequired,
+  onDisabledForm: PropTypes.func.isRequired,
+  onError: PropTypes.func.isRequired,
+  onHistoryBack: PropTypes.func,
 };
 
-export default AddReview;
+const mapStateToProps = (state) => ({
+  movie: getActiveMovie(state),
+});
+
+export {AddReview};
+
+const enhance = compose(
+    withError,
+    withDisabledForm,
+    connect(mapStateToProps)
+);
+
+export default enhance(AddReview);
