@@ -43,6 +43,7 @@ exports[`Render SmallMovieCard with Playing 1`] = `
   >
     <video
       className="player__video"
+      controls={false}
       muted={true}
       onCanPlayThrough={[Function]}
       onTimeUpdate={[Function]}

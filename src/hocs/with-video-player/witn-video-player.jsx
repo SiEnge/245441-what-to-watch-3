@@ -83,7 +83,7 @@ export const withVideoPlayer = (Component) => {
     }
 
     render() {
-      const {movie: {videoLink, previewVideo}, isMuted} = this.props;
+      const {movie: {videoLink, previewVideo}, isMuted, isControls} = this.props;
       const {isPlaying, progress, elapsedTime} = this.state;
 
       return (
@@ -104,6 +104,7 @@ export const withVideoPlayer = (Component) => {
             poster={previewVideo}
             muted={isMuted}
             onTimeUpdate={this._handleTimeUpdate}
+            controls={isControls}
           />
 
         </Component>
@@ -118,6 +119,7 @@ export const withVideoPlayer = (Component) => {
     }),
 
     isMuted: PropTypes.bool,
+    isControls: PropTypes.bool,
   };
 
   return WithVideoPlayer;

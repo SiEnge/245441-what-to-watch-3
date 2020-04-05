@@ -8,8 +8,8 @@ import {getScoreType, parseDuration} from "../../utils/common.js";
 const MAX_COUNT_STARRING = 4;
 
 const Tabs = (props) => {
-  const {movie: {genre, date, descriptions, score, rating, runtime, director, starring}, activeTab, comments} = props;
-  const starringText = `${starring.slice(0, MAX_COUNT_STARRING).join(`, `)} ${starring.length > MAX_COUNT_STARRING ? ` and other` : ``}`;
+  const {movie: {genre, date, descriptions, score, rating, runtime, director, starrings}, activeTab, comments} = props;
+  const starringText = `${starrings.slice(0, MAX_COUNT_STARRING).join(`, `)} ${starrings.length > MAX_COUNT_STARRING ? ` and other` : ``}`;
 
   return (
     <div className="movie-card__desc">
@@ -52,7 +52,7 @@ const Tabs = (props) => {
             </p>
             <p className="movie-card__details-item">
               <strong className="movie-card__details-name">Starring</strong>
-              <span className="movie-card__details-value" dangerouslySetInnerHTML={{__html: starring.join(`,<br>`)}} />
+              <span className="movie-card__details-value" dangerouslySetInnerHTML={{__html: starrings.join(`,<br>`)}} />
             </p>
           </div>
 
@@ -97,15 +97,23 @@ Tabs.propTypes = {
   movie: PropTypes.shape({
     genre: PropTypes.string,
     date: PropTypes.string.isRequired,
-    descriptions: PropTypes.array.isRequired,
+    descriptions: PropTypes.arrayOf(PropTypes.string).isRequired,
     score: PropTypes.number.isRequired,
     runtime: PropTypes.number.isRequired,
     rating: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
-    starring: PropTypes.array.isRequired,
+    starrings: PropTypes.arrayOf(PropTypes.string).isRequired,
   }),
 
-  comments: PropTypes.array,
+  comments: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        userName: PropTypes.string,
+        rating: PropTypes.number,
+        comment: PropTypes.string,
+        date: PropTypes.string,
+      })
+  ),
 
   activeTab: PropTypes.string.isRequired,
 

@@ -95,6 +95,7 @@ class App extends PureComponent {
               <Player
                 onExitButtonClick={this._handleHistoryBack}
                 isMuted={false}
+                isControls={true}
               />
             )}
           />

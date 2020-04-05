@@ -15,7 +15,7 @@ export const adapterMovie = (movie) => {
     rating: movie.rating,
     runtime: movie.run_time,
     director: movie.director,
-    starring: movie.starring,
+    starrings: movie.starring,
     isFavorite: movie.is_favorite,
   };
 };

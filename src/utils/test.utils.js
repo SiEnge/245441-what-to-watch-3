@@ -39,7 +39,7 @@ export const movies = [
     runtime: 99,
     isFavorite: false,
     director: `Wes Andreson`,
-    starring: [
+    starrings: [
       `Bill Murray`,
       `Edward Norton`,
       `Jude Law`,
@@ -67,7 +67,7 @@ export const movies = [
     isFavorite: false,
     runtime: 126,
     director: `Wes Andreson`,
-    starring: [
+    starrings: [
       `Bill Murray`,
       `Edward Norton`,
       `Jude Law`,
@@ -102,7 +102,7 @@ export const movies = [
     isFavorite: false,
     runtime: 126,
     director: `Wes Andreson`,
-    starring: [
+    starrings: [
       `Bill Murray`,
       `Edward Norton`,
       `Jude Law`,
@@ -137,7 +137,7 @@ export const movies = [
     isFavorite: false,
     runtime: 126,
     director: `Wes Andreson`,
-    starring: [
+    starrings: [
       `Bill Murray`,
       `Edward Norton`,
       `Jude Law`,
@@ -172,7 +172,7 @@ export const movies = [
     isFavorite: false,
     runtime: 126,
     director: `Wes Andreson`,
-    starring: [
+    starrings: [
       `Bill Murray`,
       `Edward Norton`,
       `Jude Law`,
@@ -207,7 +207,7 @@ export const movies = [
     isFavorite: false,
     runtime: 126,
     director: `Wes Andreson`,
-    starring: [
+    starrings: [
       `Bill Murray`,
       `Edward Norton`,
       `Jude Law`,

@@ -54,11 +54,10 @@ class Genres extends PureComponent {
 }
 
 Genres.propTypes = {
-  genres: PropTypes.array,
+  genres: PropTypes.arrayOf(PropTypes.string),
   activeGenre: PropTypes.string.isRequired,
   onGenresClick: PropTypes.func.isRequired,
 };
-
 
 const mapStateToProps = (state) => ({
   genres: getGenres(state),

@@ -43,7 +43,15 @@ const MyList = (props) => {
 };
 
 MyList.propTypes = {
-  movies: PropTypes.array,
+  movies: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        title: PropTypes.string,
+        genre: PropTypes.string,
+        date: PropTypes.string,
+        poster: PropTypes.string,
+      })
+  ),
   onMovieCardClick: PropTypes.func.isRequired,
 };
 

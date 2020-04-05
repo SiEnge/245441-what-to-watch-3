@@ -22,7 +22,15 @@ const MoviesList = (props) => {
 };
 
 MoviesList.propTypes = {
-  movies: PropTypes.array,
+  movies: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        title: PropTypes.string,
+        genre: PropTypes.string,
+        date: PropTypes.string,
+        poster: PropTypes.string,
+      })
+  ),
   activeSmallCard: PropTypes.number,
 
   onMovieCardClick: PropTypes.func.isRequired,

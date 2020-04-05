@@ -151,6 +151,7 @@ exports[`Render AddReview with disabled form 1`] = `
           </label>
           <input
             className="rating__input"
+            defaultChecked={true}
             disabled={false}
             id="star-3"
             name="rating"
@@ -373,6 +374,7 @@ exports[`Render AddReview without disabled form 1`] = `
           </label>
           <input
             className="rating__input"
+            defaultChecked={true}
             disabled={false}
             id="star-3"
             name="rating"

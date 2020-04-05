@@ -25,7 +25,7 @@ class AddReview extends PureComponent {
     this.commentRef = createRef();
     this.formRef = createRef();
 
-    this._handleSubmitForm = this._handleSubmitForm.bind(this);
+    this._handleFormSubmit = this._handleFormSubmit.bind(this);
   }
 
   _validateForm() {
@@ -50,7 +50,7 @@ class AddReview extends PureComponent {
     return false;
   }
 
-  _handleSubmitForm() {
+  _handleFormSubmit() {
     const {onSubmit, onHistoryBack, onDisabledForm, onError} = this.props;
     const isValidate = this._validateForm();
 
@@ -119,7 +119,7 @@ class AddReview extends PureComponent {
           <form action="#" className="add-review__form"
             onSubmit={(evt) => {
               evt.preventDefault();
-              this._handleSubmitForm();
+              this._handleFormSubmit();
             }}
             ref={this.formRef}
           >
@@ -135,7 +135,7 @@ class AddReview extends PureComponent {
                 <input className="rating__input" id="star-2" type="radio" name="rating" value="2" disabled={isDisabledForm} />
                 <label className="rating__label" htmlFor="star-2">Rating 2</label>
 
-                <input className="rating__input" id="star-3" type="radio" name="rating" value="3" disabled={isDisabledForm} />
+                <input className="rating__input" id="star-3" type="radio" name="rating" value="3" disabled={isDisabledForm} defaultChecked/>
                 <label className="rating__label" htmlFor="star-3">Rating 3</label>
 
                 <input className="rating__input" id="star-4" type="radio" name="rating" value="4" disabled={isDisabledForm} />

@@ -17,6 +17,7 @@ const SmallMovieCard = (props) => {
           movie={movie}
           onMovieCardClick={() => onMovieCardClick(id)}
           isMuted={true}
+          isControls={false}
         /> :
         <div onClick={() => onMovieCardClick(id)}
           className="small-movie-card__image">

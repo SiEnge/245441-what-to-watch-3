@@ -74,9 +74,9 @@ const reducer = (state = initialState, action) => {
       });
     case ActionType.UPDATE_MOVIES:
       const movies = state.movies;
-      const movie = action.payload;
-      const index = movies.findIndex((it) => movie.id === it.id);
-      const result = [].concat(movies.slice(0, index), movie, movies.slice(index + 1));
+      const newMovie = action.payload;
+      const index = movies.findIndex((movie) => newMovie.id === movie.id);
+      const result = [].concat(movies.slice(0, index), newMovie, movies.slice(index + 1));
       return extend(state, {
         movies: result,
       });

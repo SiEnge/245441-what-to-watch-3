@@ -5,7 +5,7 @@ import UserBlock from "./user-block.jsx";
 import history from "../../history.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import NameSpace from "../../reducer/name-space";
+import NameSpace from "../../reducer/name-space.js";
 import {user} from "../../utils/test.utils.js";
 
 const mockStore = configureStore([]);
